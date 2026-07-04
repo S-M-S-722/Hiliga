@@ -1,728 +1,2902 @@
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>HLIGA ULTIMATE | Match &amp; Coins</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background: #07111f;
-      color: white;
-      overflow-x: hidden;
-    }
-    .page {
-      display: none;
-      min-height: 100vh;
-      padding: 16px;
-    }
-    .active {
-      display: block;
-    }
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 18px;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(12px);
-      border-radius: 50px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      gap: 12px;
-      border: 1px solid rgba(255, 208, 0, 0.4);
-    }
-    .nav {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .nav button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 40px;
-      cursor: pointer;
-      font-weight: 700;
-      background: #1f2a3e;
-      color: white;
-      transition: 0.2s;
-    }
-    .coin-icon {
-      width: 24px;
-      height: 24px;
-      vertical-align: middle;
-      display: inline-block;
-      background: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIALcAwQMBIgACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAAAwQFAQIGB//EAD4QAAICAAMFAwgIBQQDAAAAAAABAgMEESEFEjFBUSJhcRMyQlKBkaHhFCMzYrHB0fBDU3KCkjRjk7IGJFT/xAAaAQEAAgMBAAAAAAAAAAAAAAAAAgMBBAUG/8QAJxEAAgEEAQQBBAMAAAAAAAAAAAECAwQRITEFEhNBUTNhcbEyNIH/2gAMAwEAAhEDEQA/AP3EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADzKUoxbbySWrAPQM7EbSrjnGlb76vgUbcXfb51jS9WOiNCr1GjT0tv7F0aE5G3OyEfOlFeLI3i6F/Gh7zBfa1lqwaUuqz9RLlar2ze+l4f8AnQJIW1z8ycX4M+dBhdWn7ig7VemfTA+erxN9f2djy6PVF2jaael0cn6yNyl1KjPUtFUrea42agPFdkbIqUHmj2dBNNZRQAAZAAAAAAAAAAAAAAAAAKuNxMcPXnlnJ6Rj1ITnGnFylwZSbeEdxWKrw8W5ayy0jzMfE4my+Wcn2eUVwR4snOyblY85PqeTzt1eTrtpaib9Kiob9gAjuuqpjnbOMOmb4mkk+EXkgKEto/yKJzXrS7KPLxeMl5sKo+LbLPHL2MGiDN+lY31MPL3nuO0Jx+2wziubg8x436GC+CKnE0Xr6uxSa9HmiUg008Mwe6Lp0z3qpNdUzWwWNhiXuvSxcmYxEm42b0W1JPNZGxQvJ27WNr4K50VU/J9WChs3GrER3JteVXTgy+eko1Y1oKcODnyi4vDAALSIAAAAAAAAAADAPFs1XCUnwSzZgX2zvtdkuL5dEXNq3ZzVEeWsjPOB1K475+NcL9m7b08LuYBzw4lLGXOcnRXLdj/EfX7qOdFZZtDEYtuTrwyTy42cUvDqVo1JS323Ob4zlqyRJKKUeQLM41EkCfD4fy+92st3TgRQhKxpQjmy9g6p1KW9k9555BEW9FbEYbyValv72uXD5kBp4irytSjnu6plSWCs9FqSDRhS1sqSqjN5uLzXNcSarFWUZRvbnXysXFeJ5nFwe7JZZHHwGdYZLk0k1LJp55rNMifnMqUXfRpbsnlS+K9TwLXs+Zr1ljBlHqE3XKM6+zJP3n0eDxCxFMZrjwa6M+aL2ysR5LEKHoz09pt9NuvDVUXwyi4pd0crlG+DiZ09Sc0AAAAAAAAAHJNRi2+CWZ0qbRnuYSffkiurPsg5fBmKy0jGsn5Wcpvi5ZnkA8k3l5Z1VohxVjrpzi9ZaR8evuKMUkksuGviT4uWeIy5RWXtf7RCWLSwSQJKq5WWqCeS5kb1TLez1rN9yX4mUHwW4QjCKUVlFfESlCtOVjUF1byPTM7aEN7ERlNZxS7C5L9/oT0VpZZbWLwzaX0mn/kRLFp9pNNcmnmY+7H1YnmNe426nKuT5xeXvGYkuwnvlvXWP72Xu0Ix7fmCDJEd2W5uvVNZMm2fa5VOmWrr+K5fvu7yva83l0GHl5O+uXXsv26fjkUz3on6NI6tHmDhrGD6bB2q/D12c2tfHmTmZsSzepnD1Jfj+2aZ7O1qeWjGfyjkVI9s2gADYIAAAAAAAzdsSyhXHq3+/iaRl7Z40/3fkal88W8i2j9RGaAcPMHRM+x/Wz75P9/A8nq37SX9TPJaTBNhLfJXrPzZdn2/v8SENJrJrNeBlGHs2EzkoqaeazXMzacTdh9Nba+jeq9vMuU4yi7KKnuz9WXZfzJ4zwVtNHizBxesHu9z1RVtqnW+3FpdeRqBrNNNZ9xHAUjHOTlkmyfFU+Rlo84y4dxTtlm8uhCTwWx2eJave6nOGoBSWGt5z9gC/IFBE09hPK22PVL4P5m0YexP9TP+j8zcPVdK/qx/39nLufqMAA6JQAAAAAAHwMzbK7FUvvbvw+RplLasc8FNx4wyl7uPwNe6h30ZRXwTpvE0YwH6A8qdMoYhZXSXfmRlnGxykpewrFi4JgDiWMJWp2NSWcEs/eZMFfwOOKn563kaFmDhLWD3e56oieCs9GUTO0Y7kRYOydVigpylW3luvl4dxplajCquW/OW8+7kTylloiTetkHtlbaj/wDV/uRkF3aV2/NVL0e1L8v34FIom8sugsIHYrekl1eRwnwcN+5PlHV+JB6RI0F06HDpwoImlsNZ32PpFL3t/obZlbCh9TZY/SnkvBfPM1T13T4dltFM5dd5qMAA3SkAAAAAAHmaUoSjJZprJo9BgHzCi4SnVJ5zrtul/g/ajvgXNs0+TshiY6qWVdi/6v3vL2roUkeWu6Lo1XH16OnTn3xTOWw34br45aGe09573I0iDE1b8d9cVx7yiLwWJlMmw+JVDlnCUlLVyis8vYQtAsTwZayaNeLw1nm3Qz6SeT9xMmpea0/DUxJyh6S3u56lvZmXkp7qS7XJdxlziRcMFvEYmqiO9bbGHJb0kszPu2k5ZrCxbz/iTTS9nUk2mvqa/wCr8jPKnMnGCxk4ueubz1f6nQCssHgaOGq8nWs/OfEhwtGeU5eKRbK5S9EWHwOWvdi3utvgor0nyR0s7JoeK2grH9lh3m++fJexa/4lltQdeqoIhOahFtm3gaPo2GqpzzcYrea5vm/eWQD2aSSwjjt5eQADIAAAAAAAAAPF1cba512JShOLjJPmmfNWVywd7wtz3mta5v049/f1+Z9Q+BS2jga8dR5OxuMlrXZFawl1X6GpeWyrwwufRdRqdj3wYu9E5vx5FZuzD4n6Ni4qFyWjXCxdV+nFEp5Wp305OMlhnSWOshugp5uOUZfAo3K2L7eaXXkaIaTWTWaZDyMmtGSca+9YvCbX4GjPC1S5bvhoRvBL0bH7ianjZnJSUfv2S/qsb/FnfEtrBf7nwJY4WtayTk0YdTO2MlGMXY0oLMt0YVQynPV9CzGKiuysgQc8mMgeJ0itse/GmiPlL7PMrXPvfRCEXOSjFbMN4Oy352ww9C3r7NILkurfh8T6bAYWGDwtdNbb3eMnxk+bfiVtkbNWCg52yVmJs1ssy08F3GmepsLNW8Mv+TObXrd7wuAADoGuAAAAAAAAAAAAA+AABTx+Box1HksRHNcU1o4vqnyPncXhsVs1v6RF34X+fCOsV9+P5o+uOPgatzaU7hYlyW0q0qf4Pka7a7YKVU1OL5xeaPRqY7YGEvsd2HcsLe/Tp0TffHgzMu2btfC8IU4uC4Ot7k/anp7jhV+lVoPMdo34XEJfY4CtZi/If6vC4ijq51PL3o8x2ngnr9IivFNfijQlRqR5iy5PPBbBUe0sF/9MPidhjoW6YanEYh/7dbf5GFRqS4iw9FoNpJuTSiuLYqwe1cVrDCww0H6WIlm/wDFF/Df+O0pqePsni5ppqMtIL+1fmbtHpdep/JYRTOvTj7MzD/SdpWOOz4/V8JYixdheHrM+h2ZsynZ6bjnZdP7S6WspfIuwjGEYxisorRJLgezvW1lTt1rn5NGrXlU1wgADcKQAAAAAAAAAAAAAAAAAAAAAAAARTpqn59cH4xTJQAQxophluVVx8IolSOgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q==') no-repeat center center;
-      background-size: contain;
-    }
-    .coinbox {
-      font-size: 22px;
-      font-weight: 800;
-      color: #ffd000;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 4px 18px;
-      border-radius: 50px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .login-box {
-      max-width: 380px;
-      margin: 60px auto;
-      background: rgba(10, 20, 35, 0.9);
-      backdrop-filter: blur(12px);
-      padding: 28px 22px;
-      border-radius: 48px;
-      text-align: center;
-      border: 1px solid rgba(255, 208, 0, 0.6);
-    }
-    .login-box input {
-      width: 100%;
-      padding: 14px;
-      margin-top: 18px;
-      border: none;
-      border-radius: 60px;
-      background: #0f1725;
-      color: white;
-      padding-left: 20px;
-      outline: none;
-    }
-    .login-btn {
-      margin-top: 28px;
-      padding: 14px;
-      width: 100%;
-      border: none;
-      border-radius: 60px;
-      background: #ffd000;
-      font-weight: 800;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .packs-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 26px;
-      margin-top: 8px;
-    }
-    .pack {
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI0P9fJvhaIe4eUC95AMamn7xpIFKHtsVs1A&s') no-repeat center center;
-      background-size: cover;
-      border-radius: 36px;
-      overflow: hidden;
-      border: 2px solid #ffcc33;
-      box-shadow: 0 18px 28px -12px black;
-    }
-    .pack-content {
-      background: rgba(0, 0, 0, 0.68);
-      backdrop-filter: brightness(0.9) blur(3px);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    .pack-top {
-      background: linear-gradient(135deg, #004e92, #000b1a);
-      padding: 12px;
-      text-align: center;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding: 16px;
-    }
-    .card {
-      height: 120px;
-      overflow: hidden;
-      border-radius: 20px;
-      background: #010a15cc;
-      border: 1px solid #ffd966aa;
-    }
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .bottom {
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #0a0f1ed9;
-    }
-    .spin-btn {
-      padding: 8px 20px;
-      border-radius: 50px;
-      border: none;
-      background: #ffd000;
-      font-weight: 800;
-      cursor: pointer;
-    }
-    .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .player-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 18px;
-      margin-top: 20px;
-    }
-    .player-card {
-      background: #0f1825dd;
-      backdrop-filter: blur(6px);
-      padding: 12px;
-      border-radius: 28px;
-      text-align: center;
-      border: 1px solid #3a6ea5;
-    }
-    .player-card img {
-      width: 100%;
-      border-radius: 22px;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-    }
-    .assign-btn {
-      width: 100%;
-      margin-top: 12px;
-      padding: 10px;
-      border-radius: 50px;
-      background: #00d084;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-    }
-    .pitch-page-container {
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTSyOPxgKgpnL939OBaAqjz5IiFkpG9rZdsg&s') no-repeat center center;
-      background-size: cover;
-      border-radius: 48px;
-      padding: 24px 16px;
-      border: 2px solid #ffcc44;
-    }
-    .pitch-overlay {
-      backdrop-filter: brightness(0.8) blur(3px);
-      border-radius: 44px;
-      padding: 20px 12px;
-    }
-    .pitch {
-      max-width: 750px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
-    }
-    .position {
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px);
-      border: 2px solid #ffdd77;
-      border-radius: 36px;
-      text-align: center;
-      padding: 18px 10px;
-      cursor: pointer;
-      min-height: 210px;
-    }
-    .position img {
-      width: 90px;
-      height: 90px;
-      object-fit: contain;
-      border-radius: 20px;
-      background: #010a1a;
-    }
-    .match-panel, .scoreboard-panel {
-      background: #fef9e8;
-      border-radius: 2rem;
-      padding: 1.5rem;
-      color: #1e2a2a;
-    }
-    .scoreboard-panel {
-      background: #0b1f1c;
-      color: #f0f3e8;
-    }
-    .play-btn {
-      background: #e67e22;
-      color: white;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .reset-btn {
-      background: #4c3f2f;
-      color: white;
-      margin-top: 8px;
-      padding: 8px;
-      border-radius: 40px;
-      width: 100%;
-      cursor: pointer;
-    }
-    .coins-total {
-      background: #00000055;
-      backdrop-filter: blur(4px);
-      border-radius: 2rem;
-      padding: 0.8rem;
-      font-weight: bold;
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .result-page {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.96);
-      z-index: 99999;
-      cursor: pointer;
-    }
-    .result-video {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.8;
-    }
-    .result-player {
-      display: none;
-      position: absolute;
-      z-index: 12;
-      max-width: 30vw;
-      max-height: 70vh;
-      width: auto;
-      height: auto;
-      border-radius: 24px;
-      border: 4px solid gold;
-      background: #0a0f1c;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      left: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      object-fit: contain;
-    }
-    @media(max-width: 650px) {
-      .pitch { grid-template-columns: 1fr; }
-      .position { min-height: 170px; }
-      .result-player {
-        max-width: 50vw;
-        left: 5%;
-      }
-    }
-    .title {
-      text-align: center;
-      font-size: 38px;
-      font-weight: 800;
-      margin: 16px 0 24px;
-    }
-    .back-button {
-      background: #2c3e66;
-      padding: 8px 18px;
-      border-radius: 40px;
-      border: none;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .spin-counter {
-      font-weight: 600;
-      background: #00000066;
-      padding: 4px 10px;
-      border-radius: 30px;
-    }
-    .win-badge { color: #2ecc71; font-weight: bold; }
-    .draw-badge { color: #f39c12; font-weight: bold; }
-    .loss-badge { color: #e74c3c; font-weight: bold; }
-    .flex-center { display: flex; align-items: center; gap: 6px; }
-  </style>
-<style>
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateY(-50%) translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0);
-      }
-    }
-    .result-player {
-      animation: slideInLeft 0.5s ease-out;
-    }
-  </style></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>HLIGA ULTIMATE · Game Plan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0a0c;
+            font-family: 'Inter', sans-serif;
+            color: #eef2ff;
+            overflow-x: hidden;
+        }
+        #appContainer {
+            display: none;
+        }
+        #appContainer.gameplan-mode .side-nav {
+            display: none !important;
+        }
+        #appContainer.gameplan-mode .app-layout {
+            max-width: 100%;
+        }
+        #appContainer.gameplan-mode .main-content {
+            padding: 1.2rem 2rem;
+        }
+        #appContainer.gameplan-mode .top-info-bar {
+            justify-content: flex-end;
+        }
+        #appContainer.gameplan-mode .top-left {
+            display: none;
+        }
+
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0a0c;
+            padding: 20px;
+        }
+        .login-box {
+            width: 400px;
+            max-width: 90%;
+            background: rgba(10, 20, 35, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 32px 28px;
+            border-radius: 48px;
+            text-align: center;
+            border: 1px solid #ff2a6d;
+            box-shadow: 0 0 30px rgba(255, 42, 109, 0.3);
+        }
+        .login-box img {
+            width: 150px;
+            margin-bottom: 15px;
+        }
+        .login-box h2 {
+            margin-bottom: 20px;
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 60px;
+            background: #0f1725;
+            color: white;
+            padding-left: 20px;
+            outline: none;
+            border: 1px solid #ff2a6d66;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .login-btn,
+        .signup-btn {
+            margin-top: 18px;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 60px;
+            font-weight: 400;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .login-btn {
+            background: #ff2a6d;
+            color: white;
+        }
+        .signup-btn {
+            background: #2c5f8a;
+            color: white;
+            margin-top: 12px;
+        }
+        .error-text {
+            color: #ff6666;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        :root {
+            --neon-pink: #ff2a6d;
+            --neon-green: #05ffa1;
+            --card-dark: #13141f;
+        }
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .side-nav {
+            width: 260px;
+            background: rgba(13, 13, 18, 0.92);
+            backdrop-filter: blur(8px);
+            border-right: 1px solid var(--neon-pink);
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+        .nav-profile-container {
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--neon-pink);
+        }
+        .nav-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-green));
+            border-radius: 50%;
+            margin: 0 auto 0.8rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(5, 255, 161, 0.5);
+            overflow: hidden;
+        }
+        .nav-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .nav-profile-name {
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-shadow: 0 0 6px var(--neon-pink);
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .side-nav-buttons {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .side-nav-btn {
+            background: rgba(255, 42, 109, 0.12);
+            border: 1px solid rgba(5, 255, 161, 0.4);
+            padding: 10px 14px;
+            border-radius: 40px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            color: #eef2ff;
+            transition: all 0.2s;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .side-nav-btn img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+        .side-nav-btn:hover {
+            background: #ff2a6d30;
+            border-color: var(--neon-green);
+            transform: translateX(5px);
+        }
+        .side-footer {
+            margin-top: auto;
+            padding: 1rem;
+            font-size: 0.7rem;
+            text-align: center;
+            border-top: 1px solid var(--neon-pink);
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .main-content {
+            flex: 1;
+            padding: 1.2rem;
+            overflow-y: auto;
+        }
+        .top-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(19, 20, 31, 0.9);
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--neon-pink);
+        }
+        .top-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .welcome-name {
+            color: var(--neon-pink);
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .coins-display-right {
+            background: rgba(5, 255, 161, 0.15);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: 1px solid var(--neon-green);
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .home-icon-btn {
+            color: #05ffa1;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-right: 4px;
+        }
+        .home-icon-btn:hover {
+            color: #eef2ff;
+        }
+
+        /* GAME PLAN PAGE - FULL WIDTH */
+        .gameplan-container {
+            background: rgba(19, 20, 31, 0.95);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid var(--neon-pink);
+            min-height: 80vh;
+        }
+        .gameplan-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid #ff2a6d40;
+            padding-bottom: 16px;
+        }
+        .gameplan-header .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .gameplan-header .header-left .home-icon-btn {
+            font-size: 1.4rem;
+            color: #ff2a6d;
+            border: 1px solid #ff2a6d60;
+            padding: 8px 12px;
+            border-radius: 40px;
+        }
+        .gameplan-header .header-left .home-icon-btn:hover {
+            background: #ff2a6d20;
+        }
+        .gameplan-header .header-left h2 {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 1.6rem;
+        }
+        .gameplan-header .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .gameplan-header .header-right .coins-display {
+            background: rgba(5, 255, 161, 0.15);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--neon-green);
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        .gameplan-body {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .gameplan-sidebar {
+            flex: 0 0 300px;
+            min-width: 240px;
+        }
+        .gameplan-pitch-area {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .team-info {
+            background: #0f111c;
+            border-radius: 16px;
+            padding: 16px 20px;
+            border: 1px solid #ff2a6d40;
+            margin-bottom: 16px;
+        }
+        .team-info .team-name-input {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 40px;
+            background: #1a1c2e;
+            border: 1px solid #ff2a6d60;
+            color: white;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+        }
+        .team-info .team-name-input:focus {
+            border-color: #05ffa1;
+        }
+        .team-info .team-name-input::placeholder {
+            color: #7a85a0;
+        }
+        .team-info .section-label {
+            color: #7a85a0;
+            font-size: 0.8rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 6px;
+            max-height: 160px;
+            overflow-y: auto;
+            padding: 6px 0;
+        }
+        .logo-grid .logo-option {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            border: 2px solid #ff2a6d40;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+            background: #1a1c2e;
+            transition: 0.2s;
+        }
+        .logo-grid .logo-option:hover {
+            border-color: #05ffa1;
+            transform: scale(1.05);
+        }
+        .logo-grid .logo-option.selected {
+            border-color: #05ffa1;
+            box-shadow: 0 0 20px rgba(5, 255, 161, 0.3);
+        }
+        .logo-grid .logo-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .selected-team-display {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 14px;
+            background: #1a1c2e;
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 1px solid #ff2a6d40;
+        }
+        .selected-team-display img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+        .selected-team-display .team-name-display {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .collective-strength {
+            background: #1a1c2e;
+            border-radius: 12px;
+            padding: 14px 18px;
+            border: 1px solid #05ffa1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+        .collective-strength .cs-label {
+            color: #7a85a0;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+        .collective-strength .cs-value {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 1.8rem;
+        }
+
+        /* Jersey & Formation buttons */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .jersey-btn {
+            background: linear-gradient(135deg, #ff2a6d, #b0104a);
+            border: none;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.2s;
+            font-size: 1.1rem;
+            box-shadow: 0 0 20px rgba(255, 42, 109, 0.3);
+            width: 100%;
+        }
+        .jersey-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 42, 109, 0.5);
+        }
+        .jersey-btn i {
+            font-size: 1.6rem;
+        }
+
+        .formation-btn {
+            background: rgba(5, 255, 161, 0.15);
+            border: 1px solid #05ffa1;
+            color: #05ffa1;
+            padding: 12px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.2s;
+            font-size: 1rem;
+            width: 100%;
+        }
+        .formation-btn:hover {
+            background: #05ffa1;
+            color: #0a0a0c;
+        }
+        .formation-btn i {
+            font-size: 1.4rem;
+        }
+
+        .formation-selector {
+            display: none;
+            background: #1a1c2e;
+            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid #ff2a6d60;
+            margin-top: 8px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .formation-selector.active {
+            display: flex;
+        }
+        .formation-selector .fmt-btn {
+            background: #0f111c;
+            border: 1px solid #ff2a6d40;
+            color: #a8b3cf;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 0.75rem;
+            transition: 0.2s;
+        }
+        .formation-selector .fmt-btn:hover {
+            border-color: #05ffa1;
+            color: white;
+        }
+        .formation-selector .fmt-btn.active {
+            border-color: #05ffa1;
+            color: #05ffa1;
+            background: #05ffa110;
+        }
+
+        /* Pitch with background image - SMALLER BOXES with width 158px */
+        .pitch-area {
+            background: #0f111c;
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid #ff2a6d40;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+        }
+        .pitch-area .pitch-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: 0;
+            border-radius: 16px;
+        }
+        .pitch-area .pitch-title {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .pitch-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 5px;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .pitch-box {
+            width: 158px;
+            aspect-ratio: 0.8;
+            background: rgba(26, 28, 46, 0.8);
+            backdrop-filter: blur(4px);
+            border: 2px dashed #ff2a6d60;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 2px;
+            min-height: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .pitch-box:hover {
+            border-color: #05ffa1;
+            background: rgba(255, 42, 109, 0.15);
+        }
+        .pitch-box.filled {
+            border: 2px solid #05ffa1;
+            background: rgba(5, 255, 161, 0.1);
+        }
+        .pitch-box .player-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 6px;
+        }
+        .pitch-box .player-ovr-badge {
+            position: absolute;
+            top: 1px;
+            left: 3px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            color: white;
+            z-index: 5;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            line-height: 1.1;
+        }
+        .pitch-box .position-label {
+            font-size: 0.45rem;
+            color: #7a85a0;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+        .pitch-box .remove-player {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: #ff2a6d;
+            border: none;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 0.45rem;
+            cursor: pointer;
+            display: none;
+            z-index: 10;
+            align-items: center;
+            justify-content: center;
+        }
+        .pitch-box.filled .remove-player {
+            display: flex;
+        }
+        .pitch-box .player-name-label {
+            position: absolute;
+            bottom: 1px;
+            left: 0;
+            right: 0;
+            font-size: 0.35rem;
+            color: #a8b3cf;
+            text-align: center;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.2px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1px 2px;
+            z-index: 5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pitch-hint {
+            margin-top: 10px;
+            text-align: center;
+            color: #7a85a0;
+            font-size: 0.6rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #ff2a6d20;
+            padding-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* PLAYER DETAIL FULL PAGE */
+        .player-detail-full {
+            position: fixed;
+            inset: 0;
+            background: #0a0a0c;
+            z-index: 9000;
+            display: none;
+            flex-direction: column;
+            padding: 20px 24px;
+            overflow-y: auto;
+        }
+        .player-detail-full.active {
+            display: flex;
+        }
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 0 18px;
+            border-bottom: 1px solid #ff2a6d40;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .detail-header .back-btn {
+            background: #ff2a6d;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .detail-header .back-btn i {
+            margin-right: 8px;
+        }
+        .detail-header h2 {
+            color: #05ffa1;
+            font-size: 1.3rem;
+            margin-left: 4px;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .detail-tabs {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+        }
+        .detail-tab {
+            background: rgba(255, 42, 109, 0.15);
+            border: 1px solid #ff2a6d60;
+            color: #eef2ff;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.85rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .detail-tab:hover {
+            background: #ff2a6d30;
+            border-color: #05ffa1;
+        }
+        .detail-tab.active {
+            background: #ff2a6d;
+            border-color: #ff2a6d;
+            color: white;
+        }
+        .detail-body {
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+        .detail-left-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 200px;
+            flex: 0 0 auto;
+            position: relative;
+        }
+        .detail-left-col .player-card-img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 0px;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+        .ovr-badge {
+            position: absolute;
+            top: 15px;
+            left: 45px;
+            font-size: 1.4rem;
+            color: white;
+            z-index: 10;
+            line-height: 1.4;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        .detail-left-col .player-name-big {
+            font-size: 1.8rem;
+            color: #05ffa1;
+            margin-top: 14px;
+            text-align: center;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        .detail-left-col .player-team {
+            color: #a8b3cf;
+            font-size: 0.9rem;
+            margin-top: 4px;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .detail-right-stats {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 28px;
+            padding: 8px 0;
+            min-width: 260px;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #ff2a6d20;
+            padding-bottom: 10px;
+        }
+        .stat-item .stat-label {
+            font-size: 0.7rem;
+            color: #7a85a0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        .stat-item .stat-value {
+            font-size: 1.2rem;
+            color: #eef2ff;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .progression-tab {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 8px;
+            background: #0f111c;
+            border-radius: 20px;
+            padding: 20px 24px;
+            border: 1px solid #ff2a6d40;
+        }
+        .progression-tab.active {
+            display: flex;
+        }
+        .prog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #ff2a6d30;
+            margin-bottom: 16px;
+        }
+        .prog-header .prog-name {
+            font-size: 1.6rem;
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .prog-header .prog-rating {
+            font-size: 1.8rem;
+            color: #eef2ff;
+            background: #ff2a6d20;
+            padding: 4px 16px;
+            border-radius: 40px;
+            border: 1px solid #ff2a6d60;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .prog-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 24px;
+        }
+        .prog-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #1a1c2e;
+        }
+        .prog-stat .prog-label {
+            color: #a8b3cf;
+            font-size: 0.85rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .prog-stat .prog-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .prog-stat .prog-value {
+            color: #eef2ff;
+            font-size: 1.1rem;
+            min-width: 30px;
+            text-align: center;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .prog-stat .prog-value.highlight {
+            color: #05ffa1;
+        }
+        .prog-stat .arrow-btn {
+            background: rgba(255, 42, 109, 0.15);
+            border: 1px solid #ff2a6d60;
+            color: #eef2ff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            font-size: 0.8rem;
+        }
+        .prog-stat .arrow-btn:hover {
+            background: #ff2a6d30;
+            border-color: #05ffa1;
+            transform: scale(1.1);
+        }
+        .prog-stat .arrow-btn:active {
+            transform: scale(0.9);
+        }
+        .prog-stat .arrow-btn.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .training-tab {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 8px;
+            background: #0f111c;
+            border-radius: 20px;
+            padding: 20px 24px;
+            border: 1px solid #ff2a6d40;
+        }
+        .training-tab.active {
+            display: flex;
+        }
+        .training-table {
+            width: 100%;
+        }
+        .training-table .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 16px 20px;
+            border-bottom: 1px solid #1a1c2e;
+            align-items: center;
+        }
+        .training-table .table-row:last-child {
+            border-bottom: none;
+        }
+        .training-table .table-header {
+            background: #1a1c2e;
+            color: #7a85a0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        .training-table .table-row .col {
+            color: #eef2ff;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .training-table .table-row .col.highlight {
+            color: #05ffa1;
+        }
+        .training-table .table-row .col .used-badge {
+            background: #ff2a6d20;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #ff2a6d;
+        }
+        .train-btn {
+            background: linear-gradient(95deg, #ff2a6d, #b0104a);
+            border: none;
+            padding: 6px 20px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .train-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #ff2a6d55;
+        }
+        .train-btn:active {
+            transform: scale(0.95);
+        }
+        .train-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* DRAFT PAGE with pack image */
+        .draft-page-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+        .pack-card {
+            width: 500px;
+            background: linear-gradient(145deg, #13141f, #0c0d14);
+            border-radius: 2rem;
+            border: 1px solid var(--neon-pink);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 40px rgba(255, 42, 109, 0.15);
+        }
+        .pack-header {
+            position: relative;
+            background: #0b0c12;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--neon-green);
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .pack-header strong {
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        .more-details-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: rgba(255, 42, 109, 0.2);
+            border: 1px solid var(--neon-green);
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            color: #05ffa1;
+            cursor: pointer;
+            z-index: 5;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+        .more-details-btn:hover {
+            background: #ff2a6d;
+            color: white;
+        }
+        .pack-image-area {
+            flex: 1;
+            text-align: center;
+            padding: 0;
+            background: #0a0a0c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .pack-full-image {
+            width: 500px;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        .pack-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: #0c0d14d9;
+            border-top: 1px solid var(--neon-pink);
+            flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .remaining-box {
+            background: #ff2a6d20;
+            padding: 8px 20px;
+            border-radius: 60px;
+            border-left: 3px solid #ff2a6d;
+            font-size: 1.2rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .spin-button {
+            background: linear-gradient(95deg, #ff2a6d, #b0104a);
+            border: none;
+            padding: 10px 28px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 12px #ff2a6d;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+        .spin-button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 42, 109, 0.5);
+        }
+        .spin-button:active {
+            transform: scale(0.96);
+        }
+
+        /* PACK PLAYERS MODAL */
+        .pack-players-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .pack-players-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .pack-players-modal {
+            background: #13141f;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            border-radius: 2rem;
+            border: 2px solid var(--neon-pink);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header {
+            padding: 1rem;
+            background: #0a0a0c;
+            border-bottom: 1px solid var(--neon-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .close-modal-btn {
+            background: #ff2a6d;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+        }
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        .pack-player-card {
+            background: #1e1f2e;
+            border-radius: 1rem;
+            text-align: center;
+            padding: 0.8rem;
+            border: 1px solid #ff2a6d60;
+        }
+        .pack-player-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+        .pack-player-card p {
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #05ffa1;
+            margin-top: 6px;
+        }
+
+        /* VIDEO OVERLAY */
+        .video-result-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+            flex-direction: column;
+        }
+        .video-result-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .video-wrapper {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+        .cancel-video-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #1a5fb4;
+            border: 2px solid #05ffa1;
+            color: white;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 50;
+            box-shadow: 0 0 20px rgba(5, 255, 161, 0.4);
+            transition: 0.2s;
+            letter-spacing: 0.5px;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        .cancel-video-btn:hover {
+            background: #0d47a1;
+            transform: scale(1.03);
+        }
+        .big-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 40;
+        }
+        .big-card-overlay.show {
+            display: flex;
+        }
+        .big-card-display {
+            background: transparent;
+            text-align: center;
+            max-width: 380px;
+            width: 80%;
+            animation: floatIn 0.4s ease;
+        }
+        .big-card-display img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 24px;
+            background: transparent;
+            box-shadow: 0 0 40px rgba(5, 255, 161, 0.3);
+        }
+        @keyframes floatIn {
+            from {
+                transform: scale(0.7) translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Players selection modal */
+        .players-select-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 8000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .players-select-overlay.active {
+            display: flex;
+        }
+        .players-select-modal {
+            background: #13141f;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            border-radius: 2rem;
+            border: 2px solid var(--neon-pink);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header {
+            padding: 1rem;
+            background: #0a0a0c;
+            border-bottom: 1px solid var(--neon-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .modal-close-btn {
+            background: #ff2a6d;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+        }
+        .players-select-list {
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .player-select-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: #1a1c2e;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+        .player-select-item:hover {
+            border-color: #05ffa1;
+            background: #ff2a6d10;
+        }
+        .player-select-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .player-select-item .pname {
+            color: #eef2ff;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+        .player-select-item .pstatus {
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: #7a85a0;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+        }
+        .player-select-item .pstatus.placed {
+            color: #05ffa1;
+        }
+
+        /* Responsive */
+        @media (max-width: 780px) {
+            .gameplan-body {
+                flex-direction: column;
+            }
+            .gameplan-sidebar {
+                flex: 1;
+                min-width: unset;
+            }
+            .gameplan-pitch-area {
+                min-width: unset;
+            }
+            .pitch-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 4px;
+                max-width: 100%;
+            }
+            .pitch-box {
+                width: 100%;
+                min-height: 35px;
+                max-width: 158px;
+            }
+            .gameplan-header .header-left h2 {
+                font-size: 1.2rem;
+            }
+            #appContainer.gameplan-mode .main-content {
+                padding: 0.8rem;
+            }
+            .gameplan-container {
+                padding: 1rem;
+            }
+            .pack-card {
+                width: 100%;
+            }
+            .pack-full-image {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 5/3;
+            }
+            .detail-body {
+                flex-direction: column;
+                align-items: center;
+            }
+            .detail-right-stats {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+            .detail-left-col .player-card-img {
+                width: 160px;
+                height: 160px;
+            }
+            .detail-tabs {
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .pitch-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 3px;
+            }
+            .pitch-box {
+                width: 100%;
+                min-height: 30px;
+                max-width: 120px;
+            }
+            .pitch-box .player-ovr-badge {
+                font-size: 0.4rem;
+                top: 1px;
+                left: 2px;
+            }
+            .pitch-box .player-name-label {
+                font-size: 0.3rem;
+            }
+            .pitch-box .position-label {
+                font-size: 0.35rem;
+            }
+            .logo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+            }
+            .logo-grid .logo-option {
+                width: 36px;
+                height: 36px;
+            }
+            .pack-stats {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .spin-button {
+                width: 100%;
+                text-align: center;
+            }
+            .remaining-box {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
 <body>
 
-<!-- LOGIN -->
-<div class="page active" id="loginPage">
-  <div class="login-box">
-    <img src="https://ik.imagekit.io/shaz/Your_paragraph_text__1_-removebg-preview.png" style="width:150px; margin:0 auto 10px;">
-    <h2>HILIGA LOGIN</h2>
-    <input id="username" placeholder="Username">
-    <input id="password" type="password" placeholder="Password">
-    <button class="login-btn" onclick="login()">ENTER ARENA</button>
-    <p id="error" style="color:#ffaa66; margin-top:12px;"></p>
-  </div>
-</div>
-
-<!-- HOME (PACKS) -->
-<div class="page" id="homePage">
-  <div class="topbar">
-    <div><span id="userText"></span></div>
-    <div class="coinbox"><span class="coin-icon"></span> <span id="coinText">400</span></div>
-    <div class="nav">
-      <button onclick="showHome()">HOME</button>
-      <button onclick="showPlayers()">PLAYERS</button>
-      <button onclick="showPlan()">GAME PLAN</button>
-      <button onclick="showMatchPage()">MATCH</button>
+    <div id="loginContainer" class="login-container">
+        <div class="login-box">
+            <img src="https://ik.imagekit.io/shaz/Your_paragraph_text__1_-removebg-preview.png">
+            <h2>HLIGA ULTIMATE</h2>
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button class="login-btn" onclick="handleLogin()">LOGIN</button>
+            <button class="signup-btn" onclick="showSignupPanel()">CREATE NEW ACCOUNT</button>
+            <div id="loginError" class="error-text"></div>
+        </div>
     </div>
-  </div>
-  <h1 class="title">THE CHAMPIONS</h1>
-  <div class="packs-container" id="packsContainer"></div>
-  <p style="text-align:center; margin-top:20px; font-size:13px; opacity:0.7;">Play matches to earn coins → Spin packs (no duplicates)</p>
-</div>
 
-<!-- PLAYERS PAGE -->
-<div class="page" id="playersPage">
-  <div class="topbar"><button class="back-button" onclick="showHome()">BACK</button><h2>MY COLLECTION</h2><div></div></div>
-  <div id="playerGrid" class="player-grid"></div>
-</div>
-
-<!-- GAME PLAN -->
-<div class="page" id="planPage">
-  <div class="topbar"><button class="back-button" onclick="showHome()">HOME</button><h2>FORMATION (Any Player Anywhere)</h2><div></div></div>
-  <div class="pitch-page-container"><div class="pitch-overlay"><div class="pitch">
-    <div class="position" id="CF" onclick="assignToPosition('CF')"><h2>CF</h2><div>tap to assign</div></div>
-    <div class="position" id="CMF" onclick="assignToPosition('CMF')"><h2>CMF</h2><div>tap to assign</div></div>
-    <div class="position" id="CB" onclick="assignToPosition('CB')"><h2>CB</h2><div>tap to assign</div></div>
-    <div class="position" id="GK" onclick="assignToPosition('GK')"><h2>GK</h2><div>tap to assign</div></div>
-  </div></div></div>
-  <p style="text-align:center; margin-top:16px;">Select a player from MY PLAYERS, then tap any position</p>
-</div>
-
-<!-- MATCH PAGE -->
-<div class="page" id="matchPage">
-  <div class="topbar"><button class="back-button" onclick="showHome()">HOME</button><h2>MATCHDAY</h2><div class="coinbox"><span class="coin-icon"></span> <span id="matchCoinDisplay">0</span></div></div>
-  <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; justify-content: center;">
-    <div class="match-panel" style="flex:1.2; min-width:300px;">
-      <div style="display:flex; justify-content:space-between;"><h2>MATCHDAY</h2><div class="special-name">CF·CMF·CB·GK</div></div>
-      <div style="margin:1rem 0;">
-        <label>Choose opponent: </label>
-        <select id="opponentSelect">
-          <option value="Barcelona">FC Barcelona</option>
-          <option value="City">Manchester City</option>
-          <option value="Liverpool">Liverpool FC</option>
-          <option value="Real">Real Madrid</option>
-          <option value="United">Manchester United</option>
-          <option value="PSG">Paris SG</option>
-          <option value="Arsenal">Arsenal</option>
-        </select>
-        <button id="playMatchBtn" class="play-btn" style="margin-left:8px;">PLAY MATCH</button>
-        <button id="resetMatchesBtn" class="reset-btn">RESET ALL MATCHES</button>
-      </div>
-      <div class="match-card" style="background:white; border-radius:1.8rem; padding:1rem;">
-        <div style="display:flex; justify-content:space-between;">
-          <div style="font-weight:bold;">SPECIAL TEAM</div>
-          <div style="font-size:1.5rem; font-weight:800;">VS</div>
-          <div style="font-weight:bold;" id="opponentNameDisplay">Liverpool FC</div>
+    <div id="signupContainer" style="display:none;" class="login-container">
+        <div class="login-box">
+            <h2>CREATE ACCOUNT</h2>
+            <input type="text" id="signupUsername" placeholder="Username">
+            <input type="password" id="signupPassword" placeholder="Password">
+            <button class="login-btn" onclick="handleSignup()">SIGN UP</button>
+            <button class="signup-btn" onclick="hideSignup()">BACK TO LOGIN</button>
+            <div id="signupError" class="error-text"></div>
         </div>
-        <div style="display:flex; gap:1rem; justify-content:center; margin:1rem 0;">
-          <input type="number" id="specialScore" value="0" readonly="" style="width:80px; text-align:center; font-size:1.5rem; font-weight:bold;"><span style="font-size:1.8rem;">—</span>
-          <input type="number" id="opponentScore" value="0" readonly="" style="width:80px; text-align:center; font-size:1.5rem; font-weight:bold;">
-        </div>
-        <div id="matchResultMessage" style="background:#eae2d0; border-radius:1.5rem; padding:0.6rem; text-align:center;">
-          Click "PLAY MATCH" to see the result!
-        </div>
-        <div style="margin-top:10px; text-align:center; font-size:13px;">
-          Win=10 Coins | Draw=5 Coins | Loss=3 Coins
-        </div>
-      </div>
     </div>
-    <div class="scoreboard-panel" style="flex:1.8;">
-      <div style="display:flex; justify-content:space-between;"><h2>SCOREBOARD</h2><div class="special-name">MATCH HISTORY</div></div>
-      <div style="overflow-x:auto;">
-        <table style="width:100%; border-collapse:collapse;" id="scoreboardTable">
-          <thead><tr><th>Opponent</th><th>Result</th><th>Score</th><th>Coins</th></tr></thead>
-          <tbody id="scoreboardBody"><tr><td colspan="4">No matches played yet</td></tr>
-        </tbody>
-       </table>
-      </div>
-      <div class="coins-total"><span class="coin-icon"></span> TOTAL COINS EARNED: <span id="totalCoinsDisplay">0</span></div>
-      <div style="font-size:11px; margin-top:10px; text-align:center;">Reset clears history and allows replaying matches</div>
+
+    <div id="appContainer">
+        <div class="app-layout">
+            <aside class="side-nav">
+                <div class="nav-profile-container">
+                    <div class="nav-avatar" id="sideAvatar"><i class="fas fa-user-circle"></i></div>
+                    <div class="nav-profile-name" id="sideProfileName">profile</div>
+                </div>
+                <div class="side-nav-buttons">
+                    <button class="side-nav-btn" id="homeNavBtn"><img src="https://ik.imagekit.io/shaz/image-removebg-preview%20(24).png"><span>EVENTS</span></button>
+                    <button class="side-nav-btn" id="playersNavBtn"><img src="https://ik.imagekit.io/shaz/image-removebg-preview%20(27).png"><span>LEADERBOARD</span></button>
+                    <button class="side-nav-btn" id="draftNavBtn"><img src="https://ik.imagekit.io/shaz/image-removebg-preview%20(25).png"><span>DRAFT</span></button>
+                </div>
+                <div class="side-footer"><i class="fas fa-futbol"></i> Hiliga 2k26</div>
+            </aside>
+            <main class="main-content" id="mainContent">
+                <div class="top-info-bar">
+                    <div class="top-left">
+                        <div class="welcome-area"><i class="fas fa-hand-peace"></i> <span>Welcome, <span id="welcomeProfileName" class="welcome-name">player</span>!</span></div>
+                    </div>
+                    <div class="coins-display-right" id="topCoinsDisplay">
+                        <i class="fas fa-home home-icon-btn" id="homeIconBtn"></i>
+                        <i class="fas fa-coins"></i> <span id="headerCoinsAmount">0</span>
+                    </div>
+                </div>
+                <div id="dynamicMainArea"></div>
+            </main>
+        </div>
+
+        <div id="photoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; z-index:2000;"></div>
+        <div id="packPlayersModal" class="pack-players-overlay"><div class="pack-players-modal"><div class="modal-header"><h3>ALL ROUNDERS</h3><button class="close-modal-btn" id="closePackModalBtn">✕</button></div><div class="players-grid" id="packPlayersGrid"></div></div></div>
+
+        <!-- VIDEO OVERLAY -->
+        <div id="videoResultOverlay" class="video-result-overlay">
+            <div class="video-wrapper">
+                <video id="packVideo" muted playsinline>
+                    <source src="https://ik.imagekit.io/shaz/download.mp4" type="video/mp4">
+                </video>
+                <button class="cancel-video-btn" id="cancelVideoBtn">✕ CANCEL</button>
+                <div id="bigCardOverlay" class="big-card-overlay">
+                    <div class="big-card-display" id="resultCardContainer">
+                        <img id="resultCardImg" src="" alt="player card">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PLAYER SELECT OVERLAY -->
+        <div id="playersSelectOverlay" class="players-select-overlay">
+            <div class="players-select-modal">
+                <div class="modal-header">
+                    <h3><i class="fas fa-users"></i> Select Players</h3>
+                    <button class="modal-close-btn" id="closeSelectModal">✕</button>
+                </div>
+                <div class="players-select-list" id="playersSelectList"></div>
+            </div>
+        </div>
+
+        <!-- PLAYER DETAIL FULL PAGE -->
+        <div id="playerDetailFull" class="player-detail-full">
+            <div class="detail-header">
+                <button class="back-btn" id="backFromDetail"><i class="fas fa-arrow-left"></i> Back</button>
+                <h2><i class="fas fa-user"></i> Player</h2>
+                <div class="detail-tabs">
+                    <button class="detail-tab active" data-tab="details">Player Details</button>
+                    <button class="detail-tab" data-tab="training">Level Training</button>
+                </div>
+            </div>
+            <div class="detail-body">
+                <div class="detail-left-col">
+                    <img id="detailFullImg" class="player-card-img" src="" alt="player card">
+                    <div class="ovr-badge" id="cardOvrBadge">45</div>
+                    <div class="player-name-big" id="detailFullName">Player Name</div>
+                    <div class="player-team" id="detailFullTeam">Nationality</div>
+                </div>
+                <div class="detail-right-stats" id="detailStatsContainer">
+                    <div class="stat-item">
+                        <span class="stat-label">Height / Age</span>
+                        <span class="stat-value" id="detailHeightAge">185 / 29</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Stronger Foot</span>
+                        <span class="stat-value" id="detailFoot">Right Foot</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Level</span>
+                        <span class="stat-value" id="detailLevel">1 / 32</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Next Level in</span>
+                        <span class="stat-value" id="detailNextLevel">204</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Progression Points</span>
+                        <span class="stat-value" id="detailProgression">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Nationality / Region</span>
+                        <span class="stat-value" id="detailNationality">Portugal</span>
+                    </div>
+                </div>
+
+                <div id="progressionTab" class="progression-tab active">
+                    <div class="prog-header">
+                        <span class="prog-name" id="progPlayerName">PLAYER NAME</span>
+                        <span class="prog-rating" id="progOverallRating">48</span>
+                    </div>
+                    <div class="prog-stats-grid" id="progStatsGrid"></div>
+                    <div style="margin-top: 12px; color: #7a85a0; font-size: 0.75rem; text-align: center; border-top: 1px solid #ff2a6d20; padding-top: 12px; font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">
+                        <i class="fas fa-info-circle"></i> Decrease any stat to increase another (40-99)
+                    </div>
+                </div>
+
+                <div id="trainingTab" class="training-tab">
+                    <div class="training-table">
+                        <div class="table-row table-header">
+                            <span class="col">Training Program</span>
+                            <span class="col">Number Used</span>
+                            <span class="col">Action</span>
+                        </div>
+                        <div class="table-row" data-program="50">
+                            <span class="col highlight">50 coin (5 level with each)</span>
+                            <span class="col"><span class="used-badge" id="used_50">0</span></span>
+                            <span class="col"><button class="train-btn" data-program="50" data-levels="5">Train</button></span>
+                        </div>
+                        <div class="table-row" data-program="100">
+                            <span class="col highlight">100 coin (10 level with each)</span>
+                            <span class="col"><span class="used-badge" id="used_100">0</span></span>
+                            <span class="col"><button class="train-btn" data-program="100" data-levels="10">Train</button></span>
+                        </div>
+                        <div class="table-row" data-program="150">
+                            <span class="col highlight">150 coin (15 level with each)</span>
+                            <span class="col"><span class="used-badge" id="used_150">0</span></span>
+                            <span class="col"><button class="train-btn" data-program="150" data-levels="15">Train</button></span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 16px; color: #7a85a0; font-size: 0.8rem; text-align: center; border-top: 1px solid #ff2a6d20; padding-top: 16px; font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">
+                        <i class="fas fa-info-circle"></i> Train your player to increase stats and level up
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="toastMsg" class="toast-msg"></div>
     </div>
-  </div>
-</div>
 
-<!-- RESULT ANIMATION - Player card appears on LEFT side -->
-<div class="result-page" id="resultPage">
-  <video class="result-video" id="resultVideo" autoplay="" muted="" playsinline="">
-    <source src="https://ik.imagekit.io/shaz/Untitled%20design%20(1).mp4" type="video/mp4">
-  </video>
-  <img id="resultPlayer" class="result-player" alt="New Player Card">
-</div>
+    <script>
+        // --- PLAYER STATS CONFIGURATION ---
+        const playerStatsConfig = {
+            "Bernando Silva": { attackingAwareness: 80, ballControl: 84, dribbling: 82, tightPossession: 83 },
+            "Vitinha": { attackingAwareness: 76, ballControl: 80, dribbling: 78, tightPossession: 79 },
+            "Nuno Mendes": { attackingAwareness: 75, ballControl: 78, dribbling: 77, tightPossession: 79 },
+            "Bruno Fernandes": { attackingAwareness: 82, ballControl: 81, dribbling: 78, tightPossession: 80 },
+            "Joao Neves": { attackingAwareness: 74, ballControl: 77, dribbling: 76, tightPossession: 77 },
+            "Rafael Leao": { attackingAwareness: 76, ballControl: 74, dribbling: 73, tightPossession: 72 },
+            "Ruben Dias": { attackingAwareness: 71, ballControl: 73, dribbling: 72, tightPossession: 76 },
+            "Goncalo Inacio": { attackingAwareness: 79, ballControl: 82, dribbling: 80, tightPossession: 83 },
+            "Joao Cancelo": { attackingAwareness: 76, ballControl: 78, dribbling: 77, tightPossession: 79 },
+            "Diago Costa": { attackingAwareness: 75, ballControl: 79, dribbling: 77, tightPossession: 80 },
+            "Shanaj": { attackingAwareness: 94, ballControl: 93, dribbling: 92, tightPossession: 91 },
+            "Haseeb": { attackingAwareness: 84, ballControl: 83, dribbling: 82, tightPossession: 83 }
+        };
 
-<script>
-  const accounts = [{ username: "shaz", password: "1234" }, { username: "admin", password: "admin" }, { username: "player", password: "player" }];
-  let currentUser = null;
-  let selectedPlayerForAssignment = null;
+        // --- LOGOS DATA ---
+        const teamLogos = [
+            { name: "Real Madrid", url: "https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" },
+            { name: "FC Barcelona", url: "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" },
+            { name: "Manchester United", url: "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg" },
+            { name: "Liverpool", url: "https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg" },
+            { name: "Manchester City", url: "https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg" },
+            { name: "Chelsea", url: "https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg" },
+            { name: "Arsenal", url: "https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg" },
+            { name: "PSG", url: "https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg" },
+            { name: "Juventus", url: "https://upload.wikimedia.org/wikipedia/commons/1/15/Juventus_FC_2017_logo.svg" },
+            { name: "Bayern Munich", url: "https://upload.wikimedia.org/wikipedia/commons/1/1f/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg" },
+            { name: "Borussia Dortmund", url: "https://upload.wikimedia.org/wikipedia/commons/6/67/Borussia_Dortmund_logo.svg" },
+            { name: "AC Milan", url: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Logo_of_AC_Milan.svg" },
+            { name: "Inter Milan", url: "https://upload.wikimedia.org/wikipedia/commons/0/05/FC_Internazionale_Milano_2021.svg" },
+            { name: "Atletico Madrid", url: "https://upload.wikimedia.org/wikipedia/en/f/f4/Atletico_Madrid_2017_logo.svg" },
+            { name: "Tottenham", url: "https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" },
+            { name: "Brazil NT", url: "https://upload.wikimedia.org/wikipedia/en/0/05/Brazilian_Football_Confederation_logo.svg" },
+            { name: "Argentina NT", url: "https://upload.wikimedia.org/wikipedia/en/1/1a/AFA_logo.svg" },
+            { name: "France NT", url: "https://upload.wikimedia.org/wikipedia/en/c/c7/French_Football_Federation.svg" },
+            { name: "Germany NT", url: "https://upload.wikimedia.org/wikipedia/en/e/e3/DFB_logo.svg" },
+            { name: "Spain NT", url: "https://upload.wikimedia.org/wikipedia/en/3/35/Spain_national_football_team_crest.svg" },
+            { name: "England NT", url: "https://upload.wikimedia.org/wikipedia/en/8/8b/England_national_football_team_crest.svg" },
+            { name: "Portugal NT", url: "https://upload.wikimedia.org/wikipedia/en/5/5c/Portuguese_Football_Federation.svg" },
+            { name: "Italy NT", url: "https://upload.wikimedia.org/wikipedia/en/9/97/FIGC_logo.svg" },
+            { name: "Netherlands NT", url: "https://upload.wikimedia.org/wikipedia/en/7/7f/Royal_Dutch_Football_Association_logo.svg" },
+            { name: "Belgium NT", url: "https://upload.wikimedia.org/wikipedia/en/9/93/Royal_Belgian_FA_logo.svg" },
+            { name: "Croatia NT", url: "https://upload.wikimedia.org/wikipedia/en/f/f2/Croatian_Football_Federation_logo.svg" },
+            { name: "Japan NT", url: "https://upload.wikimedia.org/wikipedia/en/3/34/Japan_Football_Association.svg" },
+            { name: "South Korea NT", url: "https://upload.wikimedia.org/wikipedia/en/8/82/Korea_Football_Association_logo.svg" },
+            { name: "Mexico NT", url: "https://upload.wikimedia.org/wikipedia/en/6/69/Federacion_Mexicana_de_Futbol_logo.svg" },
+            { name: "Morocco NT", url: "https://upload.wikimedia.org/wikipedia/en/0/0f/Royal_Moroccan_Football_Federation_logo.svg" }
+        ];
 
-  const OPPONENTS = ["Barcelona", "City", "Liverpool", "Real", "United", "PSG", "Arsenal"];
-  const OPPONENT_NAMES = { "Barcelona": "FC Barcelona", "City": "Manchester City", "Liverpool": "Liverpool FC", "Real": "Real Madrid", "United": "Manchester United", "PSG": "Paris SG", "Arsenal": "Arsenal" };
+        // --- PACK DATA ---
+        const packPlayersData = [
+            { name: "Shanaj", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(2).jpg?updatedAt=1781007348026" },
+            { name: "Haseeb", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(1).jpg" },
+            { name: "Bernando Silva", image: "https://ik.imagekit.io/shaz/BERNANDO%20SILVA_card.png?updatedAt=1780881032186" },
+            { name: "Vitinha", image: "https://ik.imagekit.io/shaz/VITINHA_card.png?updatedAt=1780881032215" },
+            { name: "Nuno Mendes", image: "https://ik.imagekit.io/shaz/NUNO%20MENDES%20_card.png?updatedAt=1780881032285" },
+            { name: "Bruno Fernandes", image: "https://ik.imagekit.io/shaz/BRUNO%20FERNANDES_card.png?updatedAt=1780881032246" },
+            { name: "Joao Neves", image: "https://ik.imagekit.io/shaz/JOAO%20NEVES_card%20(1).png?updatedAt=1780881032060" },
+            { name: "Rafael Leao", image: "https://ik.imagekit.io/shaz/RAFEAL%20LEAO_card.png?updatedAt=1780881031963" },
+            { name: "Ruben Dias", image: "https://ik.imagekit.io/shaz/RUBEN%20DIAS_card.png?updatedAt=1780881031062" },
+            { name: "Goncalo Inacio", image: "https://ik.imagekit.io/shaz/GON%C3%87ALO%20IN%C3%81CIO_card.png?updatedAt=1780881028475" },
+            { name: "Joao Cancelo", image: "https://ik.imagekit.io/shaz/JOAO%20CANCELO_card.png?updatedAt=1780881032300" },
+            { name: "Diago Costa", image: "https://ik.imagekit.io/shaz/DIAGO%20COSTA_card.png?updatedAt=1780881032251" }
+        ];
 
-  const allPlayers = {
-    1: [ { name: "SHANAJ", image: "https://ik.imagekit.io/shaz/SHANAJ%20KADER_card%20(1).png" },
-         { name: "FAZAL", image: "https://ik.imagekit.io/shaz/FAZAL_card%20(3).png?updatedAt=1778809278473" },
-         { name: "ADHNAN M.S", image: "https://ik.imagekit.io/shaz/ADHNAN%20M.S_card%20(1).png" },
-         { name: "ASIF", image: "https://ik.imagekit.io/shaz/ASIF_card.png" } ],
-    2: [ { name: "RAHI", image: "https://ik.imagekit.io/shaz/RAHI_card.png" },
-         { name: "SINAN", image: "https://ik.imagekit.io/shaz/SINAN_card.png?updatedAt=1778656740430" },
-         { name: "MIDHLAJ", image: "https://ik.imagekit.io/shaz/MIDHLAJ_card%20(1).png" },
-         { name: "HANAN", image: "https://ik.imagekit.io/shaz/HANAN_card%20(1).png" } ],
-    3: [ { name: "SHAMMAS", image: "https://ik.imagekit.io/shaz/SHAMMAS_card.png?updatedAt=1778328184110" },
-         { name: "ADNAN KP", image: "https://ik.imagekit.io/shaz/ADNAN%20K.P_card%20(1).png" },
-         { name: "SAYEED", image: "https://ik.imagekit.io/shaz/ChatGPT%20Image%20May%2017,%202026,%2007_05_16%20PM%20(1).png?updatedAt=1779076120423" },
-         { name: "IRFAN", image: "https://ik.imagekit.io/shaz/IRFAN_card.png" } ],
-    4: [ { name: "AMEEN", image: "https://ik.imagekit.io/shaz/AMEEN%20_card%20(1).png?updatedAt=1778416417946" },
-         { name: "AMAN", image: "https://ik.imagekit.io/shaz/AMAN_card.png?updatedAt=1778809138699" },
-         { name: "ALIM", image: "https://ik.imagekit.io/shaz/ALIM_card.png?updatedAt=1778414821037" },
-         { name: "NIHAL", image: "https://ik.imagekit.io/shaz/NIHAL_card%20(1).png" } ]
-  };
+        const playerImages = {
+            "Shanaj": "https://ik.imagekit.io/shaz/Untitled%20design%20(2)-Photoroom.png",
+            "Haseeb": "https://ik.imagekit.io/shaz/Untitled%20design%20(1)-Photoroom.png",
+            "Bernando Silva": "https://ik.imagekit.io/shaz/BERNANDO%20SILVA_card-Photoroom.png",
+            "Vitinha": "https://ik.imagekit.io/shaz/VITINHA_card-Photoroom.png",
+            "Nuno Mendes": "https://ik.imagekit.io/shaz/NUNO%20MENDES%20_card-Photoroom.png",
+            "Bruno Fernandes": "https://ik.imagekit.io/shaz/BRUNO%20FERNANDES_card-Photoroom.png",
+            "Joao Neves": "https://ik.imagekit.io/shaz/JOAO%20NEVES_card%20(1)-Photoroom.png",
+            "Rafael Leao": "https://ik.imagekit.io/shaz/RAFEAL%20LEAO_card-Photoroom.png",
+            "Ruben Dias": "https://ik.imagekit.io/shaz/RUBEN%20DIAS_card-Photoroom.png",
+            "Goncalo Inacio": "https://ik.imagekit.io/shaz/GON%C3%87ALO%20IN%C3%81CIO_card-Photoroom.png",
+            "Joao Cancelo": "https://ik.imagekit.io/shaz/JOAO%20CANCELO_card-Photoroom.png",
+            "Diago Costa": "https://ik.imagekit.io/shaz/DIAGO%20COSTA_card.png?updatedAt=1780881032251"
+        };
 
-  function getUserData() { return JSON.parse(localStorage.getItem("hliga_" + currentUser)); }
-  function saveUserData(data) { localStorage.setItem("hliga_" + currentUser, JSON.stringify(data)); }
+        // --- FORMATIONS (removed 4-2-3-1) ---
+        const formations = [
+            { name: "4-3-3", 
+              positions: [
+                { pos: "LW", align: "left" }, { pos: "ST", align: "center" }, { pos: "RW", align: "right" },
+                { pos: "LM", align: "left" }, { pos: "CM", align: "center" }, { pos: "RM", align: "right" },
+                { pos: "LB", align: "left" }, { pos: "CB", align: "center" }, { pos: "CB", align: "center" }, { pos: "RB", align: "right" },
+                { pos: "GK", align: "center" }
+              ] },
+            { name: "4-4-2", 
+              positions: [
+                { pos: "ST", align: "center" }, { pos: "ST", align: "center" },
+                { pos: "LM", align: "left" }, { pos: "CM", align: "center" }, { pos: "CM", align: "center" }, { pos: "RM", align: "right" },
+                { pos: "LB", align: "left" }, { pos: "CB", align: "center" }, { pos: "CB", align: "center" }, { pos: "RB", align: "right" },
+                { pos: "GK", align: "center" }
+              ] },
+            { name: "3-5-2", 
+              positions: [
+                { pos: "ST", align: "center" }, { pos: "ST", align: "center" },
+                { pos: "LM", align: "left" }, { pos: "CM", align: "center" }, { pos: "CM", align: "center" }, { pos: "CM", align: "center" }, { pos: "RM", align: "right" },
+                { pos: "CB", align: "center" }, { pos: "CB", align: "center" }, { pos: "CB", align: "center" },
+                { pos: "GK", align: "center" }
+              ] }
+        ];
+        let currentFormation = formations[0];
 
-  function generateRandomMatchResult() {
-    const specialScore = Math.floor(Math.random() * 6);
-    const opponentScore = Math.floor(Math.random() * 6);
-    let resultText, coins;
-    if (specialScore > opponentScore) { resultText = "WIN"; coins = 10; }
-    else if (specialScore === opponentScore) { resultText = "DRAW"; coins = 5; }
-    else { resultText = "LOSS"; coins = 3; }
-    return { special: specialScore, opponent: opponentScore, resultText, coins };
-  }
+        // --- GAME PLAN STATE ---
+        let gamePlanTeamName = "";
+        let gamePlanSelectedLogo = "";
+        let gamePlanPositions = {};
 
-  function login() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value;
-    const user = accounts.find(acc => acc.username === username && acc.password === password);
-    if (!user) { document.getElementById("error").innerHTML = "Invalid credentials"; return; }
-    currentUser = username;
-    if (!localStorage.getItem("hliga_" + username)) {
-      const starter = { coins: 400, players: [], squad: { CF: null, CMF: null, CB: null, GK: null }, matchHistory: {} };
-      localStorage.setItem("hliga_" + username, JSON.stringify(starter));
-    }
-    let data = getUserData();
-    if (!data.matchHistory) data.matchHistory = {};
-    if (!data.players) data.players = [];
-    if (!data.squad) data.squad = { CF: null, CMF: null, CB: null, GK: null };
-    saveUserData(data);
-    document.getElementById("loginPage").classList.remove("active");
-    document.getElementById("homePage").classList.add("active");
-    document.getElementById("userText").innerHTML = username;
-    refreshAllUI();
-    renderPacks();
-  }
+        // --- INTERNAL ACCOUNTS ---
+        let internalAccounts = {};
 
-  function refreshAllUI() {
-    const data = getUserData();
-    document.getElementById("coinText").innerHTML = data.coins;
-    document.getElementById("matchCoinDisplay").innerHTML = data.coins;
-    loadSquadDisplay();
-    renderScoreboard();
-  }
+        function loadAccounts() {
+            const s = localStorage.getItem("hliga_accounts");
+            if (s) internalAccounts = JSON.parse(s);
+            else {
+                internalAccounts = {
+                    "shaz": { password: "1234", coins: 1250, profileName: "Shaz", avatar: "user-circle",
+                        photoData: null, players: [], gamePlan: { teamName: "", logo: "", positions: {} } },
+                    "admin": { password: "admin", coins: 999999999, profileName: "Admin", avatar: "user-astronaut",
+                        photoData: null, players: [], gamePlan: { teamName: "", logo: "", positions: {} } },
+                    "player": { password: "player", coins: 800, profileName: "PlayerOne", avatar: "user-ninja",
+                        photoData: null, players: [], gamePlan: { teamName: "", logo: "", positions: {} } }
+                };
+                saveAccounts();
+            }
+        }
 
-  function renderPacks() {
-    const container = document.getElementById("packsContainer");
-    if (!container) return;
-    const packs = [{ id: 1, title: "STRIKER PACE" }, { id: 2, title: "LEGENDS MF" }, { id: 3, title: "FORTRESS CB" }, { id: 4, title: "SHELDERS GK" }];
-    container.innerHTML = "";
-    for (let pack of packs) {
-      const packDiv = document.createElement("div"); packDiv.className = "pack";
-      const cardsHTML = allPlayers[pack.id].map(p => `<div class="card"><img src="${p.image}"></div>`).join('');
-      packDiv.innerHTML = `<div class="pack-content"><div class="pack-top"><h2>${pack.title}</h2></div><div class="cards">${cardsHTML}</div><div class="bottom"><span class="spin-counter" id="remainingLabel${pack.id}">Available: ${getRemainingCount(pack.id)}</span><button class="spin-btn" id="btn${pack.id}" onclick="spinPack(${pack.id})">SPIN - 100</button></div></div>`;
-      container.appendChild(packDiv);
-    }
-    updateSpinButtonsState();
-  }
+        function saveAccounts() { localStorage.setItem("hliga_accounts", JSON.stringify(internalAccounts)); }
 
-  function getRemainingCount(packId) {
-    const data = getUserData();
-    const ownedNames = data.players.map(p => p.name);
-    return allPlayers[packId].filter(p => !ownedNames.includes(p.name)).length;
-  }
+        let currentUser = null,
+            currentCoins = 0,
+            profileName = "",
+            selectedAvatar = "user-circle",
+            uploadedImageData = null;
+        let myPlayers = [];
+        let remainingPackCount = 12;
+        let currentDetailPlayer = null;
+        let currentPlayerStats = { attackingAwareness: 42, ballControl: 44, dribbling: 46, tightPossession: 48 };
+        let availablePoints = 0;
 
-  function updateSpinButtonsState() {
-    const data = getUserData();
-    for (let i = 1; i <= 4; i++) {
-      const btn = document.getElementById("btn" + i);
-      const labelSpan = document.getElementById("remainingLabel" + i);
-      if (btn) {
-        const remaining = getRemainingCount(i);
-        if (labelSpan) labelSpan.innerText = `Available: ${remaining}`;
-        if (remaining === 0) { btn.disabled = true; btn.innerHTML = "COMPLETED"; }
-        else if (data.coins < 100) { btn.disabled = true; btn.innerHTML = "NEED 100"; }
-        else { btn.disabled = false; btn.innerHTML = "SPIN - 100"; }
-      }
-    }
-  }
+        function showToast(msg) {
+            let t = document.getElementById("toastMsg");
+            t.textContent = msg;
+            t.style.opacity = "1";
+            setTimeout(() => t.style.opacity = "0", 2000);
+        }
 
-  function spinPack(packNum) {
-    const data = getUserData();
-    if (data.coins < 100) { alert("Not enough coins! Play matches to earn coins"); return; }
-    const ownedNames = data.players.map(p => p.name);
-    const available = allPlayers[packNum].filter(p => !ownedNames.includes(p.name));
-    if (available.length === 0) { alert("You already collected all players from this pack!"); updateSpinButtonsState(); return; }
-    data.coins -= 100;
-    const randomIdx = Math.floor(Math.random() * available.length);
-    const newPlayer = { ...available[randomIdx] };
-    data.players.push(newPlayer);
-    saveUserData(data);
-    document.getElementById("coinText").innerHTML = data.coins;
-    document.getElementById("matchCoinDisplay").innerHTML = data.coins;
-    updateSpinButtonsState();
-    
-    // Show result animation with player card on LEFT side
-    const resultDiv = document.getElementById("resultPage");
-    const video = document.getElementById("resultVideo");
-    const playerImg = document.getElementById("resultPlayer");
-    
-    // Reset and configure
-    playerImg.style.display = "none";
-    playerImg.src = newPlayer.image;
-    resultDiv.style.display = "flex";
-    
-    // Ensure video plays from start
-    video.currentTime = 0;
-    video.load();
-    video.play().catch(e => console.log("Video autoplay failed:", e));
-    
-    // When video ends, show player card on LEFT side with animation
-    video.onended = () => {
-      playerImg.style.display = "block";
-      playerImg.style.animation = "slideInLeft 0.5s ease-out";
-    };
-    
-    // Click anywhere to close
-    resultDiv.onclick = () => {
-      resultDiv.style.display = "none";
-      video.onended = null;
-      video.pause();
-      playerImg.style.display = "none";
-    };
-    
-    renderPacks();
-  }
+        function saveUser() {
+            if (currentUser && internalAccounts[currentUser]) {
+                internalAccounts[currentUser].coins = currentCoins;
+                internalAccounts[currentUser].profileName = profileName;
+                internalAccounts[currentUser].avatar = selectedAvatar;
+                internalAccounts[currentUser].photoData = uploadedImageData;
+                internalAccounts[currentUser].players = myPlayers;
+                if (internalAccounts[currentUser].gamePlan) {
+                    internalAccounts[currentUser].gamePlan.teamName = gamePlanTeamName;
+                    internalAccounts[currentUser].gamePlan.logo = gamePlanSelectedLogo;
+                    internalAccounts[currentUser].gamePlan.positions = gamePlanPositions;
+                } else {
+                    internalAccounts[currentUser].gamePlan = { teamName: gamePlanTeamName, logo: gamePlanSelectedLogo,
+                        positions: gamePlanPositions };
+                }
+                saveAccounts();
+            }
+        }
 
-  // Add CSS animation for card sliding from left
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateY(-50%) translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0);
-      }
-    }
-    .result-player {
-      animation: slideInLeft 0.5s ease-out;
-    }
-  `;
-  document.head.appendChild(style);
+        function updateUI() {
+            document.getElementById("sideProfileName").innerText = profileName;
+            document.getElementById("welcomeProfileName").innerText = profileName;
+            document.getElementById("headerCoinsAmount").innerText = currentCoins;
+            let av = document.getElementById("sideAvatar");
+            if (uploadedImageData) {
+                av.innerHTML = `<img src="${uploadedImageData}">`;
+                av.style.background = "transparent";
+            } else {
+                let icons = { "user-circle": "fa-user-circle", "user-astronaut": "fa-user-astronaut",
+                    "user-ninja": "fa-user-ninja", "user-graduate": "fa-user-graduate" };
+                av.innerHTML = `<i class="fas ${icons[selectedAvatar] || 'fa-user-circle'}"></i>`;
+                av.style.background = "linear-gradient(135deg, #ff2a6d, #05ffa1)";
+            }
+        }
 
-  function playMatch(opponentKey) {
-    const data = getUserData();
-    if (!data.matchHistory) data.matchHistory = {};
-    if (data.matchHistory[opponentKey] && data.matchHistory[opponentKey].played) { alert(`Match vs ${OPPONENT_NAMES[opponentKey]} already played! Use RESET to replay.`); return; }
-    const matchResult = generateRandomMatchResult();
-    data.coins += matchResult.coins;
-    data.matchHistory[opponentKey] = { played: true, specialScore: matchResult.special, opponentScore: matchResult.opponent, result: matchResult.resultText, coins: matchResult.coins };
-    saveUserData(data);
-    document.getElementById("specialScore").value = matchResult.special;
-    document.getElementById("opponentScore").value = matchResult.opponent;
-    const opponentDisplay = OPPONENT_NAMES[opponentKey];
-    let msg = '';
-    if (matchResult.resultText === "WIN") msg = `VICTORY! ${matchResult.special} - ${matchResult.opponent} vs ${opponentDisplay}! +${matchResult.coins} coins earned!`;
-    else if (matchResult.resultText === "DRAW") msg = `DRAW! ${matchResult.special} - ${matchResult.opponent} vs ${opponentDisplay}. +${matchResult.coins} coins`;
-    else msg = `DEFEAT... ${matchResult.special} - ${matchResult.opponent} vs ${opponentDisplay}. +${matchResult.coins} coins`;
-    document.getElementById("matchResultMessage").innerHTML = msg;
-    document.getElementById("coinText").innerHTML = data.coins;
-    document.getElementById("matchCoinDisplay").innerHTML = data.coins;
-    renderScoreboard();
-    updateSpinButtonsState();
-    setTimeout(() => { document.getElementById("matchResultMessage").innerHTML = "Click 'PLAY MATCH' for another random result!"; }, 3500);
-  }
+        function getBaseStats(player) {
+            const config = playerStatsConfig[player.name];
+            if (config) {
+                return { ...config };
+            }
+            return {
+                attackingAwareness: 40 + Math.floor(Math.random() * 10),
+                ballControl: 40 + Math.floor(Math.random() * 10),
+                dribbling: 40 + Math.floor(Math.random() * 10),
+                tightPossession: 40 + Math.floor(Math.random() * 10)
+            };
+        }
 
-  function resetAllMatches() {
-    const data = getUserData();
-    data.matchHistory = {};
-    saveUserData(data);
-    document.getElementById("specialScore").value = 0;
-    document.getElementById("opponentScore").value = 0;
-    document.getElementById("matchResultMessage").innerHTML = "All matches reset! You can replay any opponent for new random results.";
-    renderScoreboard();
-    refreshAllUI();
-    updateSpinButtonsState();
-    setTimeout(() => { document.getElementById("matchResultMessage").innerHTML = "Click 'PLAY MATCH' to play and see the result!"; }, 3000);
-  }
+        function getOvrBonus(level) {
+            if (level >= 32) return 4;
+            if (level >= 24) return 3;
+            if (level >= 16) return 2;
+            if (level >= 8) return 1;
+            return 0;
+        }
 
-  function renderScoreboard() {
-    const data = getUserData();
-    const matchHistory = data.matchHistory || {};
-    const tbody = document.getElementById("scoreboardBody");
-    if (!tbody) return;
-    tbody.innerHTML = "";
-    let totalEarned = 0;
-    for (let opp of OPPONENTS) {
-      const rec = matchHistory[opp];
-      if (rec && rec.played) {
-        let resultClass = rec.result === "WIN" ? "win-badge" : (rec.result === "DRAW" ? "draw-badge" : "loss-badge");
-        tbody.innerHTML += `<tr><td style="font-weight:600;">${OPPONENT_NAMES[opp]}</td><td class="${resultClass}">${rec.result}</td><td>${rec.specialScore} - ${rec.opponentScore}</td><td><span class="coin-icon" style="width:16px;height:16px;"></span> ${rec.coins}</td></tr>`;
-        totalEarned += rec.coins;
-      } else {
-        tbody.innerHTML += `<tr><td style="font-weight:600;">${OPPONENT_NAMES[opp]}</td><td style="color:#888;">—</td><td style="color:#888;">0 - 0</td><td style="color:#888;"><span class="coin-icon" style="width:16px;height:16px;"></span> 0</td></tr>`;
-      }
-    }
-    document.getElementById("totalCoinsDisplay").innerHTML = totalEarned;
-  }
+        function getPlayerOverall(player) {
+            if (!player.stats) {
+                player.stats = getBaseStats(player);
+                saveUser();
+            }
+            const baseStats = getBaseStats(player);
+            const currentStats = player.stats;
+            const incAwareness = currentStats.attackingAwareness - baseStats.attackingAwareness;
+            const incBallControl = currentStats.ballControl - baseStats.ballControl;
+            const incDribbling = currentStats.dribbling - baseStats.dribbling;
+            const incTightPossession = currentStats.tightPossession - baseStats.tightPossession;
+            const totalInc = incAwareness + incBallControl + incDribbling + incTightPossession;
+            
+            const statBonus = totalInc / 4;
+            const levelBonus = getOvrBonus(player.level || 1);
+            
+            let baseOvr = 40;
+            if (playerStatsConfig[player.name]) {
+                const config = playerStatsConfig[player.name];
+                baseOvr = Math.round((config.attackingAwareness + config.ballControl + config.dribbling + config.tightPossession) / 4);
+            }
+            return Math.round(baseOvr + statBonus + levelBonus);
+        }
 
-  function updateOpponentDisplay() {
-    const select = document.getElementById("opponentSelect");
-    const key = select.value;
-    document.getElementById("opponentNameDisplay").innerHTML = OPPONENT_NAMES[key];
-    document.getElementById("specialScore").value = 0;
-    document.getElementById("opponentScore").value = 0;
-  }
+        function getPlayerByName(name) {
+            return myPlayers.find(p => p.name === name);
+        }
 
-  function showPlayers() {
-    hideAllPages();
-    document.getElementById("playersPage").classList.add("active");
-    const data = getUserData();
-    const grid = document.getElementById("playerGrid");
-    if (!grid) return;
-    grid.innerHTML = "";
-    if (data.players.length === 0) { grid.innerHTML = "<div style='padding:40px; text-align:center'>No players yet. Spin packs!</div>"; return; }
-    data.players.forEach((p, idx) => { 
-      grid.innerHTML += `<div class="player-card"><img src="${p.image}"><h3>${p.name}</h3><button class="assign-btn" onclick="selectPlayerForAnyPosition(${idx})">SELECT FOR FORMATION</button></div>`; 
-    });
-  }
+        // ----- COLLECTIVE STRENGTH: SUM of all OVRs in starting XI -----
+        function calculateCollectiveStrength() {
+            let total = 0;
+            let count = 0;
+            for (let i = 0; i < 11; i++) {
+                if (gamePlanPositions[i]) {
+                    const player = getPlayerByName(gamePlanPositions[i]);
+                    if (player) {
+                        total += getPlayerOverall(player);
+                        count++;
+                    }
+                }
+            }
+            // Return the SUM (not average)
+            return total;
+        }
 
-  function selectPlayerForAnyPosition(index) { const data = getUserData(); if (!data.players[index]) return; selectedPlayerForAssignment = data.players[index]; showPlan(); alert(`${selectedPlayerForAssignment.name} selected! Now tap ANY position on the pitch.`); }
-  function assignToPosition(position) { if (!selectedPlayerForAssignment) { alert("First select a player from MY PLAYERS."); return; } const data = getUserData(); data.squad[position] = { name: selectedPlayerForAssignment.name, image: selectedPlayerForAssignment.image }; saveUserData(data); loadSquadDisplay(); alert(`${selectedPlayerForAssignment.name} assigned to ${position}!`); selectedPlayerForAssignment = null; }
-  function loadSquadDisplay() { const data = getUserData(); ["CF", "CMF", "CB", "GK"].forEach(pos => { const el = document.getElementById(pos); if (el) { const player = data.squad[pos]; if (player && player.image) el.innerHTML = `<h2>${pos}</h2><img src="${player.image}"><p style="margin-top:6px;">${player.name}</p>`; else el.innerHTML = `<h2>${pos}</h2><div style="font-size:12px;">tap to assign</div>`; } }); }
+        // ----- HOME PAGE -----
+        function showHome() {
+            document.getElementById("appContainer").classList.remove("gameplan-mode");
+            document.getElementById("dynamicMainArea").innerHTML = `
+            <div class="hero-banner" style="margin-bottom:1.2rem; border-radius:1.2rem; overflow:hidden; border:1px solid #05ffa1;">
+              <img id="bannerImage" src="https://ik.imagekit.io/shaz/ChatGPT%20Image%20Jun%208,%202026,%2006_08_27%20PM.png" style="width:100%;">
+            </div>
+            <div class="big-actions" style="display:flex; gap:1rem; margin-bottom:1rem;">
+              <div class="big-card" id="playersHomeBtn" style="flex:1; background:#13141f; padding:1rem; border-radius:1.2rem; text-align:center; border:1px solid #ff2a6d; cursor:pointer;">
+                <i class="fas fa-users"></i><h3 style="font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">PLAYERS</h3>
+              </div>
+              <div class="big-card" id="gameplanHomeBtn" style="flex:1; background:#13141f; padding:1rem; border-radius:1.2rem; text-align:center; border:1px solid #ff2a6d; cursor:pointer;">
+                <i class="fas fa-chalkboard-user"></i><h3 style="font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">GAME PLAN</h3>
+              </div>
+              <div class="big-card" style="flex:1; background:#13141f; padding:1rem; border-radius:1.2rem; text-align:center; border:1px solid #ff2a6d;">
+                <i class="fas fa-futbol"></i><h3 style="font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">MATCHES</h3>
+              </div>
+            </div>
+            <div class="contact-footer" style="background:#13141f; border-radius:1.2rem; padding:0.8rem; text-align:center; font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">
+              <i class="fas fa-envelope"></i> hikmanric18@gmail.com
+            </div>
+          `;
+            document.getElementById("playersHomeBtn")?.addEventListener("click", function() {
+                renderPlayersPage();
+            });
+            document.getElementById("gameplanHomeBtn")?.addEventListener("click", function() {
+                renderGamePlanPage();
+            });
+            startBanner();
+        }
 
-  function hideAllPages() { document.querySelectorAll(".page").forEach(p => p.classList.remove("active")); }
-  function showHome() { hideAllPages(); document.getElementById("homePage").classList.add("active"); refreshAllUI(); renderPacks(); selectedPlayerForAssignment = null; }
-  function showPlan() { hideAllPages(); document.getElementById("planPage").classList.add("active"); loadSquadDisplay(); }
-  function showMatchPage() { hideAllPages(); document.getElementById("matchPage").classList.add("active"); renderScoreboard(); updateOpponentDisplay(); const data=getUserData(); document.getElementById("matchCoinDisplay").innerHTML=data.coins; updateSpinButtonsState(); }
+        let bannerInterval;
 
-  window.onload = () => { if (currentUser) refreshAllUI(); const playBtn = document.getElementById("playMatchBtn"); const resetBtn = document.getElementById("resetMatchesBtn"); const oppSelect = document.getElementById("opponentSelect"); if (playBtn) playBtn.addEventListener("click", () => { const val = document.getElementById("opponentSelect").value; playMatch(val); }); if (resetBtn) resetBtn.addEventListener("click", resetAllMatches); if (oppSelect) oppSelect.addEventListener("change", updateOpponentDisplay); };
-  window.spinPack = spinPack; window.selectPlayerForAnyPosition = selectPlayerForAnyPosition; window.assignToPosition = assignToPosition; window.showHome = showHome; window.showPlayers = showPlayers; window.showPlan = showPlan; window.showMatchPage = showMatchPage;
-</script>
+        function startBanner() {
+            if (bannerInterval) clearInterval(bannerInterval);
+            let banners = ["https://ik.imagekit.io/shaz/ChatGPT%20Image%20Jun%208,%202026,%2006_08_27%20PM.png",
+                "https://ik.imagekit.io/shaz/ChatGPT%20Image%20Jun%208,%202026,%2006_34_06%20PM.png"
+            ];
+            let i = 0;
+            bannerInterval = setInterval(() => {
+                let img = document.getElementById("bannerImage");
+                if (img) {
+                    img.style.opacity = "0";
+                    setTimeout(() => {
+                        i = (i + 1) % banners.length;
+                        img.src = banners[i];
+                        img.style.opacity = "1";
+                    }, 150);
+                }
+            }, 4500);
+        }
 
+        function getRandomPlayer() {
+            let shuffled = [...packPlayersData];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled[0];
+        }
 
-</body></html>
+        // ----- SPIN with video selection -----
+        function performPackSpin() {
+            if (remainingPackCount <= 0) { showToast("No spins left!"); return; }
+            if (currentCoins < 100) { showToast(`Need 100 coins! You have ${currentCoins}`); return; }
+            currentCoins -= 100;
+            remainingPackCount--;
+            const newPlayerObj = getRandomPlayer();
+            const existing = myPlayers.find(p => p.name === newPlayerObj.name);
+            if (existing) {
+                existing.level = Math.min(existing.level + 1, 32);
+                showToast(`${newPlayerObj.name} level up!`);
+            } else {
+                const photoRoomImage = playerImages[newPlayerObj.name] || newPlayerObj.image;
+                const baseStats = getBaseStats(newPlayerObj);
+                myPlayers.push({
+                    name: newPlayerObj.name,
+                    image: photoRoomImage,
+                    level: 1,
+                    trainingUsed: { 50: 0, 100: 0, 150: 0 },
+                    stats: baseStats
+                });
+            }
+            saveUser();
+            updateUI();
+
+            const overlay = document.getElementById("videoResultOverlay");
+            const video = document.getElementById("packVideo");
+            const bigCardOverlay = document.getElementById("bigCardOverlay");
+            const resultImg = document.getElementById("resultCardImg");
+
+            bigCardOverlay.classList.remove("show");
+            bigCardOverlay.style.display = "none";
+            video.currentTime = 0;
+            
+            const playerName = newPlayerObj.name.toLowerCase();
+            if (playerName === "shanaj" || playerName === "haseeb") {
+                video.querySelector('source').src = "https://ik.imagekit.io/shaz/df.mp4";
+            } else {
+                video.querySelector('source').src = "https://ik.imagekit.io/shaz/download.mp4";
+            }
+            video.load();
+            
+            overlay.classList.add("active");
+            video.play().catch(e => console.warn("autoplay blocked", e));
+
+            const onEnded = () => {
+                video.removeEventListener('ended', onEnded);
+                resultImg.src = newPlayerObj.image;
+                bigCardOverlay.style.display = "flex";
+                bigCardOverlay.classList.add("show");
+            };
+            video.addEventListener('ended', onEnded);
+
+            document.getElementById("cancelVideoBtn").onclick = () => {
+                video.pause();
+                video.currentTime = 0;
+                bigCardOverlay.classList.remove("show");
+                bigCardOverlay.style.display = "none";
+                overlay.classList.remove("active");
+            };
+
+            document.getElementById("resultCardContainer").onclick = () => {
+                video.pause();
+                overlay.classList.remove("active");
+                renderPlayersPage();
+            };
+
+            const remainingSpan = document.getElementById("remainingCount");
+            if (remainingSpan) remainingSpan.innerHTML = remainingPackCount;
+
+            if (remainingPackCount === 0) showToast("Pack depleted.");
+        }
+
+        // ----- DRAFT PAGE -----
+        function renderDraftPage() {
+            document.getElementById("appContainer").classList.remove("gameplan-mode");
+            document.getElementById("dynamicMainArea").innerHTML = `
+            <div class="draft-page-container">
+              <div class="pack-card">
+                <div class="pack-header"><strong>ALL ROUNDERS</strong><div class="more-details-btn" id="moreDetailsBtn">MORE DETAILS</div></div>
+                <div class="pack-image-area"><img class="pack-full-image" src="https://ik.imagekit.io/shaz/All%20Rounders%20(1).jpg" alt="pack"></div>
+                <div class="pack-stats"><div class="remaining-box">REMAINING: <span id="remainingCount">${remainingPackCount}</span></div><button class="spin-button" id="spinBtn">SPIN x 100</button></div>
+              </div>
+            </div>
+          `;
+            document.getElementById("moreDetailsBtn")?.addEventListener("click", showPackModal);
+            document.getElementById("spinBtn")?.addEventListener("click", performPackSpin);
+        }
+
+        function showPackModal() {
+            let modal = document.getElementById("packPlayersModal");
+            let grid = document.getElementById("packPlayersGrid");
+            grid.innerHTML = packPlayersData.map(p => `
+            <div class="pack-player-card">
+              <img src="${p.image}" onerror="this.src='https://via.placeholder.com/150'">
+              <p>${p.name.toUpperCase()}</p>
+            </div>
+          `).join('');
+            modal.classList.add("active");
+        }
+
+        // ===== GAME PLAN PAGE with position-based alignment =====
+        function renderGamePlanPage() {
+            document.getElementById("appContainer").classList.add("gameplan-mode");
+
+            if (currentUser && internalAccounts[currentUser] && internalAccounts[currentUser].gamePlan) {
+                const gp = internalAccounts[currentUser].gamePlan;
+                gamePlanTeamName = gp.teamName || "";
+                gamePlanSelectedLogo = gp.logo || "";
+                gamePlanPositions = gp.positions || {};
+            }
+
+            const posData = currentFormation.positions;
+            
+            const leftPositions = [];
+            const centerPositions = [];
+            const rightPositions = [];
+            
+            posData.forEach((p, idx) => {
+                if (p.align === "left") leftPositions.push({ ...p, index: idx });
+                else if (p.align === "right") rightPositions.push({ ...p, index: idx });
+                else centerPositions.push({ ...p, index: idx });
+            });
+            
+            const maxRows = Math.max(leftPositions.length, centerPositions.length, rightPositions.length);
+            let pitchHtml = '';
+            
+            for (let row = 0; row < maxRows; row++) {
+                const left = leftPositions[row] || null;
+                const center = centerPositions[row] || null;
+                const right = rightPositions[row] || null;
+                
+                if (left) {
+                    const idx = left.index;
+                    const posName = left.pos;
+                    const playerName = gamePlanPositions[idx] || "";
+                    const player = playerName ? getPlayerByName(playerName) : null;
+                    const filled = player ? 'filled' : '';
+                    const ovr = player ? getPlayerOverall(player) : '';
+                    const imgSrc = player ? player.image : '';
+                    pitchHtml += `
+                    <div class="pitch-box ${filled}" data-index="${idx}" style="width:158px;">
+                      ${player ? `
+                        <img class="player-card-img" src="${imgSrc}" onerror="this.src='https://via.placeholder.com/80/1a1c2e/7a85a0?text=${player.name.charAt(0)}'">
+                        <span class="player-ovr-badge">${ovr}</span>
+                        <span class="player-name-label">${player.name}</span>
+                      ` : `
+                        <span class="position-label">${posName}</span>
+                      `}
+                      <button class="remove-player" data-index="${idx}" title="Remove player">✕</button>
+                    </div>
+                  `;
+                } else {
+                    pitchHtml += `<div class="pitch-box" style="visibility:hidden; border:none; background:transparent; backdrop-filter:none; width:158px;"></div>`;
+                }
+                
+                if (center) {
+                    const idx = center.index;
+                    const posName = center.pos;
+                    const playerName = gamePlanPositions[idx] || "";
+                    const player = playerName ? getPlayerByName(playerName) : null;
+                    const filled = player ? 'filled' : '';
+                    const ovr = player ? getPlayerOverall(player) : '';
+                    const imgSrc = player ? player.image : '';
+                    pitchHtml += `
+                    <div class="pitch-box ${filled}" data-index="${idx}" style="width:158px;">
+                      ${player ? `
+                        <img class="player-card-img" src="${imgSrc}" onerror="this.src='https://via.placeholder.com/80/1a1c2e/7a85a0?text=${player.name.charAt(0)}'">
+                        <span class="player-ovr-badge">${ovr}</span>
+                        <span class="player-name-label">${player.name}</span>
+                      ` : `
+                        <span class="position-label">${posName}</span>
+                      `}
+                      <button class="remove-player" data-index="${idx}" title="Remove player">✕</button>
+                    </div>
+                  `;
+                } else {
+                    pitchHtml += `<div class="pitch-box" style="visibility:hidden; border:none; background:transparent; backdrop-filter:none; width:158px;"></div>`;
+                }
+                
+                if (right) {
+                    const idx = right.index;
+                    const posName = right.pos;
+                    const playerName = gamePlanPositions[idx] || "";
+                    const player = playerName ? getPlayerByName(playerName) : null;
+                    const filled = player ? 'filled' : '';
+                    const ovr = player ? getPlayerOverall(player) : '';
+                    const imgSrc = player ? player.image : '';
+                    pitchHtml += `
+                    <div class="pitch-box ${filled}" data-index="${idx}" style="width:158px;">
+                      ${player ? `
+                        <img class="player-card-img" src="${imgSrc}" onerror="this.src='https://via.placeholder.com/80/1a1c2e/7a85a0?text=${player.name.charAt(0)}'">
+                        <span class="player-ovr-badge">${ovr}</span>
+                        <span class="player-name-label">${player.name}</span>
+                      ` : `
+                        <span class="position-label">${posName}</span>
+                      `}
+                      <button class="remove-player" data-index="${idx}" title="Remove player">✕</button>
+                    </div>
+                  `;
+                } else {
+                    pitchHtml += `<div class="pitch-box" style="visibility:hidden; border:none; background:transparent; backdrop-filter:none; width:158px;"></div>`;
+                }
+            }
+
+            let logoHtml = teamLogos.map(l => `
+            <div class="logo-option ${gamePlanSelectedLogo === l.url ? 'selected' : ''}" data-logo="${l.url}" title="${l.name}">
+              <img src="${l.url}" onerror="this.src='https://via.placeholder.com/44/ff2a6d/ffffff?text=${l.name.charAt(0)}'">
+            </div>
+          `).join('');
+
+            // Calculate collective strength as SUM
+            const collectiveStrength = calculateCollectiveStrength();
+            const coinDisplay = currentCoins || 0;
+
+            let fmtHtml = formations.map(f => `
+            <button class="fmt-btn ${f.name === currentFormation.name ? 'active' : ''}" data-fmt="${f.name}">${f.name}</button>
+          `).join('');
+
+            document.getElementById("dynamicMainArea").innerHTML = `
+            <div class="gameplan-container">
+              <div class="gameplan-header">
+                <div class="header-left">
+                  <i class="fas fa-home home-icon-btn" id="gameplanHomeIcon"></i>
+                  <h2><i class="fas fa-chalkboard-user"></i> GAME PLAN</h2>
+                </div>
+                <div class="header-right">
+                  <div class="coins-display">
+                    <i class="fas fa-coins"></i> <span>${coinDisplay}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="gameplan-body">
+                <div class="gameplan-sidebar">
+                  <div class="team-info">
+                    <input class="team-name-input" id="teamNameInput" type="text" placeholder="Enter team name..." value="${gamePlanTeamName}">
+                    <span class="section-label"><i class="fas fa-image"></i> Select Team Logo</span>
+                    <div class="logo-grid" id="logoGrid">
+                      ${logoHtml}
+                    </div>
+                    <div class="selected-team-display" id="selectedTeamDisplay">
+                      ${gamePlanSelectedLogo ? `<img src="${gamePlanSelectedLogo}" onerror="this.src='https://via.placeholder.com/36/ff2a6d/ffffff?text=?'">` : '<span style="color:#7a85a0; font-size:0.9rem;">No logo selected</span>'}
+                      <span class="team-name-display">${gamePlanTeamName || 'Team Name'}</span>
+                    </div>
+                    <div class="collective-strength">
+                      <span class="cs-label"><i class="fas fa-users"></i> Collective Strength</span>
+                      <span class="cs-value">${collectiveStrength}</span>
+                    </div>
+                    <div class="action-buttons">
+                      <button class="jersey-btn" id="jerseyBtn"><i class="fas fa-tshirt"></i> Select Players</button>
+                      <button class="formation-btn" id="formationToggle"><i class="fas fa-arrows-alt-h"></i> Change Formation</button>
+                      <div class="formation-selector" id="formationSelector">
+                        ${fmtHtml}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="gameplan-pitch-area">
+                  <div class="pitch-area">
+                    <img class="pitch-bg" src="https://ik.imagekit.io/shaz/ChatGPT%20Image%20Jul%203,%202026,%2010_26_34%20AM-Photoroom.png" onerror="this.style.display='none'">
+                    <div class="pitch-title"><i class="fas fa-futbol"></i> Starting XI</div>
+                    <div class="pitch-grid" id="pitchGrid">
+                      ${pitchHtml}
+                    </div>
+                    <div class="pitch-hint">
+                      <i class="fas fa-info-circle"></i> Click a box to assign a player from your collection
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+            document.getElementById("gameplanHomeIcon").addEventListener("click", function() {
+                saveGamePlanData();
+                document.getElementById("appContainer").classList.remove("gameplan-mode");
+                showHome();
+                startBanner();
+            });
+
+            document.getElementById("teamNameInput").addEventListener("input", function() {
+                gamePlanTeamName = this.value;
+                updateTeamDisplay();
+                saveGamePlanData();
+            });
+
+            document.querySelectorAll('.logo-option').forEach(el => {
+                el.addEventListener('click', function() {
+                    document.querySelectorAll('.logo-option').forEach(l => l.classList.remove('selected'));
+                    this.classList.add('selected');
+                    gamePlanSelectedLogo = this.dataset.logo;
+                    updateTeamDisplay();
+                    saveGamePlanData();
+                });
+            });
+
+            document.querySelectorAll('.pitch-box').forEach(box => {
+                box.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('remove-player')) return;
+                    const index = this.dataset.index;
+                    if (index !== undefined) openPlayerSelectModal(parseInt(index));
+                });
+            });
+
+            document.querySelectorAll('.remove-player').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const index = this.dataset.index;
+                    if (index !== undefined) {
+                        delete gamePlanPositions[index];
+                        saveGamePlanData();
+                        renderGamePlanPage();
+                    }
+                });
+            });
+
+            document.getElementById("jerseyBtn").addEventListener("click", function() {
+                openPlayerSelectModal(null);
+            });
+
+            document.getElementById("formationToggle").addEventListener("click", function() {
+                const sel = document.getElementById("formationSelector");
+                sel.classList.toggle("active");
+            });
+
+            document.querySelectorAll('.fmt-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const fmtName = this.dataset.fmt;
+                    const found = formations.find(f => f.name === fmtName);
+                    if (found) {
+                        currentFormation = found;
+                        gamePlanPositions = {};
+                        saveGamePlanData();
+                        renderGamePlanPage();
+                    }
+                });
+            });
+
+            updateTeamDisplay();
+        }
+
+        function updateTeamDisplay() {
+            const display = document.getElementById("selectedTeamDisplay");
+            if (display) {
+                const logo = gamePlanSelectedLogo ? `<img src="${gamePlanSelectedLogo}" onerror="this.src='https://via.placeholder.com/36/ff2a6d/ffffff?text=?'">` :
+                    '<span style="color:#7a85a0; font-size:0.9rem;">No logo selected</span>';
+                display.innerHTML = `${logo}<span class="team-name-display">${gamePlanTeamName || 'Team Name'}</span>`;
+            }
+        }
+
+        function saveGamePlanData() {
+            if (currentUser && internalAccounts[currentUser]) {
+                if (!internalAccounts[currentUser].gamePlan) {
+                    internalAccounts[currentUser].gamePlan = {};
+                }
+                internalAccounts[currentUser].gamePlan.teamName = gamePlanTeamName;
+                internalAccounts[currentUser].gamePlan.logo = gamePlanSelectedLogo;
+                internalAccounts[currentUser].gamePlan.positions = gamePlanPositions;
+                saveAccounts();
+            }
+        }
+
+        // ----- PLAYER SELECT MODAL -----
+        let selectedPitchIndex = null;
+
+        function openPlayerSelectModal(index) {
+            selectedPitchIndex = index;
+            const overlay = document.getElementById("playersSelectOverlay");
+            const list = document.getElementById("playersSelectList");
+
+            const placedPlayers = Object.values(gamePlanPositions);
+            const available = myPlayers.filter(p => !placedPlayers.includes(p.name) || (index !== null && gamePlanPositions[
+                index] === p.name));
+
+            if (available.length === 0) {
+                list.innerHTML = `<div style="padding:20px; text-align:center; color:#7a85a0; font-family:'Black Ops One',sans-serif; letter-spacing:0.5px;">No available players. Spin the pack to get more!</div>`;
+            } else {
+                list.innerHTML = available.map(p => `
+              <div class="player-select-item" data-name="${p.name}">
+                <img src="${p.image}" onerror="this.src='https://via.placeholder.com/40'">
+                <span class="pname">${p.name}</span>
+                <span class="pstatus">${Object.values(gamePlanPositions).includes(p.name) ? 'Placed' : 'Available'}</span>
+              </div>
+            `).join('');
+
+                list.querySelectorAll('.player-select-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const playerName = this.dataset.name;
+                        if (selectedPitchIndex !== null && selectedPitchIndex !== undefined) {
+                            gamePlanPositions[selectedPitchIndex] = playerName;
+                        } else {
+                            let assigned = false;
+                            for (let i = 0; i < 11; i++) {
+                                if (!gamePlanPositions[i]) {
+                                    gamePlanPositions[i] = playerName;
+                                    assigned = true;
+                                    break;
+                                }
+                            }
+                            if (!assigned) {
+                                showToast("All positions are filled! Remove a player first.");
+                                overlay.classList.remove("active");
+                                return;
+                            }
+                        }
+                        saveGamePlanData();
+                        overlay.classList.remove("active");
+                        renderGamePlanPage();
+                        showToast(`${playerName} assigned to position!`);
+                    });
+                });
+            }
+
+            overlay.classList.add("active");
+        }
+
+        document.getElementById("closeSelectModal").addEventListener("click", function() {
+            document.getElementById("playersSelectOverlay").classList.remove("active");
+        });
+
+        document.getElementById("playersSelectOverlay").addEventListener("click", function(e) {
+            if (e.target === this) this.classList.remove("active");
+        });
+
+        // ----- PLAYERS PAGE -----
+        function renderPlayersPage() {
+            document.getElementById("appContainer").classList.remove("gameplan-mode");
+            const playersHtml = myPlayers.map(p => {
+                const overall = getPlayerOverall(p);
+                return `
+            <div class="player-row" data-player='${JSON.stringify(p).replace(/'/g, "&#39;")}'>
+              <div style="position:relative; display:inline-block;">
+                <img class="player-small-img" src="${p.image}" onerror="this.src='https://via.placeholder.com/70'">
+                <span class="collection-ovr-badge">${overall}</span>
+              </div>
+              <div class="player-info-area">
+                <div class="player-name-text">${p.name.toUpperCase()}</div>
+                <div class="level-small">
+                  <span class="level-badge">LEVEL ${p.level || 1}/32</span>
+                </div>
+              </div>
+            </div>
+          `;
+            }).join('');
+            document.getElementById("dynamicMainArea").innerHTML = `
+            <div class="players-page-container">
+              <h3 style="font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px; color: #05ffa1;"><i class="fas fa-users"></i> MY COLLECTION</h3>
+              <div class="players-list">${playersHtml || '<div style="padding:20px; text-align:center; font-family: Black Ops One, Inter, sans-serif; font-weight: 400; letter-spacing: 0.5px;">No players yet. SPIN THE PACK!</div>'}</div>
+            </div>
+          `;
+
+            document.querySelectorAll(".player-row").forEach(row => {
+                row.addEventListener("click", () => {
+                    const data = row.getAttribute("data-player");
+                    if (data) {
+                        try {
+                            const player = JSON.parse(data);
+                            showPlayerDetail(player);
+                        } catch (e) {}
+                    }
+                });
+            });
+        }
+
+        // ===== PLAYER DETAIL FULL =====
+        function showPlayerDetail(player) {
+            currentDetailPlayer = player;
+            const page = document.getElementById("playerDetailFull");
+            document.getElementById("detailFullImg").src = player.image;
+            document.getElementById("detailFullName").innerText = player.name.toUpperCase();
+
+            let nationality = "Portugal";
+            const nameLower = player.name.toLowerCase();
+            if (nameLower === "shanaj" || nameLower === "haseeb") nationality = "India";
+            else if (nameLower === "diago costa") nationality = "Brazil";
+            else if (nameLower === "goncalo inacio" || nameLower === "joao neves" || nameLower === "joao cancelo" ||
+                nameLower === "nuno mendes" || nameLower === "vitinha" || nameLower === "bernando silva" ||
+                nameLower === "bruno fernandes" || nameLower === "rafael leao" || nameLower === "ruben dias") {
+                nationality = "Portugal";
+            }
+
+            document.getElementById("detailNationality").innerHTML = nationality;
+            document.getElementById("detailFullTeam").innerHTML = nationality;
+
+            document.getElementById("detailHeightAge").innerHTML = `185 / 29`;
+            document.getElementById("detailFoot").innerHTML = `Right Foot`;
+            document.getElementById("detailLevel").innerHTML = `${player.level || 1} / 32`;
+            document.getElementById("detailNextLevel").innerHTML = `204`;
+            document.getElementById("detailProgression").innerHTML = `0`;
+
+            document.getElementById("progPlayerName").innerHTML = player.name.toUpperCase();
+
+            if (!player.stats) {
+                player.stats = getBaseStats(player);
+                saveUser();
+            }
+            currentPlayerStats = { ...player.stats };
+            availablePoints = 0;
+
+            if (!player.trainingUsed) {
+                player.trainingUsed = { 50: 0, 100: 0, 150: 0 };
+            }
+            document.getElementById("used_50").innerHTML = player.trainingUsed[50] || 0;
+            document.getElementById("used_100").innerHTML = player.trainingUsed[100] || 0;
+            document.getElementById("used_150").innerHTML = player.trainingUsed[150] || 0;
+
+            document.querySelectorAll('.train-btn').forEach(btn => {
+                const program = parseInt(btn.getAttribute('data-program'));
+                const used = player.trainingUsed[program] || 0;
+                if (used >= 10 || player.level >= 32) {
+                    btn.disabled = true;
+                    btn.innerHTML = used >= 10 ? 'Max Used' : 'Max Level';
+                } else {
+                    btn.disabled = false;
+                    btn.innerHTML = 'Train';
+                }
+            });
+
+            document.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-tab="details"]').classList.add('active');
+            document.getElementById('progressionTab').classList.add('active');
+            document.getElementById('trainingTab').classList.remove('active');
+
+            renderProgressionStats();
+            page.classList.add("active");
+        }
+
+        function renderProgressionStats() {
+            const grid = document.getElementById("progStatsGrid");
+            const stats = currentPlayerStats;
+            const statConfigs = [
+                { key: 'attack', label: 'Attack', value: '—', isStatic: true },
+                { key: 'attackingAwareness', label: 'Attacking Awareness', value: stats.attackingAwareness },
+                { key: 'ballControl', label: 'Ball Control', value: stats.ballControl },
+                { key: 'dribbling', label: 'Dribbling', value: stats.dribbling },
+                { key: 'tightPossession', label: 'Tight Possession', value: stats.tightPossession }
+            ];
+
+            grid.innerHTML = statConfigs.map(cfg => {
+                if (cfg.isStatic) {
+                    return `
+                <div class="prog-stat">
+                  <span class="prog-label">${cfg.label}</span>
+                  <span class="prog-value">—</span>
+                </div>
+              `;
+                }
+                return `
+                <div class="prog-stat">
+                  <span class="prog-label">${cfg.label}</span>
+                  <div class="prog-controls">
+                    <button class="arrow-btn left-arrow" data-stat="${cfg.key}" data-dir="-1"><i class="fas fa-chevron-left"></i></button>
+                    <span class="prog-value highlight" id="progVal_${cfg.key}">${cfg.value}</span>
+                    <button class="arrow-btn right-arrow disabled" data-stat="${cfg.key}" data-dir="1"><i class="fas fa-chevron-right"></i></button>
+                  </div>
+                </div>
+              `;
+            }).join('');
+
+            document.querySelectorAll('.arrow-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const statKey = this.getAttribute('data-stat');
+                    const dir = parseInt(this.getAttribute('data-dir'));
+                    const currentVal = currentPlayerStats[statKey];
+
+                    if (dir === -1) {
+                        if (currentVal > 40) {
+                            currentPlayerStats[statKey] = currentVal - 1;
+                            availablePoints += 1;
+                            document.getElementById(`progVal_${statKey}`).innerHTML = currentPlayerStats[
+                            statKey];
+                            updateOverallRating();
+                            updateArrowStates();
+                            showToast(`Decreased ${statKey}. Available points: ${availablePoints}`);
+                        } else {
+                            showToast(`Cannot go below 40`);
+                        }
+                    } else if (dir === 1) {
+                        if (availablePoints > 0 && currentVal < 99) {
+                            currentPlayerStats[statKey] = currentVal + 1;
+                            availablePoints -= 1;
+                            document.getElementById(`progVal_${statKey}`).innerHTML = currentPlayerStats[
+                            statKey];
+                            updateOverallRating();
+                            updateArrowStates();
+                            showToast(`Increased ${statKey}. Available points: ${availablePoints}`);
+                        } else if (availablePoints <= 0) {
+                            showToast(`No available points! Decrease a stat first.`);
+                        } else {
+                            showToast(`Cannot go above 99`);
+                        }
+                    }
+                });
+            });
+
+            availablePoints = 0;
+            updateOverallRating();
+            updateArrowStates();
+        }
+
+        function updateOverallRating() {
+            const stats = currentPlayerStats;
+            const overall = Math.round((stats.attackingAwareness + stats.ballControl + stats.dribbling + stats
+                .tightPossession) / 4);
+            document.getElementById("progOverallRating").innerHTML = overall;
+            document.getElementById("cardOvrBadge").innerHTML = overall;
+            return overall;
+        }
+
+        function updateArrowStates() {
+            document.querySelectorAll('.left-arrow').forEach(btn => {
+                const statKey = btn.getAttribute('data-stat');
+                const currentVal = currentPlayerStats[statKey];
+                btn.classList.toggle('disabled', currentVal <= 40);
+            });
+
+            document.querySelectorAll('.right-arrow').forEach(btn => {
+                const statKey = btn.getAttribute('data-stat');
+                const currentVal = currentPlayerStats[statKey];
+                btn.classList.toggle('disabled', !(availablePoints > 0 && currentVal < 99));
+            });
+        }
+
+        // ----- IMPORTANT: BACK BUTTON SAVES TRAINING PROGRESS -----
+        document.getElementById("backFromDetail").addEventListener("click", function() {
+            if (currentDetailPlayer) {
+                currentDetailPlayer.stats = { ...currentPlayerStats };
+                saveUser();
+            }
+            document.getElementById("playerDetailFull").classList.remove("active");
+            if (document.getElementById("appContainer").classList.contains("gameplan-mode")) {
+                renderGamePlanPage();
+            } else {
+                renderPlayersPage();
+            }
+        });
+
+        // Tab switching
+        document.querySelectorAll('.detail-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                const tabName = this.getAttribute('data-tab');
+                if (tabName === 'details') {
+                    document.getElementById('progressionTab').classList.add('active');
+                    document.getElementById('trainingTab').classList.remove('active');
+                } else {
+                    document.getElementById('progressionTab').classList.remove('active');
+                    document.getElementById('trainingTab').classList.add('active');
+                }
+            });
+        });
+
+        // ----- TRAINING BUTTON HANDLER (SAVES PROGRESS) -----
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.train-btn');
+            if (!btn) return;
+            if (btn.disabled) return;
+            const program = parseInt(btn.getAttribute('data-program'));
+            const levelsPerTraining = parseInt(btn.getAttribute('data-levels'));
+            const player = currentDetailPlayer;
+            if (!player) return;
+            if (currentCoins < program) {
+                showToast(`Need ${program} coins! You have ${currentCoins}`);
+                return;
+            }
+            currentCoins -= program;
+            if (!player.trainingUsed) player.trainingUsed = { 50: 0, 100: 0, 150: 0 };
+            player.trainingUsed[program] = (player.trainingUsed[program] || 0) + 1;
+            const newLevel = Math.min(player.level + levelsPerTraining, 32);
+            player.level = newLevel;
+            
+            if (player.stats) {
+                player.stats.attackingAwareness = Math.min(99, player.stats.attackingAwareness + 1);
+                player.stats.ballControl = Math.min(99, player.stats.ballControl + 1);
+                player.stats.dribbling = Math.min(99, player.stats.dribbling + 1);
+                player.stats.tightPossession = Math.min(99, player.stats.tightPossession + 1);
+                currentPlayerStats = { ...player.stats };
+            }
+            
+            saveUser();
+            updateUI();
+            
+            document.getElementById("used_50").innerHTML = player.trainingUsed[50] || 0;
+            document.getElementById("used_100").innerHTML = player.trainingUsed[100] || 0;
+            document.getElementById("used_150").innerHTML = player.trainingUsed[150] || 0;
+            document.querySelectorAll('.train-btn').forEach(b => {
+                const prog = parseInt(b.getAttribute('data-program'));
+                const used = player.trainingUsed[prog] || 0;
+                if (used >= 10 || player.level >= 32) {
+                    b.disabled = true;
+                    b.innerHTML = used >= 10 ? 'Max Used' : 'Max Level';
+                } else {
+                    b.disabled = false;
+                    b.innerHTML = 'Train';
+                }
+            });
+            document.getElementById("detailLevel").innerHTML = `${player.level} / 32`;
+            
+            renderProgressionStats();
+            
+            const overall = getPlayerOverall(player);
+            document.getElementById("cardOvrBadge").innerHTML = overall;
+            document.getElementById("progOverallRating").innerHTML = overall;
+            
+            const bonus = getOvrBonus(player.level);
+            let bonusText = '';
+            if (bonus > 0) bonusText = ` (+${bonus} OVR from level bonus)`;
+            showToast(`Trained with ${program} coins! +${levelsPerTraining} levels. Level ${newLevel}${bonusText}`);
+        });
+
+        // ----- LEADERBOARD PAGE -----
+        function renderLeaderboardPage() {
+            document.getElementById("appContainer").classList.remove("gameplan-mode");
+            document.getElementById("dynamicMainArea").innerHTML = `
+            <div class="leaderboard-container">
+              <h2><i class="fas fa-trophy"></i> LEADERBOARD</h2>
+              <div class="empty-state">
+                <i class="fas fa-users" style="font-size: 3rem; display: block; margin-bottom: 16px; color: #ff2a6d40;"></i>
+                <p>No leaderboard data available yet.</p>
+                <p style="margin-top: 8px; font-size: 0.9rem;">Start collecting and training players to climb the ranks!</p>
+              </div>
+            </div>
+          `;
+        }
+
+        // ----- EVENTS PAGE -----
+        function renderEventsPage() {
+            document.getElementById("appContainer").classList.remove("gameplan-mode");
+            document.getElementById("dynamicMainArea").innerHTML = `
+            <div class="events-container">
+              <h2><i class="fas fa-calendar-alt"></i> EVENTS</h2>
+              <div class="empty-state">
+                <i class="fas fa-calendar-plus" style="font-size: 3rem; display: block; margin-bottom: 16px; color: #05ffa140;"></i>
+                <p>No upcoming events at the moment.</p>
+                <p style="margin-top: 8px; font-size: 0.9rem;">Check back later for new events and challenges!</p>
+              </div>
+            </div>
+          `;
+        }
+
+        // ----- AUTH -----
+        function showSignupPanel() {
+            document.getElementById("loginContainer").style.display = "none";
+            document.getElementById("signupContainer").style.display = "flex";
+        }
+
+        function hideSignup() {
+            document.getElementById("signupContainer").style.display = "none";
+            document.getElementById("loginContainer").style.display = "flex";
+            document.getElementById("signupError").innerText = "";
+        }
+
+        function handleSignup() {
+            let u = document.getElementById("signupUsername").value.trim(),
+                p = document.getElementById("signupPassword").value.trim();
+            if (!u || !p) { document.getElementById("signupError").innerText = "Fill fields"; return; }
+            if (internalAccounts[u]) { document.getElementById("signupError").innerText = "Exists"; return; }
+            internalAccounts[u] = { password: p, coins: 534, profileName: u, avatar: "user-circle", photoData: null,
+                players: [], gamePlan: { teamName: "", logo: "", positions: {} } };
+            saveAccounts();
+            alert("Account created!");
+            hideSignup();
+        }
+
+        function handleLogin() {
+            let u = document.getElementById("loginUsername").value.trim(),
+                p = document.getElementById("loginPassword").value.trim();
+            if (!internalAccounts[u] || internalAccounts[u].password !== p) { document.getElementById("loginError")
+                    .innerText = "Invalid"; return; }
+            currentUser = u;
+            let data = internalAccounts[currentUser];
+            currentCoins = data.coins;
+            profileName = data.profileName;
+            selectedAvatar = data.avatar;
+            uploadedImageData = data.photoData;
+            myPlayers = data.players || [];
+            remainingPackCount = 12;
+
+            if (data.gamePlan) {
+                gamePlanTeamName = data.gamePlan.teamName || "";
+                gamePlanSelectedLogo = data.gamePlan.logo || "";
+                gamePlanPositions = data.gamePlan.positions || {};
+            } else {
+                gamePlanTeamName = "";
+                gamePlanSelectedLogo = "";
+                gamePlanPositions = {};
+            }
+
+            document.getElementById("loginContainer").style.display = "none";
+            document.getElementById("appContainer").style.display = "block";
+            updateUI();
+            showHome();
+            startBanner();
+            showToast(`Welcome ${profileName}!`);
+        }
+
+        // --- PHOTO MODAL ---
+        let tempPhoto = null;
+
+        function openPhoto() {
+            let modalHtml = `
+            <div style="background:#13141f; border-radius:2rem; padding:1.5rem; max-width:350px; text-align:center; font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">
+              <h3>Update Photo</h3>
+              <div id="uploadArea" style="margin:12px; border:2px dashed #05ffa1; padding:12px; border-radius:1rem; cursor:pointer;">📸 Click</div>
+              <input type="file" id="fileInput" accept="image/*" style="display:none">
+              <div id="imagePreview"></div>
+              <div>
+                <button id="cancelModalBtn" style="background:#ff2a6d; padding:6px 20px; border-radius:40px;">Cancel</button>
+                <button id="confirmPhotoBtn" style="background:#05ffa1; padding:6px 20px; border-radius:40px;">Apply</button>
+              </div>
+            </div>
+          `;
+            let modalDiv = document.getElementById("photoModal");
+            modalDiv.innerHTML = modalHtml;
+            modalDiv.style.display = "flex";
+            tempPhoto = uploadedImageData;
+            document.getElementById("uploadArea")?.addEventListener("click", () => document.getElementById("fileInput")
+                .click());
+            document.getElementById("fileInput")?.addEventListener("change", (e) => {
+                let f = e.target.files[0];
+                if (f && f.type.startsWith("image/")) {
+                    let r = new FileReader();
+                    r.onload = (ev) => {
+                        tempPhoto = ev.target.result;
+                        document.getElementById("imagePreview").innerHTML =
+                            `<img src="${tempPhoto}" style="width:70px; border-radius:50%;">`;
+                    };
+                    r.readAsDataURL(f);
+                }
+            });
+            document.getElementById("confirmPhotoBtn")?.addEventListener("click", () => {
+                if (tempPhoto) { uploadedImageData = tempPhoto;
+                    selectedAvatar = null; }
+                updateUI();
+                saveUser();
+                showToast("Photo updated!");
+                document.getElementById("photoModal").style.display = "none";
+            });
+            document.getElementById("cancelModalBtn")?.addEventListener("click", () => {
+                document.getElementById("photoModal").style.display = "none";
+            });
+        }
+
+        // --- Event Listeners ---
+        document.getElementById("sideAvatar")?.addEventListener("click", openPhoto);
+        document.getElementById("topCoinsDisplay")?.addEventListener("click", () => showToast(`💰 Balance: ${currentCoins}`));
+        document.getElementById("homeIconBtn")?.addEventListener("click", () => { showHome();
+            startBanner(); });
+        document.getElementById("sideProfileName")?.addEventListener("click", () => {
+            let n = prompt("Edit name:", profileName);
+            if (n?.trim()) { profileName = n.trim();
+                updateUI();
+                saveUser();
+                showToast(`Name changed`); }
+        });
+        document.getElementById("draftNavBtn")?.addEventListener("click", () => renderDraftPage());
+        document.getElementById("playersNavBtn")?.addEventListener("click", () => renderLeaderboardPage());
+        document.getElementById("homeNavBtn")?.addEventListener("click", () => renderEventsPage());
+        document.getElementById("closePackModalBtn")?.addEventListener("click", () => document.getElementById(
+            "packPlayersModal").classList.remove("active"));
+        document.getElementById("packPlayersModal")?.addEventListener("click", (e) => {
+            if (e.target === document.getElementById("packPlayersModal")) document.getElementById("packPlayersModal")
+                .classList.remove("active");
+        });
+
+        // Add missing styles
+        const style = document.createElement('style');
+        style.textContent = `
+          .players-page-container { background:rgba(19,20,31,0.95); border-radius:1.5rem; padding:1.2rem; border:1px solid var(--neon-pink); }
+          .players-list { display:flex; flex-direction:column; gap:16px; margin-top:20px; max-height:65vh; overflow-y:auto; }
+          .player-row { background:#0f111c; border-radius:20px; padding:12px 16px; display:flex; align-items:center; gap:16px; border:1px solid #ff2a6d40; transition:0.1s; flex-wrap:wrap; cursor:pointer; position:relative; }
+          .player-row:hover { border-color:#05ffa1; background:#1a1c2e; }
+          .player-small-img { width:70px; height:70px; object-fit:contain; border-radius:16px; background:#1a1c2e; padding:6px; cursor:pointer; transition:0.2s; }
+          .player-small-img:hover { transform:scale(1.08); border:1px solid #05ffa1; }
+          .player-info-area { flex:1; }
+          .player-name-text { font-size:1.1rem; color:#05ffa1; margin-bottom:6px; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
+          .level-small { font-size:0.7rem; color:#a8b3cf; display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
+          .level-badge { background:#ff2a6d20; padding:2px 10px; border-radius:30px; }
+          .collection-ovr-badge { position:absolute; top:8px; left:16px; font-size:0.65rem; color:white; z-index:10; background:transparent; border:none; box-shadow:none; text-shadow:0 0 8px rgba(0,0,0,0.9); line-height:1.1; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; animation:ovrFlash 3s infinite ease-in-out; }
+          @keyframes ovrFlash { 0%,100% { color:white; } 50% { color:#ffd700; } }
+          .leaderboard-container, .events-container { background:rgba(19,20,31,0.95); border-radius:1.5rem; padding:2rem; border:1px solid var(--neon-pink); text-align:center; min-height:300px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+          .leaderboard-container h2, .events-container h2 { color:#05ffa1; margin-bottom:16px; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
+          .leaderboard-container .empty-state, .events-container .empty-state { color:#7a85a0; font-size:1.1rem; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
+          .toast-msg { position:fixed; bottom:25px; left:50%; transform:translateX(-50%); background:#ff2a6d; color:white; padding:8px 22px; border-radius:60px; z-index:2100; opacity:0; transition:0.2s; pointer-events:none; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
+        `;
+        document.head.appendChild(style);
+
+        loadAccounts();
+        document.getElementById("appContainer").style.display = "none";
+    </script>
+</body>
+</html>
