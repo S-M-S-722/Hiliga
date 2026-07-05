@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>HLIGA ULTIMATE · Game Plan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <title>HLIGA ULTIMATE · Draft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -258,437 +256,452 @@
             color: #eef2ff;
         }
 
-        /* GAME PLAN PAGE - FULL WIDTH */
-        .gameplan-container {
-            background: rgba(19, 20, 31, 0.95);
-            border-radius: 1.5rem;
-            padding: 2rem;
+        /* DRAFT PAGE - Dual Packs */
+        .draft-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .packs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .pack-card {
+            background: linear-gradient(145deg, #13141f, #0c0d14);
+            border-radius: 2rem;
             border: 1px solid var(--neon-pink);
-            min-height: 80vh;
-        }
-        .gameplan-header {
+            overflow: hidden;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 0 40px rgba(255, 42, 109, 0.15);
+            transition: 0.3s;
+        }
+        .pack-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 60px rgba(255, 42, 109, 0.25);
+        }
+        .pack-header {
+            position: relative;
+            background: #0b0c12;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--neon-green);
+            text-align: center;
+            flex-shrink: 0;
+            display: flex;
             justify-content: space-between;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            gap: 12px;
-            border-bottom: 1px solid #ff2a6d40;
-            padding-bottom: 16px;
-        }
-        .gameplan-header .header-left {
-            display: flex;
             align-items: center;
-            gap: 16px;
         }
-        .gameplan-header .header-left .home-icon-btn {
-            font-size: 1.4rem;
-            color: #ff2a6d;
-            border: 1px solid #ff2a6d60;
-            padding: 8px 12px;
-            border-radius: 40px;
-        }
-        .gameplan-header .header-left .home-icon-btn:hover {
-            background: #ff2a6d20;
-        }
-        .gameplan-header .header-left h2 {
+        .pack-header strong {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
             color: #05ffa1;
             font-family: 'Black Ops One', 'Inter', sans-serif;
             font-weight: 400;
-            letter-spacing: 0.5px;
-            font-size: 1.6rem;
         }
-        .gameplan-header .header-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .gameplan-header .header-right .coins-display {
-            background: rgba(5, 255, 161, 0.15);
-            padding: 0.4rem 1rem;
+        .pack-header .pack-badge {
+            font-size: 0.65rem;
+            background: rgba(255, 42, 109, 0.2);
+            padding: 4px 14px;
             border-radius: 40px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid var(--neon-green);
+            color: #ff2a6d;
+            border: 1px solid #ff2a6d40;
             font-family: 'Black Ops One', 'Inter', sans-serif;
             font-weight: 400;
             letter-spacing: 0.5px;
-            font-size: 0.9rem;
         }
-
-        .gameplan-body {
-            display: flex;
-            flex-direction: row;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .gameplan-sidebar {
-            flex: 0 0 300px;
-            min-width: 240px;
-        }
-        .gameplan-pitch-area {
-            flex: 1;
-            min-width: 350px;
-        }
-
-        .team-info {
-            background: #0f111c;
-            border-radius: 16px;
-            padding: 16px 20px;
-            border: 1px solid #ff2a6d40;
-            margin-bottom: 16px;
-        }
-        .team-info .team-name-input {
-            width: 100%;
-            padding: 10px 14px;
+        .more-details-btn {
+            background: rgba(255, 42, 109, 0.15);
+            border: 1px solid var(--neon-green);
+            padding: 5px 16px;
             border-radius: 40px;
-            background: #1a1c2e;
-            border: 1px solid #ff2a6d60;
-            color: white;
+            font-size: 0.7rem;
+            color: #05ffa1;
+            cursor: pointer;
             font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-size: 1rem;
-            outline: none;
-        }
-        .team-info .team-name-input:focus {
-            border-color: #05ffa1;
-        }
-        .team-info .team-name-input::placeholder {
-            color: #7a85a0;
-        }
-        .team-info .section-label {
-            color: #7a85a0;
-            font-size: 0.8rem;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
             letter-spacing: 0.5px;
-            margin-top: 12px;
-            margin-bottom: 8px;
+            transition: 0.2s;
+        }
+        .more-details-btn:hover {
+            background: #ff2a6d;
+            color: white;
+        }
+        .pack-image-area {
+            flex: 1;
+            text-align: center;
+            padding: 0;
+            background: #0a0a0c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 240px;
+            position: relative;
+        }
+        .pack-full-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
             display: block;
         }
-        .logo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-            gap: 6px;
-            max-height: 160px;
-            overflow-y: auto;
-            padding: 6px 0;
-        }
-        .logo-grid .logo-option {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            border: 2px solid #ff2a6d40;
-            cursor: pointer;
+        .pack-image-placeholder {
+            width: 100%;
+            height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 3px;
-            background: #1a1c2e;
-            transition: 0.2s;
-        }
-        .logo-grid .logo-option:hover {
-            border-color: #05ffa1;
-            transform: scale(1.05);
-        }
-        .logo-grid .logo-option.selected {
-            border-color: #05ffa1;
-            box-shadow: 0 0 20px rgba(5, 255, 161, 0.3);
-        }
-        .logo-grid .logo-option img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .selected-team-display {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 10px 14px;
-            background: #1a1c2e;
-            border-radius: 12px;
-            margin-top: 10px;
-            border: 1px solid #ff2a6d40;
-        }
-        .selected-team-display img {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
-        }
-        .selected-team-display .team-name-display {
-            color: #05ffa1;
+            background: #11131f;
+            color: #7a85a0;
             font-family: 'Black Ops One', 'Inter', sans-serif;
             font-size: 1rem;
+            letter-spacing: 0.5px;
+            border: 2px dashed #ff2a6d40;
+            flex-direction: column;
+            gap: 12px;
         }
-
-        .collective-strength {
-            background: #1a1c2e;
-            border-radius: 12px;
-            padding: 14px 18px;
-            border: 1px solid #05ffa1;
+        .pack-image-placeholder i {
+            font-size: 3rem;
+            color: #ff2a6d40;
+        }
+        .pack-stats {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin-top: 12px;
-        }
-        .collective-strength .cs-label {
-            color: #7a85a0;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            font-size: 0.9rem;
-        }
-        .collective-strength .cs-value {
-            color: #05ffa1;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            font-size: 1.8rem;
-        }
-
-        /* Jersey & Formation buttons */
-        .action-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 12px;
-        }
-        .jersey-btn {
-            background: linear-gradient(135deg, #ff2a6d, #b0104a);
-            border: none;
-            color: white;
-            padding: 14px 20px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: 0.2s;
-            font-size: 1.1rem;
-            box-shadow: 0 0 20px rgba(255, 42, 109, 0.3);
-            width: 100%;
-        }
-        .jersey-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(255, 42, 109, 0.5);
-        }
-        .jersey-btn i {
-            font-size: 1.6rem;
-        }
-
-        .formation-btn {
-            background: rgba(5, 255, 161, 0.15);
-            border: 1px solid #05ffa1;
-            color: #05ffa1;
-            padding: 12px 20px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: 0.2s;
-            font-size: 1rem;
-            width: 100%;
-        }
-        .formation-btn:hover {
-            background: #05ffa1;
-            color: #0a0a0c;
-        }
-        .formation-btn i {
-            font-size: 1.4rem;
-        }
-
-        .formation-selector {
-            display: none;
-            background: #1a1c2e;
-            border-radius: 12px;
-            padding: 12px;
-            border: 1px solid #ff2a6d60;
-            margin-top: 8px;
+            padding: 1rem 1.5rem;
+            background: #0c0d14d9;
+            border-top: 1px solid var(--neon-pink);
+            flex-shrink: 0;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 12px;
         }
-        .formation-selector.active {
-            display: flex;
-        }
-        .formation-selector .fmt-btn {
-            background: #0f111c;
-            border: 1px solid #ff2a6d40;
-            color: #a8b3cf;
-            padding: 6px 14px;
-            border-radius: 20px;
-            cursor: pointer;
+        .remaining-box {
+            background: #ff2a6d20;
+            padding: 8px 20px;
+            border-radius: 60px;
+            border-left: 3px solid #ff2a6d;
+            font-size: 1.1rem;
             font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .remaining-box span {
+            color: #05ffa1;
+        }
+        .spin-button {
+            background: linear-gradient(95deg, #ff2a6d, #b0104a);
+            border: none;
+            padding: 10px 28px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 12px #ff2a6d;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
             transition: 0.2s;
         }
-        .formation-selector .fmt-btn:hover {
-            border-color: #05ffa1;
-            color: white;
+        .spin-button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 42, 109, 0.5);
         }
-        .formation-selector .fmt-btn.active {
-            border-color: #05ffa1;
-            color: #05ffa1;
-            background: #05ffa110;
+        .spin-button:active {
+            transform: scale(0.96);
+        }
+        .spin-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
-        /* Pitch with background image - SMALLER BOXES with width 158px */
-        .pitch-area {
-            background: #0f111c;
-            border-radius: 16px;
-            padding: 16px;
-            border: 1px solid #ff2a6d40;
-            position: relative;
-            overflow: hidden;
-            min-height: 350px;
-        }
-        .pitch-area .pitch-bg {
-            position: absolute;
+        /* PACK PLAYERS MODAL */
+        .pack-players-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-            z-index: 0;
-            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
         }
-        .pitch-area .pitch-title {
+        .pack-players-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .pack-players-modal {
+            background: #13141f;
+            width: 90%;
+            max-width: 820px;
+            max-height: 90vh;
+            border-radius: 2rem;
+            border: 2px solid var(--neon-pink);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header {
+            padding: 1rem 1.5rem;
+            background: #0a0a0c;
+            border-bottom: 1px solid var(--neon-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .modal-header h3 {
             color: #05ffa1;
             font-family: 'Black Ops One', 'Inter', sans-serif;
             font-weight: 400;
             letter-spacing: 0.5px;
-            font-size: 1rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-            z-index: 1;
+            font-size: 1.1rem;
         }
-        .pitch-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 5px;
-            max-width: 500px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+        .modal-header h3 i {
+            margin-right: 8px;
         }
-        .pitch-box {
-            width: 158px;
-            aspect-ratio: 0.8;
-            background: rgba(26, 28, 46, 0.8);
-            backdrop-filter: blur(4px);
-            border: 2px dashed #ff2a6d60;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: 0.2s;
-            padding: 2px;
-            min-height: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .pitch-box:hover {
-            border-color: #05ffa1;
-            background: rgba(255, 42, 109, 0.15);
-        }
-        .pitch-box.filled {
-            border: 2px solid #05ffa1;
-            background: rgba(5, 255, 161, 0.1);
-        }
-        .pitch-box .player-card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 6px;
-        }
-        .pitch-box .player-ovr-badge {
-            position: absolute;
-            top: 1px;
-            left: 3px;
-            font-size: 0.5rem;
-            font-weight: 700;
-            color: white;
-            z-index: 5;
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            line-height: 1.1;
-        }
-        .pitch-box .position-label {
-            font-size: 0.45rem;
-            color: #7a85a0;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            letter-spacing: 0.3px;
-            z-index: 2;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-        }
-        .pitch-box .remove-player {
-            position: absolute;
-            top: -3px;
-            right: -3px;
+        .close-modal-btn {
             background: #ff2a6d;
             border: none;
-            color: white;
-            width: 16px;
-            height: 16px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            font-size: 0.45rem;
             cursor: pointer;
-            display: none;
-            z-index: 10;
+            color: white;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .close-modal-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .players-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 1.5rem;
+            overflow-y: auto;
+            justify-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .players-grid-11 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            padding: 1.5rem;
+            overflow-y: auto;
+            justify-items: center;
+        }
+        .players-grid-11 .pack-player-card:last-child {
+            grid-column: 2 / 4;
+        }
+        .pack-player-card {
+            background: #1a1c2e;
+            border-radius: 1rem;
+            text-align: center;
+            padding: 0.8rem 0.6rem;
+            border: 1px solid #ff2a6d60;
+            transition: 0.2s;
+            width: 100%;
+            max-width: 160px;
+        }
+        .pack-player-card:hover {
+            border-color: #05ffa1;
+            transform: scale(1.03);
+        }
+        .pack-player-card img {
+            width: 100%;
+            height: 110px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: #0a0a0c;
+        }
+        .pack-player-card p {
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #05ffa1;
+            margin-top: 6px;
+            font-size: 0.7rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 780px) {
+            .packs-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .pack-full-image {
+                height: 200px;
+            }
+            .pack-image-placeholder {
+                height: 200px;
+            }
+            .players-grid-11 {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .players-grid-11 .pack-player-card:last-child {
+                grid-column: 2 / 3;
+            }
+            .pack-player-card img {
+                height: 80px;
+            }
+            .players-grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .pack-stats {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .spin-button {
+                width: 100%;
+                text-align: center;
+            }
+            .remaining-box {
+                text-align: center;
+            }
+            .pack-full-image {
+                height: 160px;
+            }
+            .pack-image-placeholder {
+                height: 160px;
+            }
+            .players-grid-11 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                padding: 1rem;
+            }
+            .players-grid-11 .pack-player-card:last-child {
+                grid-column: 1 / 3;
+            }
+            .pack-player-card img {
+                height: 70px;
+            }
+            .modal-header h3 {
+                font-size: 0.9rem;
+            }
+            .players-grid-4 {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                padding: 1rem;
+            }
+        }
+
+        /* VIDEO OVERLAY */
+        .video-result-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+            flex-direction: column;
+        }
+        .video-result-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .video-wrapper {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: relative;
+            display: flex;
             align-items: center;
             justify-content: center;
         }
-        .pitch-box.filled .remove-player {
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+        .cancel-video-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #1a5fb4;
+            border: 2px solid #05ffa1;
+            color: white;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 50;
+            box-shadow: 0 0 20px rgba(5, 255, 161, 0.4);
+            transition: 0.2s;
+            letter-spacing: 0.5px;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        .cancel-video-btn:hover {
+            background: #0d47a1;
+            transform: scale(1.03);
+        }
+        .big-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 40;
+        }
+        .big-card-overlay.show {
             display: flex;
         }
-        .pitch-box .player-name-label {
-            position: absolute;
-            bottom: 1px;
-            left: 0;
-            right: 0;
-            font-size: 0.35rem;
-            color: #a8b3cf;
+        .big-card-display {
+            background: transparent;
             text-align: center;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            letter-spacing: 0.2px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 1px 2px;
-            z-index: 5;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            max-width: 380px;
+            width: 80%;
+            animation: floatIn 0.4s ease;
         }
-
-        .pitch-hint {
-            margin-top: 10px;
-            text-align: center;
-            color: #7a85a0;
-            font-size: 0.6rem;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            letter-spacing: 0.5px;
-            border-top: 1px solid #ff2a6d20;
-            padding-top: 10px;
-            position: relative;
-            z-index: 1;
+        .big-card-display img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 24px;
+            background: transparent;
+            box-shadow: 0 0 40px rgba(5, 255, 161, 0.3);
+        }
+        @keyframes floatIn {
+            from {
+                transform: scale(0.7) translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
         }
 
         /* PLAYER DETAIL FULL PAGE */
@@ -1030,303 +1043,641 @@
             box-shadow: none;
         }
 
-        /* DRAFT PAGE with pack image */
-        .draft-page-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 80vh;
-            padding: 20px;
-        }
-        .pack-card {
-            width: 500px;
-            background: linear-gradient(145deg, #13141f, #0c0d14);
-            border-radius: 2rem;
-            border: 1px solid var(--neon-pink);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 40px rgba(255, 42, 109, 0.15);
-        }
-        .pack-header {
-            position: relative;
-            background: #0b0c12;
-            padding: 0.8rem 1rem;
-            border-bottom: 1px solid var(--neon-green);
-            text-align: center;
-            flex-shrink: 0;
-        }
-        .pack-header strong {
-            font-size: 1.3rem;
-            letter-spacing: 1px;
-            color: #05ffa1;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-weight: 400;
-        }
-        .more-details-btn {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            background: rgba(255, 42, 109, 0.2);
-            border: 1px solid var(--neon-green);
-            padding: 5px 14px;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            color: #05ffa1;
-            cursor: pointer;
-            z-index: 5;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            transition: 0.2s;
-        }
-        .more-details-btn:hover {
+        .toast-msg {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
             background: #ff2a6d;
             color: white;
-        }
-        .pack-image-area {
-            flex: 1;
-            text-align: center;
-            padding: 0;
-            background: #0a0a0c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .pack-full-image {
-            width: 500px;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-        }
-        .pack-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background: #0c0d14d9;
-            border-top: 1px solid var(--neon-pink);
-            flex-shrink: 0;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .remaining-box {
-            background: #ff2a6d20;
-            padding: 8px 20px;
+            padding: 8px 22px;
             border-radius: 60px;
-            border-left: 3px solid #ff2a6d;
-            font-size: 1.2rem;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-        .spin-button {
-            background: linear-gradient(95deg, #ff2a6d, #b0104a);
-            border: none;
-            padding: 10px 28px;
-            border-radius: 60px;
-            font-size: 1.2rem;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 0 12px #ff2a6d;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            transition: 0.2s;
-        }
-        .spin-button:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(255, 42, 109, 0.5);
-        }
-        .spin-button:active {
-            transform: scale(0.96);
-        }
-
-        /* PACK PLAYERS MODAL */
-        .pack-players-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.96);
-            backdrop-filter: blur(12px);
-            z-index: 3000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            visibility: hidden;
+            z-index: 2100;
             opacity: 0;
             transition: 0.2s;
-        }
-        .pack-players-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-        .pack-players-modal {
-            background: #13141f;
-            width: 90%;
-            max-width: 800px;
-            max-height: 85vh;
-            border-radius: 2rem;
-            border: 2px solid var(--neon-pink);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .modal-header {
-            padding: 1rem;
-            background: #0a0a0c;
-            border-bottom: 1px solid var(--neon-green);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .modal-header h3 {
-            color: #05ffa1;
+            pointer-events: none;
             font-family: 'Black Ops One', 'Inter', sans-serif;
             font-weight: 400;
             letter-spacing: 0.5px;
         }
-        .close-modal-btn {
-            background: #ff2a6d;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            color: white;
-            font-family: 'Black Ops One', 'Inter', sans-serif;
+        .toast-msg.show {
+            opacity: 1;
         }
-        .players-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
-            padding: 1.5rem;
+
+        /* PLAYERS PAGE */
+        .players-page-container {
+            background: rgba(19, 20, 31, 0.95);
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            border: 1px solid var(--neon-pink);
+        }
+        .players-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+            max-height: 65vh;
             overflow-y: auto;
         }
-        .pack-player-card {
-            background: #1e1f2e;
-            border-radius: 1rem;
-            text-align: center;
-            padding: 0.8rem;
-            border: 1px solid #ff2a6d60;
+        .player-row {
+            background: #0f111c;
+            border-radius: 20px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid #ff2a6d40;
+            transition: 0.1s;
+            flex-wrap: wrap;
+            cursor: pointer;
+            position: relative;
         }
-        .pack-player-card img {
-            width: 100%;
-            height: 120px;
+        .player-row:hover {
+            border-color: #05ffa1;
+            background: #1a1c2e;
+        }
+        .player-small-img {
+            width: 70px;
+            height: 70px;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: 16px;
+            background: #1a1c2e;
+            padding: 6px;
+            cursor: pointer;
+            transition: 0.2s;
         }
-        .pack-player-card p {
+        .player-small-img:hover {
+            transform: scale(1.08);
+            border: 1px solid #05ffa1;
+        }
+        .player-info-area {
+            flex: 1;
+        }
+        .player-name-text {
+            font-size: 1.1rem;
+            color: #05ffa1;
+            margin-bottom: 6px;
             font-family: 'Black Ops One', 'Inter', sans-serif;
             font-weight: 400;
             letter-spacing: 0.5px;
-            color: #05ffa1;
-            margin-top: 6px;
+        }
+        .level-small {
+            font-size: 0.7rem;
+            color: #a8b3cf;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .level-badge {
+            background: #ff2a6d20;
+            padding: 2px 10px;
+            border-radius: 30px;
+        }
+        .collection-ovr-badge {
+            position: absolute;
+            top: 8px;
+            left: 16px;
+            font-size: 0.65rem;
+            color: white;
+            z-index: 10;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            line-height: 1.1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            animation: ovrFlash 3s infinite ease-in-out;
+        }
+        @keyframes ovrFlash {
+            0%,
+            100% {
+                color: white;
+            }
+            50% {
+                color: #ffd700;
+            }
         }
 
-        /* VIDEO OVERLAY */
-        .video-result-overlay {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 10000;
+        .leaderboard-container,
+        .events-container {
+            background: rgba(19, 20, 31, 0.95);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid var(--neon-pink);
+            text-align: center;
+            min-height: 300px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            visibility: hidden;
-            opacity: 0;
-            transition: 0.3s;
             flex-direction: column;
-        }
-        .video-result-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-        .video-wrapper {
-            width: 100%;
-            height: 100%;
-            background: #000;
-            position: relative;
-            display: flex;
             align-items: center;
             justify-content: center;
         }
-        .video-wrapper video {
+        .leaderboard-container h2,
+        .events-container h2 {
+            color: #05ffa1;
+            margin-bottom: 16px;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .leaderboard-container .empty-state,
+        .events-container .empty-state {
+            color: #7a85a0;
+            font-size: 1.1rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* GAME PLAN PAGE */
+        .gameplan-container {
+            background: rgba(19, 20, 31, 0.95);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid var(--neon-pink);
+            min-height: 80vh;
+        }
+        .gameplan-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid #ff2a6d40;
+            padding-bottom: 16px;
+        }
+        .gameplan-header .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .gameplan-header .header-left .home-icon-btn {
+            font-size: 1.4rem;
+            color: #ff2a6d;
+            border: 1px solid #ff2a6d60;
+            padding: 8px 12px;
+            border-radius: 40px;
+        }
+        .gameplan-header .header-left .home-icon-btn:hover {
+            background: #ff2a6d20;
+        }
+        .gameplan-header .header-left h2 {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 1.6rem;
+        }
+        .gameplan-header .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .gameplan-header .header-right .coins-display {
+            background: rgba(5, 255, 161, 0.15);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--neon-green);
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+        .gameplan-body {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .gameplan-sidebar {
+            flex: 0 0 300px;
+            min-width: 240px;
+        }
+        .gameplan-pitch-area {
+            flex: 1;
+            min-width: 350px;
+        }
+        .team-info {
+            background: #0f111c;
+            border-radius: 16px;
+            padding: 16px 20px;
+            border: 1px solid #ff2a6d40;
+            margin-bottom: 16px;
+        }
+        .team-info .team-name-input {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 40px;
+            background: #1a1c2e;
+            border: 1px solid #ff2a6d60;
+            color: white;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+        }
+        .team-info .team-name-input:focus {
+            border-color: #05ffa1;
+        }
+        .team-info .team-name-input::placeholder {
+            color: #7a85a0;
+        }
+        .team-info .section-label {
+            color: #7a85a0;
+            font-size: 0.8rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 6px;
+            max-height: 160px;
+            overflow-y: auto;
+            padding: 6px 0;
+        }
+        .logo-grid .logo-option {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            border: 2px solid #ff2a6d40;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+            background: #1a1c2e;
+            transition: 0.2s;
+        }
+        .logo-grid .logo-option:hover {
+            border-color: #05ffa1;
+            transform: scale(1.05);
+        }
+        .logo-grid .logo-option.selected {
+            border-color: #05ffa1;
+            box-shadow: 0 0 20px rgba(5, 255, 161, 0.3);
+        }
+        .logo-grid .logo-option img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            background: #000;
         }
-        .cancel-video-btn {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: #1a5fb4;
-            border: 2px solid #05ffa1;
-            color: white;
-            font-weight: 700;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            z-index: 50;
-            box-shadow: 0 0 20px rgba(5, 255, 161, 0.4);
-            transition: 0.2s;
-            letter-spacing: 0.5px;
+        .selected-team-display {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 14px;
+            background: #1a1c2e;
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 1px solid #ff2a6d40;
+        }
+        .selected-team-display img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+        .selected-team-display .team-name-display {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .collective-strength {
+            background: #1a1c2e;
+            border-radius: 12px;
+            padding: 14px 18px;
+            border: 1px solid #05ffa1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+        .collective-strength .cs-label {
+            color: #7a85a0;
             font-family: 'Black Ops One', 'Inter', sans-serif;
             font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
         }
-        .cancel-video-btn:hover {
-            background: #0d47a1;
-            transform: scale(1.03);
+        .collective-strength .cs-value {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 1.8rem;
         }
-        .big-card-overlay {
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .jersey-btn {
+            background: linear-gradient(135deg, #ff2a6d, #b0104a);
+            border: none;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.2s;
+            font-size: 1.1rem;
+            box-shadow: 0 0 20px rgba(255, 42, 109, 0.3);
+            width: 100%;
+        }
+        .jersey-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 42, 109, 0.5);
+        }
+        .jersey-btn i {
+            font-size: 1.6rem;
+        }
+        .formation-btn {
+            background: rgba(5, 255, 161, 0.15);
+            border: 1px solid #05ffa1;
+            color: #05ffa1;
+            padding: 12px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.2s;
+            font-size: 1rem;
+            width: 100%;
+        }
+        .formation-btn:hover {
+            background: #05ffa1;
+            color: #0a0a0c;
+        }
+        .formation-btn i {
+            font-size: 1.4rem;
+        }
+        .formation-selector {
+            display: none;
+            background: #1a1c2e;
+            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid #ff2a6d60;
+            margin-top: 8px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .formation-selector.active {
+            display: flex;
+        }
+        .formation-selector .fmt-btn {
+            background: #0f111c;
+            border: 1px solid #ff2a6d40;
+            color: #a8b3cf;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 0.75rem;
+            transition: 0.2s;
+        }
+        .formation-selector .fmt-btn:hover {
+            border-color: #05ffa1;
+            color: white;
+        }
+        .formation-selector .fmt-btn.active {
+            border-color: #05ffa1;
+            color: #05ffa1;
+            background: #05ffa110;
+        }
+        .pitch-area {
+            background: #0f111c;
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid #ff2a6d40;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+        }
+        .pitch-area .pitch-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            display: none;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: 0;
+            border-radius: 16px;
+        }
+        .pitch-area .pitch-title {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .pitch-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 5px;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .pitch-box {
+            width: 158px;
+            aspect-ratio: 0.8;
+            background: rgba(26, 28, 46, 0.8);
+            backdrop-filter: blur(4px);
+            border: 2px dashed #ff2a6d60;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(6px);
-            z-index: 40;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 2px;
+            min-height: 40px;
+            position: relative;
+            overflow: hidden;
         }
-        .big-card-overlay.show {
+        .pitch-box:hover {
+            border-color: #05ffa1;
+            background: rgba(255, 42, 109, 0.15);
+        }
+        .pitch-box.filled {
+            border: 2px solid #05ffa1;
+            background: rgba(5, 255, 161, 0.1);
+        }
+        .pitch-box .player-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 6px;
+        }
+        .pitch-box .player-ovr-badge {
+            position: absolute;
+            top: 1px;
+            left: 3px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            color: white;
+            z-index: 5;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            line-height: 1.1;
+        }
+        .pitch-box .position-label {
+            font-size: 0.45rem;
+            color: #7a85a0;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+        .pitch-box .remove-player {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: #ff2a6d;
+            border: none;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 0.45rem;
+            cursor: pointer;
+            display: none;
+            z-index: 10;
+            align-items: center;
+            justify-content: center;
+        }
+        .pitch-box.filled .remove-player {
             display: flex;
         }
-        .big-card-display {
-            background: transparent;
+        .pitch-box .player-name-label {
+            position: absolute;
+            bottom: 1px;
+            left: 0;
+            right: 0;
+            font-size: 0.35rem;
+            color: #a8b3cf;
             text-align: center;
-            max-width: 380px;
-            width: 80%;
-            animation: floatIn 0.4s ease;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.2px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1px 2px;
+            z-index: 5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .big-card-display img {
-            width: 100%;
-            max-width: 320px;
-            height: auto;
-            object-fit: contain;
-            border-radius: 24px;
-            background: transparent;
-            box-shadow: 0 0 40px rgba(5, 255, 161, 0.3);
+        .pitch-hint {
+            margin-top: 10px;
+            text-align: center;
+            color: #7a85a0;
+            font-size: 0.6rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #ff2a6d20;
+            padding-top: 10px;
+            position: relative;
+            z-index: 1;
         }
-        @keyframes floatIn {
-            from {
-                transform: scale(0.7) translateY(30px);
-                opacity: 0;
+
+        @media (max-width: 780px) {
+            .gameplan-body {
+                flex-direction: column;
             }
-            to {
-                transform: scale(1) translateY(0);
-                opacity: 1;
+            .gameplan-sidebar {
+                flex: 1;
+                min-width: unset;
+            }
+            .gameplan-pitch-area {
+                min-width: unset;
+            }
+            .pitch-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 4px;
+                max-width: 100%;
+            }
+            .pitch-box {
+                width: 100%;
+                min-height: 35px;
+                max-width: 158px;
+            }
+            .gameplan-header .header-left h2 {
+                font-size: 1.2rem;
+            }
+            #appContainer.gameplan-mode .main-content {
+                padding: 0.8rem;
+            }
+            .gameplan-container {
+                padding: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .pitch-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 3px;
+            }
+            .pitch-box {
+                width: 100%;
+                min-height: 30px;
+                max-width: 120px;
+            }
+            .pitch-box .player-ovr-badge {
+                font-size: 0.4rem;
+                top: 1px;
+                left: 2px;
+            }
+            .pitch-box .player-name-label {
+                font-size: 0.3rem;
+            }
+            .pitch-box .position-label {
+                font-size: 0.35rem;
+            }
+            .logo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+            }
+            .logo-grid .logo-option {
+                width: 36px;
+                height: 36px;
             }
         }
 
-        /* Players selection modal */
+        /* PLAYER SELECT OVERLAY (for game plan) */
         .players-select-overlay {
             position: fixed;
             inset: 0;
@@ -1420,103 +1771,734 @@
             color: #05ffa1;
         }
 
-        /* Responsive */
-        @media (max-width: 780px) {
-            .gameplan-body {
+
+        /* ===== MATCHES PAGE STYLES (integrated) ===== */
+        .matches-wrapper {
+            background: rgba(19, 20, 31, 0.95);
+            border-radius: 1.5rem;
+            border: 1px solid #ff2a6d;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 70vh;
+            width: 100%;
+        }
+        .matches-top-nav {
+            background: rgba(10, 10, 14, 0.7);
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid #2a2a3a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .matches-top-nav .team-vs {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 1.1rem;
+        }
+        .matches-top-nav .team-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(5, 255, 161, 0.08);
+            padding: 0.2rem 0.8rem 0.2rem 0.4rem;
+            border-radius: 40px;
+            border: 1px solid #05ffa140;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .matches-top-nav .team-badge:hover {
+            background: rgba(5, 255, 161, 0.15);
+            border-color: #05ffa1;
+        }
+        .matches-top-nav .team-badge img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #1f1f2e;
+        }
+        .matches-top-nav .team-badge .team-name {
+            color: #eef2ff;
+        }
+        .matches-top-nav .vs-text {
+            color: #7a85a0;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+        .matches-top-nav .your-team-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 42, 109, 0.08);
+            padding: 0.2rem 0.8rem 0.2rem 0.4rem;
+            border-radius: 40px;
+            border: 1px solid #ff2a6d40;
+        }
+        .matches-top-nav .your-team-badge img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #1f1f2e;
+        }
+        .matches-top-nav .your-team-badge .team-name {
+            color: #ff2a6d;
+        }
+        .matches-top-nav .home-icon {
+            cursor: pointer;
+            color: #5a5a7a;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .matches-top-nav .home-icon:hover {
+            color: #eef2ff;
+        }
+        .matches-top-nav .start-btn {
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+            padding: 0.7rem 3.5rem;
+            border-radius: 60px;
+            border: none;
+            background: linear-gradient(135deg, #05ffa1, #00d4ff);
+            color: #0a0a0c;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(5, 255, 161, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+        .matches-top-nav .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(5, 255, 161, 0.4);
+        }
+        .matches-top-nav .start-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .matches-top-nav .start-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .matches-main-layout {
+            display: flex;
+            flex: 1;
+            min-height: 50vh;
+        }
+        .matches-left-nav {
+            width: 320px;
+            min-width: 280px;
+            background: rgba(10, 10, 14, 0.5);
+            border-right: 1px solid #1f1f2e;
+            padding: 1.2rem 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .matches-left-nav .nav-title {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #5a5a7a;
+            padding: 0.2rem 0.8rem 0.6rem 0.8rem;
+            border-bottom: 1px solid #1f1f2e;
+            margin-bottom: 0.3rem;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        .matches-left-nav .account-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.5rem 0.7rem;
+            border-radius: 12px;
+            background: transparent;
+            transition: 0.15s;
+            cursor: pointer;
+            border: 1px solid transparent;
+            position: relative;
+        }
+        .matches-left-nav .account-item:hover {
+            background: rgba(5, 255, 161, 0.05);
+            border-color: #05ffa140;
+        }
+        .matches-left-nav .account-item.selected {
+            background: rgba(5, 255, 161, 0.08);
+            border-color: #05ffa1;
+        }
+        .matches-left-nav .account-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1f1f2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #05ffa1;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .matches-left-nav .account-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .matches-left-nav .account-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .matches-left-nav .account-info .profile-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #eef2ff;
+            line-height: 1.2;
+        }
+        .matches-left-nav .account-info .team-name-small {
+            font-size: 0.7rem;
+            color: #8a8aaa;
+            font-weight: 400;
+        }
+        .matches-left-nav .account-info .strength {
+            font-size: 0.65rem;
+            color: #05ffa1;
+            background: rgba(5, 255, 161, 0.1);
+            padding: 0.05rem 0.5rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+        .matches-left-nav .account-info .coins-small {
+            font-size: 0.6rem;
+            color: #ffd700;
+            margin-top: 1px;
+        }
+        .matches-left-nav .account-actions {
+            display: flex;
+            align-items: center;
+        }
+        .matches-left-nav .dots-btn {
+            background: transparent;
+            border: none;
+            color: #6a6a8a;
+            font-size: 1.1rem;
+            padding: 0.2rem 0.4rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .matches-left-nav .dots-btn:hover {
+            background: #1f1f2e;
+            color: #eef2ff;
+        }
+        .matches-left-nav::-webkit-scrollbar {
+            width: 4px;
+        }
+        .matches-left-nav::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        .matches-left-nav::-webkit-scrollbar-thumb {
+            background: #2a2a4a;
+            border-radius: 10px;
+        }
+
+        .matches-right-area {
+            flex: 1;
+            background: rgba(10, 10, 14, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            min-height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+        .matches-right-area .match-container {
+            width: 100%;
+            max-width: 820px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            position: relative;
+        }
+        .matches-right-area .match-teams {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            width: 100%;
+            position: relative;
+            min-height: 200px;
+        }
+        .matches-right-area .team-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            background: rgba(20, 22, 40, 0.7);
+            border: 1px solid #2a2a4a;
+            transition: all 0.3s ease;
+            min-width: 160px;
+            position: relative;
+            z-index: 1;
+        }
+        .matches-right-area .team-card .logo-wrap {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+        .matches-right-area .team-card .logo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .matches-right-area .team-card .team-name-card {
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            color: #eef2ff;
+            letter-spacing: 0.5px;
+        }
+        .matches-right-area .team-card .team-strength {
+            font-size: 0.75rem;
+            color: #8a8aaa;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #2a2a4a;
+        }
+        .matches-right-area .team-card .team-score {
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .matches-right-area .team-card .team-score.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .matches-right-area .team-card.opponent .logo-wrap {
+            background: #b71c1c;
+            border-color: #ff2a6d;
+            box-shadow: 0 0 30px rgba(255, 42, 109, 0.15);
+        }
+        .matches-right-area .team-card.opponent .team-score {
+            color: #ff2a6d;
+        }
+        .matches-right-area .team-card.myteam .logo-wrap {
+            background: #0d47a1;
+            border-color: #05ffa1;
+            box-shadow: 0 0 30px rgba(5, 255, 161, 0.15);
+        }
+        .matches-right-area .team-card.myteam .team-score {
+            color: #05ffa1;
+        }
+        .matches-right-area .vs-badge {
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 1.5rem;
+            color: #4a4a6a;
+            letter-spacing: 2px;
+            background: rgba(20, 22, 40, 0.8);
+            padding: 0.2rem 0.6rem;
+            border-radius: 60px;
+            border: 1px solid #2a2a4a;
+            z-index: 2;
+            position: relative;
+        }
+        .matches-right-area .scoreboard {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(10, 10, 14, 0.6);
+            border-radius: 16px;
+            border: 1px solid #2a2a4a;
+            padding: 1rem 1.5rem;
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .matches-right-area .scoreboard-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.2rem 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .matches-right-area .scoreboard-row:last-child {
+            border-bottom: none;
+        }
+        .matches-right-area .scoreboard-label {
+            color: #8a8aaa;
+            font-weight: 500;
+        }
+        .matches-right-area .scoreboard-value {
+            color: #eef2ff;
+            font-weight: 600;
+        }
+        .matches-right-area .scoreboard-value.win {
+            color: #05ffa1;
+        }
+        .matches-right-area .scoreboard-value.loss {
+            color: #ff2a6d;
+        }
+        .matches-right-area .scoreboard-value.draw {
+            color: #ffd700;
+        }
+        .matches-right-area .scoreboard-value.coins {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+        .matches-right-area .scoreboard .team-name-header {
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: #eef2ff;
+            text-align: center;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #2a2a4a;
+            margin-bottom: 0.3rem;
+        }
+        .matches-right-area .scoreboard .team-name-header i {
+            margin-right: 0.5rem;
+            color: #05ffa1;
+        }
+        .matches-right-area .coin-reward {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 215, 0, 0.08);
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            font-weight: 600;
+        }
+        .matches-right-area .coin-reward i {
+            color: #ffd700;
+        }
+
+        .matches-right-area .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            z-index: 20;
+            pointer-events: none;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .matches-right-area .cover-overlay.active {
+            display: flex;
+            pointer-events: auto;
+        }
+        .matches-right-area .cover-overlay .cover-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.45s cubic-bezier(0.34, 1.0, 0.64, 1);
+            will-change: transform;
+        }
+        .matches-right-area .cover-overlay .cover-bg .cover-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+        }
+        .matches-right-area .cover-overlay .cover-bg .cover-content img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+        .matches-right-area .cover-overlay .cover-bg .cover-content .cover-name {
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            color: #fff;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+        }
+        .matches-right-area .cover-overlay .cover-blue {
+            background: radial-gradient(ellipse at center, #0d47a1, #0a1a3a);
+            transform: translateX(100%);
+        }
+        .matches-right-area .cover-overlay .cover-blue .cover-content {
+            color: #05ffa1;
+        }
+        .matches-right-area .cover-overlay .cover-red {
+            background: radial-gradient(ellipse at center, #b71c1c, #3a0a0a);
+            transform: translateX(-100%);
+        }
+        .matches-right-area .cover-overlay .cover-red .cover-content {
+            color: #ff2a6d;
+        }
+        .matches-right-area .cover-overlay .cover-blue.slide-in {
+            transform: translateX(0%);
+        }
+        .matches-right-area .cover-overlay .cover-blue.slide-out {
+            transform: translateX(100%);
+        }
+        .matches-right-area .cover-overlay .cover-red.slide-in {
+            transform: translateX(0%);
+        }
+        .matches-right-area .cover-overlay .cover-red.slide-out {
+            transform: translateX(-100%);
+        }
+        .matches-right-area .cover-overlay .flash {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            padding-top: 200%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            pointer-events: none;
+            transition: none;
+        }
+        .matches-right-area .cover-overlay .flash.go {
+            animation: flashBoom 0.5s ease-out forwards;
+        }
+        @keyframes flashBoom {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+        .matches-right-area .score-reveal {
+            animation: scorePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes scorePop {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotate(-10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .matches-main-layout {
                 flex-direction: column;
             }
-            .gameplan-sidebar {
-                flex: 1;
-                min-width: unset;
-            }
-            .gameplan-pitch-area {
-                min-width: unset;
-            }
-            .pitch-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 4px;
-                max-width: 100%;
-            }
-            .pitch-box {
+            .matches-left-nav {
                 width: 100%;
-                min-height: 35px;
-                max-width: 158px;
+                min-width: unset;
+                border-right: none;
+                border-bottom: 1px solid #1f1f2e;
+                max-height: 35vh;
             }
-            .gameplan-header .header-left h2 {
+            .matches-top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.6rem 1rem;
+            }
+            .matches-top-nav .team-vs {
+                flex-wrap: wrap;
+                gap: 0.6rem;
+                font-size: 0.9rem;
+            }
+            .matches-top-nav .start-btn {
+                font-size: 1rem;
+                padding: 0.5rem 2rem;
+                width: 100%;
+            }
+            .matches-right-area .match-teams {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .matches-right-area .vs-badge {
                 font-size: 1.2rem;
+                padding: 0.1rem 0.6rem;
             }
-            #appContainer.gameplan-mode .main-content {
-                padding: 0.8rem;
+            .matches-right-area .team-card {
+                min-width: 120px;
+                padding: 0.8rem 1.2rem;
             }
-            .gameplan-container {
-                padding: 1rem;
+            .matches-right-area .team-card .logo-wrap {
+                width: 60px;
+                height: 60px;
             }
-            .pack-card {
-                width: 100%;
+            .matches-right-area {
+                padding: 1.2rem;
+                min-height: 300px;
             }
-            .pack-full-image {
-                width: 100%;
-                height: auto;
-                aspect-ratio: 5/3;
+            .matches-right-area .scoreboard {
+                padding: 0.8rem 1rem;
             }
-            .detail-body {
-                flex-direction: column;
-                align-items: center;
-            }
-            .detail-right-stats {
-                grid-template-columns: 1fr;
-                width: 100%;
-            }
-            .detail-left-col .player-card-img {
-                width: 160px;
-                height: 160px;
-            }
-            .detail-tabs {
-                margin-left: 0;
-                width: 100%;
-                justify-content: center;
+            .matches-right-area .scoreboard-row {
+                font-size: 0.75rem;
             }
         }
         @media (max-width: 480px) {
-            .pitch-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 3px;
+            .matches-right-area .team-card .logo-wrap {
+                width: 50px;
+                height: 50px;
             }
-            .pitch-box {
-                width: 100%;
-                min-height: 30px;
-                max-width: 120px;
+            .matches-right-area .team-card .team-name-card {
+                font-size: 0.8rem;
             }
-            .pitch-box .player-ovr-badge {
-                font-size: 0.4rem;
-                top: 1px;
-                left: 2px;
+            .matches-right-area .team-card .team-score {
+                font-size: 1.6rem;
             }
-            .pitch-box .player-name-label {
-                font-size: 0.3rem;
+            .matches-right-area .match-teams {
+                gap: 0.6rem;
             }
-            .pitch-box .position-label {
-                font-size: 0.35rem;
+            .matches-right-area .scoreboard {
+                padding: 0.6rem 0.8rem;
             }
-            .logo-grid {
-                grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+            .matches-right-area .scoreboard-row {
+                font-size: 0.7rem;
+                flex-wrap: wrap;
+                gap: 0.2rem;
             }
-            .logo-grid .logo-option {
-                width: 36px;
-                height: 36px;
-            }
-            .pack-stats {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 10px;
-            }
-            .spin-button {
-                width: 100%;
-                text-align: center;
-            }
-            .remaining-box {
-                text-align: center;
-            }
+        }
+
+        /* Account game plan detail modal */
+        .gameplan-detail-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 8500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .gameplan-detail-overlay.active {
+            display: flex;
+        }
+        .gameplan-detail-modal {
+            background: #13141f;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            border-radius: 2rem;
+            border: 2px solid var(--neon-pink);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .gameplan-detail-modal .modal-header {
+            padding: 1rem;
+            background: #0a0a0c;
+            border-bottom: 1px solid var(--neon-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .gameplan-detail-modal .modal-header h3 {
+            color: #05ffa1;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .gameplan-detail-modal .modal-close-btn {
+            background: #ff2a6d;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-size: 1.2rem;
+        }
+        .gameplan-detail-modal .gameplan-detail-body {
+            padding: 1.2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .gameplan-detail-modal .gameplan-detail-body .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #1a1c2e;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+        .gameplan-detail-modal .gameplan-detail-body .detail-row .label {
+            color: #7a85a0;
+        }
+        .gameplan-detail-modal .gameplan-detail-body .detail-row .value {
+            color: #eef2ff;
+        }
+        .gameplan-detail-modal .gameplan-detail-body .detail-row .value.highlight {
+            color: #05ffa1;
+        }
+        .gameplan-detail-modal .gameplan-detail-body .players-grid-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        .gameplan-detail-modal .gameplan-detail-body .players-grid-mini .mini-player {
+            background: #1a1c2e;
+            border-radius: 8px;
+            padding: 4px;
+            text-align: center;
+            font-size: 0.6rem;
+            color: #a8b3cf;
+            border: 1px solid #ff2a6d40;
+            font-family: 'Black Ops One', 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .gameplan-detail-modal .gameplan-detail-body .players-grid-mini .mini-player.filled {
+            border-color: #05ffa1;
+            color: #05ffa1;
         }
     </style>
 </head>
@@ -1545,7 +2527,7 @@
         </div>
     </div>
 
-    <div id="appContainer">
+    <div id="appContainer" style="display: none;">
         <div class="app-layout">
             <aside class="side-nav">
                 <div class="nav-profile-container">
@@ -1576,10 +2558,93 @@
         <div id="photoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; z-index:2000;"></div>
         <div id="packPlayersModal" class="pack-players-overlay"><div class="pack-players-modal"><div class="modal-header"><h3>ALL ROUNDERS</h3><button class="close-modal-btn" id="closePackModalBtn">✕</button></div><div class="players-grid" id="packPlayersGrid"></div></div></div>
 
+        <!-- DRAFT PAGE MODALS -->
+        <div id="packPlayersModal1" class="pack-players-overlay">
+            <div class="pack-players-modal">
+                <div class="modal-header">
+                    <h3><i class="fas fa-users"></i> LEGENDS OF BRAZIL - 4 Players</h3>
+                    <button class="close-modal-btn" data-modal="1">✕</button>
+                </div>
+                <div class="players-grid-4">
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/Untitled%20design%20(1)_AtW65VeNI.jpg?updatedAt=1783146745026" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=A'">
+                        <p>ASIF</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/Untitled%20design%20(3).jpg?updatedAt=1783146744450" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=S'">
+                        <p>SINAN P.A</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/Untitled%20design%20(5).jpg?updatedAt=1783146745229" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=A'">
+                        <p>ADNAN K.P</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=S'">
+                        <p>SHABAN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="packPlayersModal2" class="pack-players-overlay">
+            <div class="pack-players-modal">
+                <div class="modal-header">
+                    <h3><i class="fas fa-users"></i> ALL ROUNDERS - 11 Players</h3>
+                    <button class="close-modal-btn" data-modal="2">✕</button>
+                </div>
+                <div class="players-grid-11">
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/VITINHA_card.png?updatedAt=1780881032215" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=V'">
+                        <p>VITINHA</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/JOAO%20NEVES_card%20(1).png?updatedAt=1780881032060" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=J'">
+                        <p>JOAO NEVES</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/Untitled%20design%20(2).jpg?updatedAt=1781007348026" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=S'">
+                        <p>SHANAJ</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/RUBEN%20DIAS_card.png?updatedAt=1780881031062" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=R'">
+                        <p>RUBEN DIAS</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/BRUNO%20FERNANDES_card.png?updatedAt=1780881032246" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=B'">
+                        <p>BRUNO FERNANDES</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/RAFEAL%20LEAO_card.png?updatedAt=1780881031963" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=R'">
+                        <p>RAFAEL LEAO</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/GON%C3%87ALO%20IN%C3%81CIO_card.png?updatedAt=1780881028475" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=G'">
+                        <p>GONCALO INACIO</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/NUNO%20MENDES%20_card.png?updatedAt=1780881032285" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=N'">
+                        <p>NUNO MENDES</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/DIAGO%20COSTA_card-Photoroom.png" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=D'">
+                        <p>DIAGO COSTA</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/Untitled%20design%20(1).jpg" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=H'">
+                        <p>HASEEB</p>
+                    </div>
+                    <div class="pack-player-card">
+                        <img src="https://ik.imagekit.io/shaz/JOAO%20CANCELO_card.png?updatedAt=1780881032300" onerror="this.src='https://via.placeholder.com/160/1a1c2e/7a85a0?text=J'">
+                        <p>JOAO CANCELO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- VIDEO OVERLAY -->
         <div id="videoResultOverlay" class="video-result-overlay">
             <div class="video-wrapper">
-                <video id="packVideo" muted playsinline>
+                <video id="packVideo" muted="" playsinline="">
                     <source src="https://ik.imagekit.io/shaz/download.mp4" type="video/mp4">
                 </video>
                 <button class="cancel-video-btn" id="cancelVideoBtn">✕ CANCEL</button>
@@ -1599,6 +2664,17 @@
                     <button class="modal-close-btn" id="closeSelectModal">✕</button>
                 </div>
                 <div class="players-select-list" id="playersSelectList"></div>
+            </div>
+        </div>
+
+        <!-- GAME PLAN DETAIL OVERLAY (for matches page) -->
+        <div id="gameplanDetailOverlay" class="gameplan-detail-overlay">
+            <div class="gameplan-detail-modal">
+                <div class="modal-header">
+                    <h3><i class="fas fa-chalkboard-user"></i> <span id="gpDetailTitle">Game Plan</span></h3>
+                    <button class="modal-close-btn" id="gpDetailClose">✕</button>
+                </div>
+                <div class="gameplan-detail-body" id="gpDetailBody"></div>
             </div>
         </div>
 
@@ -1692,6 +2768,7 @@
 
     <script>
         // --- PLAYER STATS CONFIGURATION ---
+        // OVR: ASIF=93, SINAN P.A=91, ADNAN K.P=89, SHABAN=89
         const playerStatsConfig = {
             "Bernando Silva": { attackingAwareness: 80, ballControl: 84, dribbling: 82, tightPossession: 83 },
             "Vitinha": { attackingAwareness: 76, ballControl: 80, dribbling: 78, tightPossession: 79 },
@@ -1704,7 +2781,11 @@
             "Joao Cancelo": { attackingAwareness: 76, ballControl: 78, dribbling: 77, tightPossession: 79 },
             "Diago Costa": { attackingAwareness: 75, ballControl: 79, dribbling: 77, tightPossession: 80 },
             "Shanaj": { attackingAwareness: 94, ballControl: 93, dribbling: 92, tightPossession: 91 },
-            "Haseeb": { attackingAwareness: 84, ballControl: 83, dribbling: 82, tightPossession: 83 }
+            "Haseeb": { attackingAwareness: 84, ballControl: 83, dribbling: 82, tightPossession: 83 },
+            "ASIF": { attackingAwareness: 94, ballControl: 93, dribbling: 92, tightPossession: 91 },
+            "SINAN P.A": { attackingAwareness: 92, ballControl: 91, dribbling: 90, tightPossession: 89 },
+            "ADNAN K.P": { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 },
+            "SHABAN": { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 }
         };
 
         // --- LOGOS DATA ---
@@ -1754,7 +2835,7 @@
             { name: "Ruben Dias", image: "https://ik.imagekit.io/shaz/RUBEN%20DIAS_card.png?updatedAt=1780881031062" },
             { name: "Goncalo Inacio", image: "https://ik.imagekit.io/shaz/GON%C3%87ALO%20IN%C3%81CIO_card.png?updatedAt=1780881028475" },
             { name: "Joao Cancelo", image: "https://ik.imagekit.io/shaz/JOAO%20CANCELO_card.png?updatedAt=1780881032300" },
-            { name: "Diago Costa", image: "https://ik.imagekit.io/shaz/DIAGO%20COSTA_card.png?updatedAt=1780881032251" }
+            { name: "Diago Costa", image: "https://ik.imagekit.io/shaz/DIAGO%20COSTA_card-Photoroom.png" }
         ];
 
         const playerImages = {
@@ -1769,32 +2850,64 @@
             "Ruben Dias": "https://ik.imagekit.io/shaz/RUBEN%20DIAS_card-Photoroom.png",
             "Goncalo Inacio": "https://ik.imagekit.io/shaz/GON%C3%87ALO%20IN%C3%81CIO_card-Photoroom.png",
             "Joao Cancelo": "https://ik.imagekit.io/shaz/JOAO%20CANCELO_card-Photoroom.png",
-            "Diago Costa": "https://ik.imagekit.io/shaz/DIAGO%20COSTA_card.png?updatedAt=1780881032251"
+            "Diago Costa": "https://ik.imagekit.io/shaz/DIAGO%20COSTA_card-Photoroom.png",
+            "ASIF": "https://ik.imagekit.io/shaz/Untitled%20design%20(1)_AtW65VeNI.jpg?updatedAt=1783146745026",
+            "SINAN P.A": "https://ik.imagekit.io/shaz/Untitled%20design%20(3).jpg?updatedAt=1783146744450",
+            "ADNAN K.P": "https://ik.imagekit.io/shaz/Untitled%20design%20(5).jpg?updatedAt=1783146745229",
+            "SHABAN": "https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623"
         };
 
-        // --- FORMATIONS (removed 4-2-3-1) ---
+        // --- LEGENDS OF BRAZIL PLAYERS ---
+        const legendsPlayers = [
+            { name: "ASIF", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(1)_AtW65VeNI.jpg?updatedAt=1783146745026" },
+            { name: "SINAN P.A", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(3).jpg?updatedAt=1783146744450" },
+            { name: "ADNAN K.P", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(5).jpg?updatedAt=1783146745229" },
+            { name: "SHABAN", image: "https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623" }
+        ];
+
+        // --- ALL ROUNDERS PLAYERS (12 players) ---
+        const allRoundersPlayers = [
+            { name: "Vitinha", image: "https://ik.imagekit.io/shaz/VITINHA_card.png?updatedAt=1780881032215" },
+            { name: "Joao Neves", image: "https://ik.imagekit.io/shaz/JOAO%20NEVES_card%20(1).png?updatedAt=1780881032060" },
+            { name: "Shanaj", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(2).jpg?updatedAt=1781007348026" },
+            { name: "Ruben Dias", image: "https://ik.imagekit.io/shaz/RUBEN%20DIAS_card.png?updatedAt=1780881031062" },
+            { name: "Bruno Fernandes", image: "https://ik.imagekit.io/shaz/BRUNO%20FERNANDES_card.png?updatedAt=1780881032246" },
+            { name: "Rafael Leao", image: "https://ik.imagekit.io/shaz/RAFEAL%20LEAO_card.png?updatedAt=1780881031963" },
+            { name: "Goncalo Inacio", image: "https://ik.imagekit.io/shaz/GON%C3%87ALO%20IN%C3%81CIO_card.png?updatedAt=1780881028475" },
+            { name: "Nuno Mendes", image: "https://ik.imagekit.io/shaz/NUNO%20MENDES%20_card.png?updatedAt=1780881032285" },
+            { name: "Diago Costa", image: "https://ik.imagekit.io/shaz/DIAGO%20COSTA_card-Photoroom.png" },
+            { name: "Haseeb", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(1).jpg" },
+            { name: "Joao Cancelo", image: "https://ik.imagekit.io/shaz/JOAO%20CANCELO_card.png?updatedAt=1780881032300" },
+            { name: "Bernando Silva", image: "https://ik.imagekit.io/shaz/BERNANDO%20SILVA_card.png?updatedAt=1780881032186" }
+        ];
+
+        // --- FORMATIONS ---
         const formations = [
-            { name: "4-3-3", 
-              positions: [
-                { pos: "LW", align: "left" }, { pos: "ST", align: "center" }, { pos: "RW", align: "right" },
-                { pos: "LM", align: "left" }, { pos: "CM", align: "center" }, { pos: "RM", align: "right" },
-                { pos: "LB", align: "left" }, { pos: "CB", align: "center" }, { pos: "CB", align: "center" }, { pos: "RB", align: "right" },
-                { pos: "GK", align: "center" }
-              ] },
-            { name: "4-4-2", 
-              positions: [
-                { pos: "ST", align: "center" }, { pos: "ST", align: "center" },
-                { pos: "LM", align: "left" }, { pos: "CM", align: "center" }, { pos: "CM", align: "center" }, { pos: "RM", align: "right" },
-                { pos: "LB", align: "left" }, { pos: "CB", align: "center" }, { pos: "CB", align: "center" }, { pos: "RB", align: "right" },
-                { pos: "GK", align: "center" }
-              ] },
-            { name: "3-5-2", 
-              positions: [
-                { pos: "ST", align: "center" }, { pos: "ST", align: "center" },
-                { pos: "LM", align: "left" }, { pos: "CM", align: "center" }, { pos: "CM", align: "center" }, { pos: "CM", align: "center" }, { pos: "RM", align: "right" },
-                { pos: "CB", align: "center" }, { pos: "CB", align: "center" }, { pos: "CB", align: "center" },
-                { pos: "GK", align: "center" }
-              ] }
+            { name: "4-3-3",
+                positions: [
+                    { pos: "LW", align: "left" }, { pos: "ST", align: "center" }, { pos: "RW", align: "right" },
+                    { pos: "LM", align: "left" }, { pos: "CM", align: "center" }, { pos: "RM", align: "right" },
+                    { pos: "LB", align: "left" }, { pos: "CB", align: "center" }, { pos: "CB", align: "center" }, { pos: "RB",
+                        align: "right" },
+                    { pos: "GK", align: "center" }
+                ] },
+            { name: "4-4-2",
+                positions: [
+                    { pos: "ST", align: "center" }, { pos: "ST", align: "center" },
+                    { pos: "LM", align: "left" }, { pos: "CM", align: "center" }, { pos: "CM", align: "center" }, { pos: "RM",
+                        align: "right" },
+                    { pos: "LB", align: "left" }, { pos: "CB", align: "center" }, { pos: "CB", align: "center" }, { pos: "RB",
+                        align: "right" },
+                    { pos: "GK", align: "center" }
+                ] },
+            { name: "3-5-2",
+                positions: [
+                    { pos: "ST", align: "center" }, { pos: "ST", align: "center" },
+                    { pos: "LM", align: "left" }, { pos: "CM", align: "center" }, { pos: "CM", align: "center" }, { pos: "CM",
+                        align: "center" }, { pos: "RM", align: "right" },
+                    { pos: "CB", align: "center" }, { pos: "CB", align: "center" }, { pos: "CB", align: "center" },
+                    { pos: "GK", align: "center" }
+                ] }
         ];
         let currentFormation = formations[0];
 
@@ -1812,12 +2925,29 @@
             else {
                 internalAccounts = {
                     "shaz": { password: "1234", coins: 1250, profileName: "Shaz", avatar: "user-circle",
-                        photoData: null, players: [], gamePlan: { teamName: "", logo: "", positions: {} } },
+                        photoData: null, players: [], gamePlan: { teamName: "Thunder Wolves", logo: "https://ui-avatars.com/api/?name=THUNDER&background=ff2a6d&color=fff&size=80",
+                            positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0,
+                            goalsFor: 0, goalsAgainst: 0, coins: 0 } },
                     "admin": { password: "admin", coins: 999999999, profileName: "Admin", avatar: "user-astronaut",
-                        photoData: null, players: [], gamePlan: { teamName: "", logo: "", positions: {} } },
+                        photoData: null, players: [], gamePlan: { teamName: "Phoenix Rising", logo: "https://ui-avatars.com/api/?name=PHOENIX&background=05ffa1&color=0a0a0c&size=80",
+                            positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0,
+                            goalsFor: 0, goalsAgainst: 0, coins: 0 } },
                     "player": { password: "player", coins: 800, profileName: "PlayerOne", avatar: "user-ninja",
-                        photoData: null, players: [], gamePlan: { teamName: "", logo: "", positions: {} } }
+                        photoData: null, players: [], gamePlan: { teamName: "Golden Eagles", logo: "https://ui-avatars.com/api/?name=EAGLES&background=f5a623&color=0a0a0c&size=80",
+                            positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0,
+                            goalsFor: 0, goalsAgainst: 0, coins: 0 } }
                 };
+                // Also add some extra accounts for more opponents
+                internalAccounts["alex"] = { password: "alex", coins: 600, profileName: "Alex Rivera",
+                    avatar: "user-circle", photoData: null, players: [], gamePlan: { teamName: "Shadow Strikers",
+                        logo: "https://ui-avatars.com/api/?name=SHADOW&background=6c5ce7&color=fff&size=80",
+                        positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0,
+                        goalsAgainst: 0, coins: 0 } };
+                internalAccounts["jordan"] = { password: "jordan", coins: 700, profileName: "Jordan Lee",
+                    avatar: "user-circle", photoData: null, players: [], gamePlan: { teamName: "Apex Gladiators",
+                        logo: "https://ui-avatars.com/api/?name=APEX&background=00b894&color=fff&size=80",
+                        positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0,
+                        goalsAgainst: 0, coins: 0 } };
                 saveAccounts();
             }
         }
@@ -1835,11 +2965,18 @@
         let currentPlayerStats = { attackingAwareness: 42, ballControl: 44, dribbling: 46, tightPossession: 48 };
         let availablePoints = 0;
 
+        // --- DRAFT PACK STATE ---
+        let packRemaining = {
+            1: 4,
+            2: 12
+        };
+
         function showToast(msg) {
             let t = document.getElementById("toastMsg");
             t.textContent = msg;
-            t.style.opacity = "1";
-            setTimeout(() => t.style.opacity = "0", 2000);
+            t.classList.add("show");
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => t.classList.remove("show"), 2200);
         }
 
         function saveUser() {
@@ -1910,14 +3047,15 @@
             const incDribbling = currentStats.dribbling - baseStats.dribbling;
             const incTightPossession = currentStats.tightPossession - baseStats.tightPossession;
             const totalInc = incAwareness + incBallControl + incDribbling + incTightPossession;
-            
+
             const statBonus = totalInc / 4;
             const levelBonus = getOvrBonus(player.level || 1);
-            
+
             let baseOvr = 40;
             if (playerStatsConfig[player.name]) {
                 const config = playerStatsConfig[player.name];
-                baseOvr = Math.round((config.attackingAwareness + config.ballControl + config.dribbling + config.tightPossession) / 4);
+                baseOvr = Math.round((config.attackingAwareness + config.ballControl + config.dribbling + config
+                    .tightPossession) / 4);
             }
             return Math.round(baseOvr + statBonus + levelBonus);
         }
@@ -1926,21 +3064,616 @@
             return myPlayers.find(p => p.name === name);
         }
 
-        // ----- COLLECTIVE STRENGTH: SUM of all OVRs in starting XI -----
-        function calculateCollectiveStrength() {
+        // --- COLLECTIVE STRENGTH CALCULATION (used in both game plan and matches) ---
+        function getCollectiveStrengthFromGamePlan(accountData) {
+            if (!accountData || !accountData.gamePlan || !accountData.gamePlan.positions) return 0;
+            const positions = accountData.gamePlan.positions;
             let total = 0;
-            let count = 0;
-            for (let i = 0; i < 11; i++) {
-                if (gamePlanPositions[i]) {
-                    const player = getPlayerByName(gamePlanPositions[i]);
-                    if (player) {
-                        total += getPlayerOverall(player);
-                        count++;
-                    }
+            const players = accountData.players || [];
+            let filledCount = 0;
+            for (const idx in positions) {
+                const playerName = positions[idx];
+                if (!playerName) continue;
+                const player = players.find(p => p.name === playerName);
+                if (player) {
+                    total += getPlayerOverall(player);
+                    filledCount++;
                 }
             }
-            // Return the SUM (not average)
+            // If no players in the game plan, return a base value based on account's coins
+            if (filledCount === 0) {
+                const base = 1200 + (accountData.coins ? Math.min(accountData.coins, 500) / 2 : 0);
+                return Math.min(2500, Math.max(1200, base));
+            }
+            // Return the sum of overalls (this is the collective strength)
             return total;
+        }
+
+        // --- Get user's collective strength ---
+        function getUserCollectiveStrength() {
+            if (currentUser && internalAccounts[currentUser]) {
+                return getCollectiveStrengthFromGamePlan(internalAccounts[currentUser]);
+            }
+            return 1200;
+        }
+
+        // --- Get opponent's collective strength ---
+        function getOpponentCollectiveStrength(username) {
+            const data = internalAccounts[username];
+            if (data) {
+                return getCollectiveStrengthFromGamePlan(data);
+            }
+            return 1200;
+        }
+
+        // --- Get opponent's team name ---
+        function getOpponentTeamName(username) {
+            const data = internalAccounts[username];
+            if (data && data.gamePlan && data.gamePlan.teamName) {
+                return data.gamePlan.teamName;
+            }
+            return data ? data.profileName : username;
+        }
+
+        // --- Get opponent's logo ---
+        function getOpponentLogo(username) {
+            const data = internalAccounts[username];
+            if (data && data.gamePlan && data.gamePlan.logo) {
+                return data.gamePlan.logo;
+            }
+            return `https://ui-avatars.com/api/?name=${username.charAt(0).toUpperCase()}&background=ff2a6d&color=fff&size=80`;
+        }
+
+        // --- Get match stats for an opponent ---
+        function getMatchStats(username) {
+            const data = internalAccounts[username];
+            if (data && data.matchStats) {
+                return data.matchStats;
+            }
+            return { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 };
+        }
+
+        // --- Update match stats for an opponent ---
+        function updateMatchStats(username, oppScore, myScore, coinEarned) {
+            const data = internalAccounts[username];
+            if (!data) return;
+            if (!data.matchStats) {
+                data.matchStats = { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 };
+            }
+            const stats = data.matchStats;
+            stats.matches = (stats.matches || 0) + 1;
+            stats.goalsFor = (stats.goalsFor || 0) + oppScore;
+            stats.goalsAgainst = (stats.goalsAgainst || 0) + myScore;
+            if (myScore > oppScore) {
+                stats.wins = (stats.wins || 0) + 1;
+            } else if (myScore < oppScore) {
+                stats.losses = (stats.losses || 0) + 1;
+            } else {
+                stats.draws = (stats.draws || 0) + 1;
+            }
+            stats.coins = (stats.coins || 0) + coinEarned;
+            saveAccounts();
+        }
+
+        // --- MATCHES PAGE RENDER ---
+        let matchesOpponentList = [];
+        let matchesCurrentOpponent = null;
+        let matchesIsRunning = false;
+
+        function renderMatchesPage() {
+            document.getElementById("appContainer").classList.remove("gameplan-mode");
+
+            // Build opponent list from internalAccounts (exclude current user)
+            const opponentKeys = Object.keys(internalAccounts).filter(key => key !== currentUser);
+            matchesOpponentList = opponentKeys.map(key => {
+                const data = internalAccounts[key];
+                return {
+                    id: key,
+                    profileName: data.profileName || key,
+                    teamName: getOpponentTeamName(key),
+                    strength: getOpponentCollectiveStrength(key),
+                    logo: getOpponentLogo(key),
+                    matchStats: getMatchStats(key),
+                    gamePlan: data.gamePlan || { teamName: getOpponentTeamName(key), logo: getOpponentLogo(key),
+                        positions: {} },
+                    players: data.players || [],
+                    photoData: data.photoData || null,
+                    avatar: data.avatar || 'user-circle'
+                };
+            });
+
+            // Sort opponents by strength descending (strongest first)
+            matchesOpponentList.sort((a, b) => b.strength - a.strength);
+
+            // Select first opponent by default if none selected
+            if (!matchesCurrentOpponent && matchesOpponentList.length > 0) {
+                matchesCurrentOpponent = matchesOpponentList[0];
+            }
+
+            // Get user data
+            const userStrength = getUserCollectiveStrength();
+            const userData = internalAccounts[currentUser];
+            const userTeamName = userData?.gamePlan?.teamName || "My Team";
+            const userLogo = userData?.gamePlan?.logo || "https://ui-avatars.com/api/?name=MY+TEAM&background=0d47a1&color=fff&size=80";
+            const userPhoto = userData?.photoData || null;
+            const userAvatar = userData?.avatar || 'user-circle';
+
+            const opponentsHtml = matchesOpponentList.map(opp => {
+                const selected = matchesCurrentOpponent && matchesCurrentOpponent.id === opp.id ? 'selected' : '';
+                const coins = opp.matchStats?.coins || 0;
+                const strengthDisplay = opp.strength || 0;
+                return `
+              <div class="account-item ${selected}" data-id="${opp.id}">
+                <div class="account-avatar">
+                  ${opp.photoData ? `<img src="${opp.photoData}" alt="${opp.profileName}">` : 
+                    `<img src="${opp.logo}" alt="${opp.teamName}">`}
+                </div>
+                <div class="account-info">
+                  <div class="profile-name">${opp.profileName}</div>
+                  <div class="team-name-small">${opp.teamName} <span class="strength"><i class="fas fa-shield-alt"></i> ${strengthDisplay}</span></div>
+                  <div class="coins-small"><i class="fas fa-coins"></i> ${coins}</div>
+                </div>
+                <div class="account-actions">
+                  <button class="dots-btn" data-id="${opp.id}" title="View game plan"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+              </div>
+            `;
+            }).join('');
+
+            const currentOpp = matchesCurrentOpponent;
+            const opponentScore = currentOpp ? currentOpp.matchStats?.goalsAgainst || 0 : 0;
+            const oppName = currentOpp ? currentOpp.teamName : "Select Opponent";
+            const oppLogo = currentOpp ? currentOpp.logo : "https://ui-avatars.com/api/?name=OPP&background=ff2a6d&color=fff&size=80";
+            const oppStrength = currentOpp ? currentOpp.strength : 0;
+            const stats = currentOpp ? currentOpp.matchStats : { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0,
+                goalsAgainst: 0, coins: 0 };
+
+            document.getElementById("dynamicMainArea").innerHTML = `
+            <div class="matches-wrapper">
+              <!-- TOP NAV -->
+              <div class="matches-top-nav">
+                <div class="team-vs">
+                  <div class="team-badge" id="selectedTeamBadge">
+                    <img src="${oppLogo}" alt="selected team logo" id="selectedTeamLogo">
+                    <span class="team-name" id="selectedTeamName">${oppName}</span>
+                  </div>
+                  <span class="vs-text">VS</span>
+                  <div class="your-team-badge">
+                    <img src="${userLogo}" alt="your team logo" id="myTeamLogoFixed">
+                    <span class="team-name">${userTeamName}</span>
+                  </div>
+                </div>
+                <button class="start-btn" id="startMatchBtn"><i class="fas fa-play"></i> START MATCH</button>
+              </div>
+
+              <!-- MAIN LAYOUT -->
+              <div class="matches-main-layout">
+                <!-- LEFT NAV -->
+                <div class="matches-left-nav" id="accountList">
+                  <div class="nav-title"><i class="fas fa-users"></i> Opponents</div>
+                  ${opponentsHtml}
+                </div>
+
+                <!-- RIGHT AREA -->
+                <div class="matches-right-area" id="rightArea">
+                  <div class="match-container" id="matchContainer">
+                    <div class="match-teams" id="matchTeams">
+                      <div class="team-card opponent" id="opponentCard">
+                        <div class="logo-wrap" id="opponentLogoWrap">
+                          <img src="${oppLogo}" alt="opponent" id="opponentLogoImg">
+                        </div>
+                        <span class="team-name-card" id="opponentNameDisplay">${oppName}</span>
+                        <span class="team-strength" id="opponentStrengthDisplay"><i class="fas fa-shield-alt"></i> ${oppStrength}</span>
+                        <span class="team-score" id="opponentScore">0</span>
+                      </div>
+                      <div class="vs-badge">VS</div>
+                      <div class="team-card myteam" id="myTeamCard">
+                        <div class="logo-wrap" id="myTeamLogoWrap">
+                          <img src="${userLogo}" alt="my team" id="myTeamLogoImg">
+                        </div>
+                        <span class="team-name-card" id="myTeamNameDisplay">${userTeamName}</span>
+                        <span class="team-strength" id="myTeamStrengthDisplay"><i class="fas fa-shield-alt"></i> ${userStrength}</span>
+                        <span class="team-score" id="myTeamScore">0</span>
+                      </div>
+                    </div>
+
+                    <!-- SCOREBOARD -->
+                    <div class="scoreboard" id="scoreboard">
+                      <div class="team-name-header">
+                        <i class="fas fa-chart-simple"></i> <span id="scoreboardOpponentName">${oppName}</span>
+                      </div>
+                      <div class="scoreboard-row">
+                        <span class="scoreboard-label"><i class="fas fa-calendar-alt"></i> Matches</span>
+                        <span class="scoreboard-value" id="matchesPlayed">${stats.matches || 0}</span>
+                      </div>
+                      <div class="scoreboard-row">
+                        <span class="scoreboard-label"><i class="fas fa-trophy"></i> Wins</span>
+                        <span class="scoreboard-value win" id="winsCount">${stats.wins || 0}</span>
+                      </div>
+                      <div class="scoreboard-row">
+                        <span class="scoreboard-label"><i class="fas fa-equals"></i> Draws</span>
+                        <span class="scoreboard-value draw" id="drawsCount">${stats.draws || 0}</span>
+                      </div>
+                      <div class="scoreboard-row">
+                        <span class="scoreboard-label"><i class="fas fa-times"></i> Losses</span>
+                        <span class="scoreboard-value loss" id="lossesCount">${stats.losses || 0}</span>
+                      </div>
+                      <div class="scoreboard-row">
+                        <span class="scoreboard-label"><i class="fas fa-futbol"></i> Goals For</span>
+                        <span class="scoreboard-value" id="goalsFor">${stats.goalsFor || 0}</span>
+                      </div>
+                      <div class="scoreboard-row">
+                        <span class="scoreboard-label"><i class="fas fa-shield"></i> Goals Against</span>
+                        <span class="scoreboard-value" id="goalsAgainst">${stats.goalsAgainst || 0}</span>
+                      </div>
+                      <div class="scoreboard-row" style="border-top: 1px solid #2a2a4a; padding-top: 0.4rem; margin-top: 0.2rem;">
+                        <span class="scoreboard-label"><i class="fas fa-coins"></i> Reward</span>
+                        <span class="scoreboard-value coins" id="coinReward"><i class="fas fa-coins"></i> ${stats.coins || 0}</span>
+                      </div>
+                    </div>
+
+                    <!-- COVER OVERLAY -->
+                    <div class="cover-overlay" id="coverOverlay">
+                      <div class="cover-bg cover-blue" id="coverBlue">
+                        <div class="cover-content">
+                          <img src="${userLogo}" alt="my team" id="coverBlueImg">
+                          <span class="cover-name" id="coverBlueName">${userTeamName}</span>
+                        </div>
+                        <div class="flash" id="flashBlue"></div>
+                      </div>
+                      <div class="cover-bg cover-red" id="coverRed">
+                        <div class="cover-content">
+                          <img src="${oppLogo}" alt="opponent" id="coverRedImg">
+                          <span class="cover-name" id="coverRedName">${oppName}</span>
+                        </div>
+                        <div class="flash" id="flashRed"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+            // --- Bind events ---
+            // Opponent list clicks
+            document.querySelectorAll('.account-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (e.target.closest('.dots-btn')) return;
+                    if (matchesIsRunning) {
+                        showToast('⏳ Match in progress!');
+                        return;
+                    }
+                    const id = this.dataset.id;
+                    const found = matchesOpponentList.find(o => o.id === id);
+                    if (found) {
+                        matchesCurrentOpponent = found;
+                        document.querySelectorAll('.account-item').forEach(el => el.classList.remove('selected'));
+                        this.classList.add('selected');
+                        renderMatchesPage();
+                        showToast(`✅ Selected ${found.teamName}`);
+                    }
+                });
+            });
+
+            // Dots (game plan) buttons - show full game plan detail
+            document.querySelectorAll('.dots-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = this.dataset.id;
+                    const found = matchesOpponentList.find(o => o.id === id);
+                    if (found) {
+                        showGamePlanDetail(found);
+                    }
+                });
+            });
+
+            // Team badge click
+            const badge = document.getElementById('selectedTeamBadge');
+            if (badge) {
+                badge.addEventListener('click', function() {
+                    if (matchesCurrentOpponent) {
+                        showToast(`🏆 ${matchesCurrentOpponent.teamName} · Strength ${matchesCurrentOpponent.strength}`);
+                    }
+                });
+            }
+
+            // Start match button
+            const startBtn = document.getElementById('startMatchBtn');
+            if (startBtn) {
+                startBtn.addEventListener('click', startMatch);
+            }
+        }
+
+        // --- Show game plan detail modal ---
+        function showGamePlanDetail(opponent) {
+            const overlay = document.getElementById('gameplanDetailOverlay');
+            const title = document.getElementById('gpDetailTitle');
+            const body = document.getElementById('gpDetailBody');
+
+            title.textContent = `${opponent.profileName}'s Game Plan`;
+
+            // Build position list
+            const positions = opponent.gamePlan?.positions || {};
+            const posEntries = Object.entries(positions);
+            let playersHtml = '';
+            if (posEntries.length === 0) {
+                playersHtml = '<div style="color:#7a85a0; text-align:center; padding:8px;">No players assigned yet</div>';
+            } else {
+                // Group by position index to show in order
+                const sorted = posEntries.sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
+                playersHtml = '<div class="players-grid-mini">';
+                sorted.forEach(([idx, name]) => {
+                    const player = opponent.players?.find(p => p.name === name);
+                    const ovr = player ? getPlayerOverall(player) : '?';
+                    const filled = player ? 'filled' : '';
+                    playersHtml += `
+                <div class="mini-player ${filled}" title="${name} (${ovr})">
+                  ${name} <span style="color:#05ffa1; font-size:0.5rem;">${ovr}</span>
+                </div>
+              `;
+                });
+                playersHtml += '</div>';
+            }
+
+            body.innerHTML = `
+            <div class="detail-row">
+              <span class="label">Profile Name</span>
+              <span class="value">${opponent.profileName}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Team Name</span>
+              <span class="value highlight">${opponent.teamName}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Collective Strength</span>
+              <span class="value highlight">${opponent.strength}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Matches Played</span>
+              <span class="value">${opponent.matchStats?.matches || 0}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Wins / Draws / Losses</span>
+              <span class="value">${opponent.matchStats?.wins || 0} / ${opponent.matchStats?.draws || 0} / ${opponent.matchStats?.losses || 0}</span>
+            </div>
+            <div class="detail-row" style="border-bottom: none; flex-direction:column; align-items:stretch; gap:4px;">
+              <span class="label">Starting XI</span>
+              ${playersHtml}
+            </div>
+          `;
+
+            overlay.classList.add('active');
+        }
+
+        // --- Close game plan detail modal ---
+        document.getElementById('gpDetailClose').addEventListener('click', function() {
+            document.getElementById('gameplanDetailOverlay').classList.remove('active');
+        });
+        document.getElementById('gameplanDetailOverlay').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+
+        // --- MATCH ENGINE ---
+        function generateScore(teamStrength, opponentStrength) {
+            // Use the collective strengths directly for score generation
+            // Higher strength gives higher chance of scoring more goals
+            const ratio = teamStrength / (teamStrength + opponentStrength);
+            // Base random goals 0-5, weighted by strength ratio
+            let base = Math.random() * 5;
+            // Strength bias: if team is stronger, shift the distribution
+            const bias = (ratio - 0.5) * 2; // -1 to 1
+            const adjusted = base + bias * 1.2;
+            let score = Math.round(Math.max(0, Math.min(5, adjusted)));
+            // Add some randomness
+            if (Math.random() < 0.2) {
+                score += (Math.random() < 0.5) ? -1 : 1;
+            }
+            return Math.max(0, Math.min(5, score));
+        }
+
+        function startMatch() {
+            if (matchesIsRunning) return;
+            if (!matchesCurrentOpponent) {
+                showToast('⚠️ Select an opponent first!');
+                return;
+            }
+
+            const startBtn = document.getElementById('startMatchBtn');
+            if (!startBtn) return;
+
+            matchesIsRunning = true;
+            startBtn.disabled = true;
+            startBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> BATTLE!';
+
+            const oppStrength = matchesCurrentOpponent.strength || 1200;
+            const userStrength = getUserCollectiveStrength() || 1200;
+
+            const oppScore = generateScore(oppStrength, userStrength);
+            const myScore = generateScore(userStrength, oppStrength);
+
+            // COVER SEQUENCE
+            const startWith = Math.random() < 0.5 ? 'red' : 'blue';
+            let sequence = [];
+            if (startWith === 'red') {
+                sequence = ['red', 'blue', 'red', 'blue', 'red', 'blue'];
+            } else {
+                sequence = ['blue', 'red', 'blue', 'red', 'blue', 'red'];
+            }
+            const totalCovers = sequence.length;
+            const COVER_TOTAL_MS = 5000;
+            const stepDuration = Math.floor(COVER_TOTAL_MS / totalCovers);
+
+            const coverOverlay = document.getElementById('coverOverlay');
+            const coverBlue = document.getElementById('coverBlue');
+            const coverRed = document.getElementById('coverRed');
+            const flashBlue = document.getElementById('flashBlue');
+            const flashRed = document.getElementById('flashRed');
+            const opponentScoreEl = document.getElementById('opponentScore');
+            const myTeamScoreEl = document.getElementById('myTeamScore');
+
+            // Set cover images
+            const userData = internalAccounts[currentUser];
+            const userLogo = userData?.gamePlan?.logo || "https://ui-avatars.com/api/?name=MY+TEAM&background=0d47a1&color=fff&size=80";
+            const oppLogo = matchesCurrentOpponent.logo;
+            const userTeamName = userData?.gamePlan?.teamName || "My Team";
+            const oppTeamName = matchesCurrentOpponent.teamName;
+
+            document.getElementById('coverBlueImg').src = userLogo;
+            document.getElementById('coverBlueName').textContent = userTeamName;
+            document.getElementById('coverRedImg').src = oppLogo;
+            document.getElementById('coverRedName').textContent = oppTeamName;
+
+            coverOverlay.classList.add('active');
+            coverBlue.classList.remove('slide-in', 'slide-out');
+            coverRed.classList.remove('slide-in', 'slide-out');
+            coverBlue.classList.add('slide-out');
+            coverRed.classList.add('slide-out');
+
+            opponentScoreEl.classList.remove('show');
+            myTeamScoreEl.classList.remove('show');
+            opponentScoreEl.textContent = '0';
+            myTeamScoreEl.textContent = '0';
+
+            let currentStep = 0;
+
+            function runNextCover() {
+                if (currentStep >= totalCovers) {
+                    finishMatch(oppScore, myScore);
+                    return;
+                }
+                const type = sequence[currentStep];
+                const isBlue = (type === 'blue');
+                const coverEl = isBlue ? coverBlue : coverRed;
+                const otherEl = isBlue ? coverRed : coverBlue;
+                const flashEl = isBlue ? flashBlue : flashRed;
+
+                coverEl.classList.remove('slide-out');
+                coverEl.classList.add('slide-in');
+                otherEl.classList.remove('slide-in');
+                otherEl.classList.add('slide-out');
+
+                setTimeout(() => {
+                    flashEl.classList.remove('go');
+                    void flashEl.offsetWidth;
+                    flashEl.classList.add('go');
+                }, 120);
+
+                currentStep++;
+                setTimeout(runNextCover, stepDuration);
+            }
+            setTimeout(runNextCover, 300);
+        }
+
+        function finishMatch(oppScore, myScore) {
+            const opponent = matchesCurrentOpponent;
+            if (!opponent) {
+                matchesIsRunning = false;
+                const startBtn = document.getElementById('startMatchBtn');
+                if (startBtn) { startBtn.disabled = false;
+                    startBtn.innerHTML = '<i class="fas fa-play"></i> START MATCH'; }
+                return;
+            }
+
+            // Update opponent stats
+            const oppStats = getMatchStats(opponent.id);
+            oppStats.matches = (oppStats.matches || 0) + 1;
+            oppStats.goalsFor = (oppStats.goalsFor || 0) + oppScore;
+            oppStats.goalsAgainst = (oppStats.goalsAgainst || 0) + myScore;
+
+            // Determine result
+            let resultText = '';
+            let coinEarned = 0;
+
+            if (myScore > oppScore) {
+                oppStats.wins = (oppStats.wins || 0) + 1;
+                coinEarned = 50;
+                resultText = '🏆 WIN!';
+            } else if (myScore < oppScore) {
+                oppStats.losses = (oppStats.losses || 0) + 1;
+                resultText = '💔 LOSS';
+            } else {
+                oppStats.draws = (oppStats.draws || 0) + 1;
+                resultText = '🤝 DRAW';
+            }
+
+            oppStats.coins = (oppStats.coins || 0) + coinEarned;
+
+            // Save opponent stats
+            internalAccounts[opponent.id].matchStats = oppStats;
+            saveAccounts();
+
+            // Update user coins
+            currentCoins += coinEarned;
+            saveUser();
+            updateUI();
+
+            // Update UI scores
+            const opponentScoreEl = document.getElementById('opponentScore');
+            const myTeamScoreEl = document.getElementById('myTeamScore');
+
+            if (opponentScoreEl) opponentScoreEl.textContent = oppScore;
+            if (myTeamScoreEl) myTeamScoreEl.textContent = myScore;
+
+            // Show scores with animation
+            setTimeout(() => {
+                if (opponentScoreEl) {
+                    opponentScoreEl.classList.add('show', 'score-reveal');
+                }
+                if (myTeamScoreEl) {
+                    myTeamScoreEl.classList.add('show', 'score-reveal');
+                }
+
+                const rewardMsg = coinEarned > 0 ? ` 🪙 +${coinEarned} coins!` : ' No coins earned.';
+                showToast(`${resultText}  ${myScore} – ${oppScore}${rewardMsg}`);
+
+                // Update scoreboard
+                const scoreboardOpponentName = document.getElementById('scoreboardOpponentName');
+                const matchesPlayed = document.getElementById('matchesPlayed');
+                const winsCount = document.getElementById('winsCount');
+                const drawsCount = document.getElementById('drawsCount');
+                const lossesCount = document.getElementById('lossesCount');
+                const goalsFor = document.getElementById('goalsFor');
+                const goalsAgainst = document.getElementById('goalsAgainst');
+                const coinReward = document.getElementById('coinReward');
+
+                if (scoreboardOpponentName) scoreboardOpponentName.textContent = opponent.teamName;
+                if (matchesPlayed) matchesPlayed.textContent = oppStats.matches || 0;
+                if (winsCount) winsCount.textContent = oppStats.wins || 0;
+                if (drawsCount) drawsCount.textContent = oppStats.draws || 0;
+                if (lossesCount) lossesCount.textContent = oppStats.losses || 0;
+                if (goalsFor) goalsFor.textContent = oppStats.goalsFor || 0;
+                if (goalsAgainst) goalsAgainst.textContent = oppStats.goalsAgainst || 0;
+                if (coinReward) coinReward.innerHTML = `<i class="fas fa-coins"></i> ${oppStats.coins || 0}`;
+
+                // Update opponent list item
+                const items = document.querySelectorAll('.account-item');
+                items.forEach(item => {
+                    if (item.dataset.id === opponent.id) {
+                        const coinSpan = item.querySelector('.coins-small');
+                        if (coinSpan) coinSpan.innerHTML = `<i class="fas fa-coins"></i> ${oppStats.coins || 0}`;
+                        const strengthSpan = item.querySelector('.strength');
+                        if (strengthSpan) strengthSpan.innerHTML = `<i class="fas fa-shield-alt"></i> ${opponent.strength}`;
+                    }
+                });
+
+                // Reset match state
+                setTimeout(() => {
+                    matchesIsRunning = false;
+                    const startBtn = document.getElementById('startMatchBtn');
+                    if (startBtn) {
+                        startBtn.disabled = false;
+                        startBtn.innerHTML = '<i class="fas fa-redo"></i> REMATCH';
+                    }
+                    const coverOverlay = document.getElementById('coverOverlay');
+                    if (coverOverlay) {
+                        setTimeout(() => {
+                            coverOverlay.classList.remove('active');
+                        }, 600);
+                    }
+                }, 1000);
+
+            }, 400);
         }
 
         // ----- HOME PAGE -----
@@ -1948,16 +3681,16 @@
             document.getElementById("appContainer").classList.remove("gameplan-mode");
             document.getElementById("dynamicMainArea").innerHTML = `
             <div class="hero-banner" style="margin-bottom:1.2rem; border-radius:1.2rem; overflow:hidden; border:1px solid #05ffa1;">
-              <img id="bannerImage" src="https://ik.imagekit.io/shaz/ChatGPT%20Image%20Jun%208,%202026,%2006_08_27%20PM.png" style="width:100%;">
+              <img id="bannerImage" src="https://ik.imagekit.io/shaz/ChatGPT%20Image%20Jun%208,%202026,%2006_40_40%20PM.png?updatedAt=1780922681439" style="width:100%;">
             </div>
-            <div class="big-actions" style="display:flex; gap:1rem; margin-bottom:1rem;">
-              <div class="big-card" id="playersHomeBtn" style="flex:1; background:#13141f; padding:1rem; border-radius:1.2rem; text-align:center; border:1px solid #ff2a6d; cursor:pointer;">
+            <div class="big-actions" style="display:flex; gap:1rem; margin-bottom:1rem; flex-wrap:wrap;">
+              <div class="big-card" id="playersHomeBtn" style="flex:1; min-width:140px; background:#13141f; padding:1rem; border-radius:1.2rem; text-align:center; border:1px solid #ff2a6d; cursor:pointer;">
                 <i class="fas fa-users"></i><h3 style="font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">PLAYERS</h3>
               </div>
-              <div class="big-card" id="gameplanHomeBtn" style="flex:1; background:#13141f; padding:1rem; border-radius:1.2rem; text-align:center; border:1px solid #ff2a6d; cursor:pointer;">
+              <div class="big-card" id="gameplanHomeBtn" style="flex:1; min-width:140px; background:#13141f; padding:1rem; border-radius:1.2rem; text-align:center; border:1px solid #ff2a6d; cursor:pointer;">
                 <i class="fas fa-chalkboard-user"></i><h3 style="font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">GAME PLAN</h3>
               </div>
-              <div class="big-card" style="flex:1; background:#13141f; padding:1rem; border-radius:1.2rem; text-align:center; border:1px solid #ff2a6d;">
+              <div class="big-card" id="matchesHomeBtn" style="flex:1; min-width:140px; background:#13141f; padding:1rem; border-radius:1.2rem; text-align:center; border:1px solid #ff2a6d; cursor:pointer;">
                 <i class="fas fa-futbol"></i><h3 style="font-family: 'Black Ops One', 'Inter', sans-serif; font-weight: 400; letter-spacing: 0.5px;">MATCHES</h3>
               </div>
             </div>
@@ -1971,6 +3704,9 @@
             document.getElementById("gameplanHomeBtn")?.addEventListener("click", function() {
                 renderGamePlanPage();
             });
+            document.getElementById("matchesHomeBtn")?.addEventListener("click", function() {
+                renderMatchesPage();
+            });
             startBanner();
         }
 
@@ -1978,8 +3714,10 @@
 
         function startBanner() {
             if (bannerInterval) clearInterval(bannerInterval);
-            let banners = ["https://ik.imagekit.io/shaz/ChatGPT%20Image%20Jun%208,%202026,%2006_08_27%20PM.png",
-                "https://ik.imagekit.io/shaz/ChatGPT%20Image%20Jun%208,%202026,%2006_34_06%20PM.png"
+            let banners = [
+                "https://ik.imagekit.io/shaz/ChatGPT%20Image%20Jun%208,%202026,%2006_40_40%20PM.png?updatedAt=1780922681439",
+                "https://ik.imagekit.io/shaz/All%20Rounders%20(1).jpg?updatedAt=1781056760258",
+                "https://ik.imagekit.io/shaz/Copy%20of%20All%20Rounders%20(2).jpg?updatedAt=1783145901400"
             ];
             let i = 0;
             bannerInterval = setInterval(() => {
@@ -1995,8 +3733,26 @@
             }, 4500);
         }
 
-        function getRandomPlayer() {
-            let shuffled = [...packPlayersData];
+        // ----- GET VIDEO URL FOR PLAYER -----
+        function getVideoUrl(playerName) {
+            const name = playerName.toLowerCase();
+            if (name === "shanaj" || name === "haseeb" || name === "asif" || name === "sinan p.a" || name === "adnan k.p") {
+                return "https://ik.imagekit.io/shaz/df.mp4";
+            } else if (name === "shaban") {
+                return "https://ik.imagekit.io/shaz/unnamed.mp4";
+            }
+            return "https://ik.imagekit.io/shaz/download.mp4";
+        }
+
+        // ----- GET RANDOM PLAYER from pack -----
+        function getRandomPlayerFromPack(packId) {
+            let players;
+            if (packId === 1) {
+                players = legendsPlayers;
+            } else {
+                players = allRoundersPlayers;
+            }
+            let shuffled = [...players];
             for (let i = shuffled.length - 1; i > 0; i--) {
                 let j = Math.floor(Math.random() * (i + 1));
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -2004,31 +3760,61 @@
             return shuffled[0];
         }
 
-        // ----- SPIN with video selection -----
-        function performPackSpin() {
-            if (remainingPackCount <= 0) { showToast("No spins left!"); return; }
-            if (currentCoins < 100) { showToast(`Need 100 coins! You have ${currentCoins}`); return; }
+        // ----- PERFORM PACK SPIN (dual packs) -----
+        function performPackSpin(packId) {
+            if (packRemaining[packId] <= 0) {
+                showToast("No spins left for this pack!");
+                return;
+            }
+            if (currentCoins < 100) {
+                showToast(`Need 100 coins! You have ${currentCoins}`);
+                return;
+            }
+
             currentCoins -= 100;
-            remainingPackCount--;
-            const newPlayerObj = getRandomPlayer();
+            packRemaining[packId]--;
+
+            const newPlayerObj = getRandomPlayerFromPack(packId);
             const existing = myPlayers.find(p => p.name === newPlayerObj.name);
+
             if (existing) {
                 existing.level = Math.min(existing.level + 1, 32);
                 showToast(`${newPlayerObj.name} level up!`);
             } else {
                 const photoRoomImage = playerImages[newPlayerObj.name] || newPlayerObj.image;
-                const baseStats = getBaseStats(newPlayerObj);
+                const stats = getBaseStats(newPlayerObj);
                 myPlayers.push({
                     name: newPlayerObj.name,
                     image: photoRoomImage,
                     level: 1,
                     trainingUsed: { 50: 0, 100: 0, 150: 0 },
-                    stats: baseStats
+                    stats: stats
                 });
+                showToast(`🎉 You got: ${newPlayerObj.name}!`);
             }
+
             saveUser();
             updateUI();
 
+            // Update remaining display
+            const remainingSpan = document.getElementById(`remainingCount${packId}`);
+            if (remainingSpan) remainingSpan.innerHTML = packRemaining[packId];
+
+            // Disable button if pack is empty
+            if (packRemaining[packId] === 0) {
+                const spinBtn = document.querySelector(`.spin-button[data-pack="${packId}"]`);
+                if (spinBtn) {
+                    spinBtn.disabled = true;
+                    spinBtn.innerHTML = 'SOLD OUT';
+                }
+            }
+
+            // Show video overlay with the player card
+            showVideoOverlay(newPlayerObj);
+        }
+
+        // ----- VIDEO OVERLAY -----
+        function showVideoOverlay(playerObj) {
             const overlay = document.getElementById("videoResultOverlay");
             const video = document.getElementById("packVideo");
             const bigCardOverlay = document.getElementById("bigCardOverlay");
@@ -2037,21 +3823,17 @@
             bigCardOverlay.classList.remove("show");
             bigCardOverlay.style.display = "none";
             video.currentTime = 0;
-            
-            const playerName = newPlayerObj.name.toLowerCase();
-            if (playerName === "shanaj" || playerName === "haseeb") {
-                video.querySelector('source').src = "https://ik.imagekit.io/shaz/df.mp4";
-            } else {
-                video.querySelector('source').src = "https://ik.imagekit.io/shaz/download.mp4";
-            }
+
+            const videoUrl = getVideoUrl(playerObj.name);
+            video.querySelector('source').src = videoUrl;
             video.load();
-            
+
             overlay.classList.add("active");
             video.play().catch(e => console.warn("autoplay blocked", e));
 
             const onEnded = () => {
                 video.removeEventListener('ended', onEnded);
-                resultImg.src = newPlayerObj.image;
+                resultImg.src = playerObj.image;
                 bigCardOverlay.style.display = "flex";
                 bigCardOverlay.classList.add("show");
             };
@@ -2070,42 +3852,91 @@
                 overlay.classList.remove("active");
                 renderPlayersPage();
             };
-
-            const remainingSpan = document.getElementById("remainingCount");
-            if (remainingSpan) remainingSpan.innerHTML = remainingPackCount;
-
-            if (remainingPackCount === 0) showToast("Pack depleted.");
         }
 
-        // ----- DRAFT PAGE -----
+        // ----- DRAFT PAGE (Dual Packs) -----
         function renderDraftPage() {
             document.getElementById("appContainer").classList.remove("gameplan-mode");
             document.getElementById("dynamicMainArea").innerHTML = `
-            <div class="draft-page-container">
-              <div class="pack-card">
-                <div class="pack-header"><strong>ALL ROUNDERS</strong><div class="more-details-btn" id="moreDetailsBtn">MORE DETAILS</div></div>
-                <div class="pack-image-area"><img class="pack-full-image" src="https://ik.imagekit.io/shaz/All%20Rounders%20(1).jpg" alt="pack"></div>
-                <div class="pack-stats"><div class="remaining-box">REMAINING: <span id="remainingCount">${remainingPackCount}</span></div><button class="spin-button" id="spinBtn">SPIN x 100</button></div>
+            <div class="draft-container">
+              <div class="packs-grid">
+                <!-- PACK 1 - LEGENDS OF BRAZIL -->
+                <div class="pack-card" id="pack1">
+                  <div class="pack-header">
+                    <strong>LEGENDS OF BRAZIL</strong>
+                    <button class="more-details-btn" data-pack="1">MORE DETAILS</button>
+                  </div>
+                  <div class="pack-image-area">
+                    <img class="pack-full-image" src="https://ik.imagekit.io/shaz/Copy%20of%20All%20Rounders%20(2).jpg" alt="Legends of Brazil Pack" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="pack-image-placeholder" style="display:none;">
+                      <i class="fas fa-image"></i>
+                      <span>Pack Image</span>
+                    </div>
+                  </div>
+                  <div class="pack-stats">
+                    <div class="remaining-box">REMAINING: <span id="remainingCount1">${packRemaining[1]}</span></div>
+                    <button class="spin-button" data-pack="1">SPIN x 100</button>
+                  </div>
+                </div>
+
+                <!-- PACK 2 - ALL ROUNDERS -->
+                <div class="pack-card" id="pack2">
+                  <div class="pack-header">
+                    <strong>ALL ROUNDERS</strong>
+                    <button class="more-details-btn" data-pack="2">MORE DETAILS</button>
+                  </div>
+                  <div class="pack-image-area">
+                    <img class="pack-full-image" src="https://ik.imagekit.io/shaz/All%20Rounders%20(1).jpg" alt="All Rounders Pack" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="pack-image-placeholder" style="display:none;">
+                      <i class="fas fa-image"></i>
+                      <span>Pack Image</span>
+                    </div>
+                  </div>
+                  <div class="pack-stats">
+                    <div class="remaining-box">REMAINING: <span id="remainingCount2">${packRemaining[2]}</span></div>
+                    <button class="spin-button" data-pack="2">SPIN x 100</button>
+                  </div>
+                </div>
               </div>
             </div>
           `;
-            document.getElementById("moreDetailsBtn")?.addEventListener("click", showPackModal);
-            document.getElementById("spinBtn")?.addEventListener("click", performPackSpin);
+
+            document.querySelectorAll('.spin-button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const packId = parseInt(this.getAttribute('data-pack'));
+                    performPackSpin(packId);
+                });
+            });
+
+            document.querySelectorAll('.more-details-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const packId = parseInt(this.getAttribute('data-pack'));
+                    const modal = document.getElementById(`packPlayersModal${packId}`);
+                    if (modal) modal.classList.add('active');
+                });
+            });
+
+            document.querySelectorAll('.close-modal-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const packId = parseInt(this.getAttribute('data-modal'));
+                    const modal = document.getElementById(`packPlayersModal${packId}`);
+                    if (modal) modal.classList.remove('active');
+                });
+            });
+
+            document.querySelectorAll('.pack-players-overlay').forEach(overlay => {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                    }
+                });
+            });
+
+            document.getElementById('remainingCount1').innerHTML = packRemaining[1];
+            document.getElementById('remainingCount2').innerHTML = packRemaining[2];
         }
 
-        function showPackModal() {
-            let modal = document.getElementById("packPlayersModal");
-            let grid = document.getElementById("packPlayersGrid");
-            grid.innerHTML = packPlayersData.map(p => `
-            <div class="pack-player-card">
-              <img src="${p.image}" onerror="this.src='https://via.placeholder.com/150'">
-              <p>${p.name.toUpperCase()}</p>
-            </div>
-          `).join('');
-            modal.classList.add("active");
-        }
-
-        // ===== GAME PLAN PAGE with position-based alignment =====
+        // ----- GAME PLAN PAGE -----
         function renderGamePlanPage() {
             document.getElementById("appContainer").classList.add("gameplan-mode");
 
@@ -2117,25 +3948,24 @@
             }
 
             const posData = currentFormation.positions;
-            
             const leftPositions = [];
             const centerPositions = [];
             const rightPositions = [];
-            
+
             posData.forEach((p, idx) => {
                 if (p.align === "left") leftPositions.push({ ...p, index: idx });
                 else if (p.align === "right") rightPositions.push({ ...p, index: idx });
                 else centerPositions.push({ ...p, index: idx });
             });
-            
+
             const maxRows = Math.max(leftPositions.length, centerPositions.length, rightPositions.length);
             let pitchHtml = '';
-            
+
             for (let row = 0; row < maxRows; row++) {
                 const left = leftPositions[row] || null;
                 const center = centerPositions[row] || null;
                 const right = rightPositions[row] || null;
-                
+
                 if (left) {
                     const idx = left.index;
                     const posName = left.pos;
@@ -2159,7 +3989,7 @@
                 } else {
                     pitchHtml += `<div class="pitch-box" style="visibility:hidden; border:none; background:transparent; backdrop-filter:none; width:158px;"></div>`;
                 }
-                
+
                 if (center) {
                     const idx = center.index;
                     const posName = center.pos;
@@ -2183,7 +4013,7 @@
                 } else {
                     pitchHtml += `<div class="pitch-box" style="visibility:hidden; border:none; background:transparent; backdrop-filter:none; width:158px;"></div>`;
                 }
-                
+
                 if (right) {
                     const idx = right.index;
                     const posName = right.pos;
@@ -2215,7 +4045,6 @@
             </div>
           `).join('');
 
-            // Calculate collective strength as SUM
             const collectiveStrength = calculateCollectiveStrength();
             const coinDisplay = currentCoins || 0;
 
@@ -2470,7 +4299,7 @@
             });
         }
 
-        // ===== PLAYER DETAIL FULL =====
+        // ----- PLAYER DETAIL FULL -----
         function showPlayerDetail(player) {
             currentDetailPlayer = player;
             const page = document.getElementById("playerDetailFull");
@@ -2481,6 +4310,8 @@
             const nameLower = player.name.toLowerCase();
             if (nameLower === "shanaj" || nameLower === "haseeb") nationality = "India";
             else if (nameLower === "diago costa") nationality = "Brazil";
+            else if (nameLower === "asif" || nameLower === "sinan p.a" || nameLower === "adnan k.p" || nameLower ===
+                "shaban") nationality = "Brazil";
             else if (nameLower === "goncalo inacio" || nameLower === "joao neves" || nameLower === "joao cancelo" ||
                 nameLower === "nuno mendes" || nameLower === "vitinha" || nameLower === "bernando silva" ||
                 nameLower === "bruno fernandes" || nameLower === "rafael leao" || nameLower === "ruben dias") {
@@ -2630,7 +4461,6 @@
             });
         }
 
-        // ----- IMPORTANT: BACK BUTTON SAVES TRAINING PROGRESS -----
         document.getElementById("backFromDetail").addEventListener("click", function() {
             if (currentDetailPlayer) {
                 currentDetailPlayer.stats = { ...currentPlayerStats };
@@ -2644,7 +4474,6 @@
             }
         });
 
-        // Tab switching
         document.querySelectorAll('.detail-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 document.querySelectorAll('.detail-tab').forEach(t => t.classList.remove('active'));
@@ -2660,7 +4489,6 @@
             });
         });
 
-        // ----- TRAINING BUTTON HANDLER (SAVES PROGRESS) -----
         document.addEventListener('click', function(e) {
             const btn = e.target.closest('.train-btn');
             if (!btn) return;
@@ -2678,7 +4506,7 @@
             player.trainingUsed[program] = (player.trainingUsed[program] || 0) + 1;
             const newLevel = Math.min(player.level + levelsPerTraining, 32);
             player.level = newLevel;
-            
+
             if (player.stats) {
                 player.stats.attackingAwareness = Math.min(99, player.stats.attackingAwareness + 1);
                 player.stats.ballControl = Math.min(99, player.stats.ballControl + 1);
@@ -2686,10 +4514,10 @@
                 player.stats.tightPossession = Math.min(99, player.stats.tightPossession + 1);
                 currentPlayerStats = { ...player.stats };
             }
-            
+
             saveUser();
             updateUI();
-            
+
             document.getElementById("used_50").innerHTML = player.trainingUsed[50] || 0;
             document.getElementById("used_100").innerHTML = player.trainingUsed[100] || 0;
             document.getElementById("used_150").innerHTML = player.trainingUsed[150] || 0;
@@ -2705,13 +4533,13 @@
                 }
             });
             document.getElementById("detailLevel").innerHTML = `${player.level} / 32`;
-            
+
             renderProgressionStats();
-            
+
             const overall = getPlayerOverall(player);
             document.getElementById("cardOvrBadge").innerHTML = overall;
             document.getElementById("progOverallRating").innerHTML = overall;
-            
+
             const bonus = getOvrBonus(player.level);
             let bonusText = '';
             if (bonus > 0) bonusText = ` (+${bonus} OVR from level bonus)`;
@@ -2721,13 +4549,37 @@
         // ----- LEADERBOARD PAGE -----
         function renderLeaderboardPage() {
             document.getElementById("appContainer").classList.remove("gameplan-mode");
+
+            const allAccounts = Object.keys(internalAccounts).map(key => ({
+                username: key,
+                profileName: internalAccounts[key].profileName || key,
+                teamName: getOpponentTeamName(key),
+                strength: getOpponentCollectiveStrength(key),
+                stats: getMatchStats(key),
+                coins: internalAccounts[key].coins || 0
+            }));
+
+            allAccounts.sort((a, b) => (b.stats?.wins || 0) - (a.stats?.wins || 0));
+
+            const rows = allAccounts.map((acc, idx) => `
+            <div class="player-row" style="cursor:default;">
+              <div style="font-family:'Black Ops One',sans-serif; font-size:1.2rem; color:#ffd700; min-width:36px; text-align:center;">#${idx+1}</div>
+              <div style="flex:1;">
+                <div style="font-weight:600; color:#eef2ff;">${acc.profileName}</div>
+                <div style="font-size:0.75rem; color:#8a8aaa;">${acc.teamName} · ${acc.strength} strength</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="color:#05ffa1;">🏆 ${acc.stats?.wins || 0}W</div>
+                <div style="font-size:0.7rem; color:#7a85a0;">${acc.stats?.matches || 0} matches</div>
+              </div>
+            </div>
+          `).join('');
+
             document.getElementById("dynamicMainArea").innerHTML = `
-            <div class="leaderboard-container">
-              <h2><i class="fas fa-trophy"></i> LEADERBOARD</h2>
-              <div class="empty-state">
-                <i class="fas fa-users" style="font-size: 3rem; display: block; margin-bottom: 16px; color: #ff2a6d40;"></i>
-                <p>No leaderboard data available yet.</p>
-                <p style="margin-top: 8px; font-size: 0.9rem;">Start collecting and training players to climb the ranks!</p>
+            <div class="leaderboard-container" style="text-align:left; padding:1.5rem;">
+              <h2 style="text-align:center;"><i class="fas fa-trophy"></i> LEADERBOARD</h2>
+              <div class="players-list" style="max-height:65vh; margin-top:1rem;">
+                ${rows || '<div style="text-align:center; color:#7a85a0; padding:2rem;">No data yet</div>'}
               </div>
             </div>
           `;
@@ -2765,8 +4617,17 @@
                 p = document.getElementById("signupPassword").value.trim();
             if (!u || !p) { document.getElementById("signupError").innerText = "Fill fields"; return; }
             if (internalAccounts[u]) { document.getElementById("signupError").innerText = "Exists"; return; }
-            internalAccounts[u] = { password: p, coins: 534, profileName: u, avatar: "user-circle", photoData: null,
-                players: [], gamePlan: { teamName: "", logo: "", positions: {} } };
+            internalAccounts[u] = {
+                password: p,
+                coins: 534,
+                profileName: u,
+                avatar: "user-circle",
+                photoData: null,
+                players: [],
+                gamePlan: { teamName: u + "'s Team", logo: `https://ui-avatars.com/api/?name=${u.charAt(0).toUpperCase()}&background=ff2a6d&color=fff&size=80`,
+                    positions: {} },
+                matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 }
+            };
             saveAccounts();
             alert("Account created!");
             hideSignup();
@@ -2795,6 +4656,8 @@
                 gamePlanSelectedLogo = "";
                 gamePlanPositions = {};
             }
+
+            packRemaining = { 1: 4, 2: 12 };
 
             document.getElementById("loginContainer").style.display = "none";
             document.getElementById("appContainer").style.display = "block";
@@ -2866,37 +4729,24 @@
         document.getElementById("draftNavBtn")?.addEventListener("click", () => renderDraftPage());
         document.getElementById("playersNavBtn")?.addEventListener("click", () => renderLeaderboardPage());
         document.getElementById("homeNavBtn")?.addEventListener("click", () => renderEventsPage());
-        document.getElementById("closePackModalBtn")?.addEventListener("click", () => document.getElementById(
-            "packPlayersModal").classList.remove("active"));
-        document.getElementById("packPlayersModal")?.addEventListener("click", (e) => {
-            if (e.target === document.getElementById("packPlayersModal")) document.getElementById("packPlayersModal")
-                .classList.remove("active");
-        });
 
-        // Add missing styles
-        const style = document.createElement('style');
-        style.textContent = `
-          .players-page-container { background:rgba(19,20,31,0.95); border-radius:1.5rem; padding:1.2rem; border:1px solid var(--neon-pink); }
-          .players-list { display:flex; flex-direction:column; gap:16px; margin-top:20px; max-height:65vh; overflow-y:auto; }
-          .player-row { background:#0f111c; border-radius:20px; padding:12px 16px; display:flex; align-items:center; gap:16px; border:1px solid #ff2a6d40; transition:0.1s; flex-wrap:wrap; cursor:pointer; position:relative; }
-          .player-row:hover { border-color:#05ffa1; background:#1a1c2e; }
-          .player-small-img { width:70px; height:70px; object-fit:contain; border-radius:16px; background:#1a1c2e; padding:6px; cursor:pointer; transition:0.2s; }
-          .player-small-img:hover { transform:scale(1.08); border:1px solid #05ffa1; }
-          .player-info-area { flex:1; }
-          .player-name-text { font-size:1.1rem; color:#05ffa1; margin-bottom:6px; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
-          .level-small { font-size:0.7rem; color:#a8b3cf; display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
-          .level-badge { background:#ff2a6d20; padding:2px 10px; border-radius:30px; }
-          .collection-ovr-badge { position:absolute; top:8px; left:16px; font-size:0.65rem; color:white; z-index:10; background:transparent; border:none; box-shadow:none; text-shadow:0 0 8px rgba(0,0,0,0.9); line-height:1.1; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; animation:ovrFlash 3s infinite ease-in-out; }
-          @keyframes ovrFlash { 0%,100% { color:white; } 50% { color:#ffd700; } }
-          .leaderboard-container, .events-container { background:rgba(19,20,31,0.95); border-radius:1.5rem; padding:2rem; border:1px solid var(--neon-pink); text-align:center; min-height:300px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-          .leaderboard-container h2, .events-container h2 { color:#05ffa1; margin-bottom:16px; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
-          .leaderboard-container .empty-state, .events-container .empty-state { color:#7a85a0; font-size:1.1rem; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
-          .toast-msg { position:fixed; bottom:25px; left:50%; transform:translateX(-50%); background:#ff2a6d; color:white; padding:8px 22px; border-radius:60px; z-index:2100; opacity:0; transition:0.2s; pointer-events:none; font-family:'Black Ops One','Inter',sans-serif; font-weight:400; letter-spacing:0.5px; }
-        `;
-        document.head.appendChild(style);
-
+        // --- Init ---
         loadAccounts();
         document.getElementById("appContainer").style.display = "none";
+
+        // --- Calculate collective strength for game plan ---
+        function calculateCollectiveStrength() {
+            let total = 0;
+            for (let i = 0; i < 11; i++) {
+                if (gamePlanPositions[i]) {
+                    const player = getPlayerByName(gamePlanPositions[i]);
+                    if (player) {
+                        total += getPlayerOverall(player);
+                    }
+                }
+            }
+            return total || 0;
+        }
     </script>
-</body>
-</html>
+
+</body></html>
