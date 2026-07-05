@@ -774,13 +774,20 @@
     }
 
     function getUserCollectiveStrength() {
-      if (currentUser && internalAccounts[currentUser]) return getCollectiveStrengthFromGamePlan(internalAccounts[currentUser]);
-      return 932;
+      if (currentUser && internalAccounts[currentUser]) {
+        // For admin, return fixed 932
+        if (currentUser === "admin") return 932;
+        return getCollectiveStrengthFromGamePlan(internalAccounts[currentUser]);
+      }
+      return 0;
     }
 
     function getOpponentCollectiveStrength(username) {
       const data = internalAccounts[username];
-      if (data) return getCollectiveStrengthFromGamePlan(data);
+      if (data) {
+        if (username === "admin") return 932;
+        return getCollectiveStrengthFromGamePlan(data);
+      }
       return 0;
     }
 
@@ -1487,6 +1494,8 @@
     }
 
     function calculateCollectiveStrength() {
+      // For admin, return fixed 932
+      if (currentUser === "admin") return 932;
       let total = 0;
       for (let i = 0; i < 11; i++) {
         if (gamePlanPositions[i]) {
@@ -1494,7 +1503,7 @@
           if (player) total += getPlayerOverall(player);
         }
       }
-      return total || 932;
+      return total || 0;
     }
 
     function openPlayerSelectModal(index) {
@@ -1723,7 +1732,20 @@
         p = document.getElementById("signupPassword").value.trim();
       if (!u || !p) { document.getElementById("signupError").innerText = "Fill fields"; return; }
       if (internalAccounts[u]) { document.getElementById("signupError").innerText = "Exists"; return; }
-      internalAccounts[u] = { password: p, coins: 534, profileName: u, avatar: "user-circle", photoData: null, players: [], gamePlan: { teamName: u + "'s Team", logo: `https://ui-avatars.com/api/?name=${u.charAt(0).toUpperCase()}&background=ff2a6d&color=fff&size=80`, positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 } };
+      internalAccounts[u] = {
+        password: p,
+        coins: 534,
+        profileName: u,
+        avatar: "user-circle",
+        photoData: null,
+        players: [],
+        gamePlan: {
+          teamName: u + "'s Team",
+          logo: `https://ui-avatars.com/api/?name=${u.charAt(0).toUpperCase()}&background=ff2a6d&color=fff&size=80`,
+          positions: {}
+        },
+        matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 }
+      };
       saveAccounts();
       alert("Account created!");
       hideSignup();
