@@ -1,9 +1,11 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>HLIGA ULTIMATE · Draft</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -359,8 +361,8 @@
     <div class="login-box">
       <img src="https://ik.imagekit.io/shaz/Your_paragraph_text__1_-removebg-preview.png">
       <h2>HLIGA ULTIMATE</h2>
-      <input type="text" id="loginUsername" placeholder="Username">
-      <input type="password" id="loginPassword" placeholder="Password">
+      <input type="text" id="loginUsername" placeholder="Username" value="admin">
+      <input type="password" id="loginPassword" placeholder="Password" value="admin">
       <button class="login-btn" onclick="handleLogin()">LOGIN</button>
       <button class="signup-btn" onclick="showSignupPanel()">CREATE NEW ACCOUNT</button>
       <div id="loginError" class="error-text"></div>
@@ -383,7 +385,7 @@
       <aside class="side-nav">
         <div class="nav-profile-container">
           <div class="nav-avatar" id="sideAvatar"><i class="fas fa-user-circle"></i></div>
-          <div class="nav-profile-name" id="sideProfileName">profile</div>
+          <div class="nav-profile-name" id="sideProfileName">THE OWNER</div>
         </div>
         <div class="side-nav-buttons">
           <button class="side-nav-btn" id="homeNavBtn"><img src="https://ik.imagekit.io/shaz/image-removebg-preview%20(24).png"><span>EVENTS</span></button>
@@ -395,11 +397,11 @@
       <main class="main-content" id="mainContent">
         <div class="top-info-bar">
           <div class="top-left">
-            <div class="welcome-area"><i class="fas fa-hand-peace"></i> <span>Welcome, <span id="welcomeProfileName" class="welcome-name">player</span>!</span></div>
+            <div class="welcome-area"><i class="fas fa-hand-peace"></i> <span>Welcome, <span id="welcomeProfileName" class="welcome-name">THE OWNER</span>!</span></div>
           </div>
           <div class="coins-display-right" id="topCoinsDisplay">
             <i class="fas fa-home home-icon-btn" id="homeIconBtn"></i>
-            <i class="fas fa-coins"></i> <span id="headerCoinsAmount">0</span>
+            <i class="fas fa-coins"></i> <span id="headerCoinsAmount">999999</span>
           </div>
         </div>
         <div id="dynamicMainArea"></div>
@@ -442,7 +444,7 @@
     <!-- VIDEO OVERLAY -->
     <div id="videoResultOverlay" class="video-result-overlay">
       <div class="video-wrapper">
-        <video id="packVideo" muted="" playsinline=""><source src="https://ik.imagekit.io/shaz/download.mp4" type="video/mp4"></video>
+        <video id="packVideo" muted playsinline><source src="https://ik.imagekit.io/shaz/download.mp4" type="video/mp4"></video>
         <button class="cancel-video-btn" id="cancelVideoBtn">✕ CANCEL</button>
         <div id="bigCardOverlay" class="big-card-overlay"><div class="big-card-display" id="resultCardContainer"><img id="resultCardImg" src="" alt="player card"></div></div>
       </div>
@@ -527,7 +529,8 @@
       "ASIF": { attackingAwareness: 94, ballControl: 93, dribbling: 92, tightPossession: 91 },
       "SINAN P.A": { attackingAwareness: 92, ballControl: 91, dribbling: 90, tightPossession: 89 },
       "ADNAN K.P": { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 },
-      "SHABAN": { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 }
+      "SHABAN": { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 },
+      "CRISTIANO RONALDO": { attackingAwareness: 90, ballControl: 90, dribbling: 90, tightPossession: 90 }
     };
 
     const teamLogos = [
@@ -594,7 +597,8 @@
       "ASIF": "https://ik.imagekit.io/shaz/Untitled%20design%20(1)_AtW65VeNI.jpg?updatedAt=1783146745026",
       "SINAN P.A": "https://ik.imagekit.io/shaz/Untitled%20design%20(3).jpg?updatedAt=1783146744450",
       "ADNAN K.P": "https://ik.imagekit.io/shaz/Untitled%20design%20(5).jpg?updatedAt=1783146745229",
-      "SHABAN": "https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623"
+      "SHABAN": "https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623",
+      "CRISTIANO RONALDO": "https://ik.imagekit.io/shaz/Untitled%20design%20(6).jpg?updatedAt=1783215874800"
     };
 
     const legendsPlayers = [
@@ -626,9 +630,9 @@
     ];
     let currentFormation = formations[0];
 
-    let gamePlanTeamName = "", gamePlanSelectedLogo = "", gamePlanPositions = {};
+    let gamePlanTeamName = "THE KING", gamePlanSelectedLogo = "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg", gamePlanPositions = {};
     let internalAccounts = {};
-    let currentUser = null, currentCoins = 0, profileName = "", selectedAvatar = "user-circle", uploadedImageData = null;
+    let currentUser = null, currentCoins = 999999, profileName = "THE OWNER", selectedAvatar = "user-circle", uploadedImageData = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEESGyaMU56sP46Vb1DWqQwq0jd5sZwYpMnudLJhD6XQ&s=10";
     let myPlayers = [];
     let packRemaining = { 1: 4, 2: 12 };
     let currentDetailPlayer = null;
@@ -639,21 +643,51 @@
     let matchesOpponentList = [], matchesCurrentOpponent = null, matchesIsRunning = false;
 
     // --- Welcome Back Pack state ---
-    let welcomeBackClaimed = false; // track if the user has claimed the pack
+    let welcomeBackClaimed = false;
 
     function loadAccounts() {
-      const s = localStorage.getItem("hliga_accounts");
-      if (s) internalAccounts = JSON.parse(s);
-      else {
-        internalAccounts = {
-          "shaz": { password: "1234", coins: 1250, profileName: "Shaz", avatar: "user-circle", photoData: null, players: [], gamePlan: { teamName: "Thunder Wolves", logo: "https://ui-avatars.com/api/?name=THUNDER&background=ff2a6d&color=fff&size=80", positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 } },
-          "admin": { password: "admin", coins: 999999999, profileName: "Admin", avatar: "user-astronaut", photoData: null, players: [], gamePlan: { teamName: "Phoenix Rising", logo: "https://ui-avatars.com/api/?name=PHOENIX&background=05ffa1&color=0a0a0c&size=80", positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 } },
-          "player": { password: "player", coins: 800, profileName: "PlayerOne", avatar: "user-ninja", photoData: null, players: [], gamePlan: { teamName: "Golden Eagles", logo: "https://ui-avatars.com/api/?name=EAGLES&background=f5a623&color=0a0a0c&size=80", positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 } }
-        };
-        internalAccounts["alex"] = { password: "alex", coins: 600, profileName: "Alex Rivera", avatar: "user-circle", photoData: null, players: [], gamePlan: { teamName: "Shadow Strikers", logo: "https://ui-avatars.com/api/?name=SHADOW&background=6c5ce7&color=fff&size=80", positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 } };
-        internalAccounts["jordan"] = { password: "jordan", coins: 700, profileName: "Jordan Lee", avatar: "user-circle", photoData: null, players: [], gamePlan: { teamName: "Apex Gladiators", logo: "https://ui-avatars.com/api/?name=APEX&background=00b894&color=fff&size=80", positions: {} }, matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 } };
-        saveAccounts();
-      }
+      // Only one account: admin
+      internalAccounts = {
+        "admin": {
+          password: "admin",
+          coins: 999999,
+          profileName: "THE OWNER",
+          avatar: "user-circle",
+          photoData: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEESGyaMU56sP46Vb1DWqQwq0jd5sZwYpMnudLJhD6XQ&s=10",
+          players: [
+            { name: "ASIF", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(1)_AtW65VeNI.jpg?updatedAt=1783146745026", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 94, ballControl: 93, dribbling: 92, tightPossession: 91 } },
+            { name: "Shanaj", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(2)-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 94, ballControl: 93, dribbling: 92, tightPossession: 91 } },
+            { name: "SINAN P.A", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(3).jpg?updatedAt=1783146744450", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 92, ballControl: 91, dribbling: 90, tightPossession: 89 } },
+            { name: "Vitinha", image: "https://ik.imagekit.io/shaz/VITINHA_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 76, ballControl: 80, dribbling: 78, tightPossession: 79 } },
+            { name: "SHABAN", image: "https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 } },
+            { name: "CRISTIANO RONALDO", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(6).jpg?updatedAt=1783215874800", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 90, ballControl: 90, dribbling: 90, tightPossession: 90 } },
+            { name: "Bernando Silva", image: "https://ik.imagekit.io/shaz/BERNANDO%20SILVA_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 80, ballControl: 84, dribbling: 82, tightPossession: 83 } },
+            { name: "ADNAN K.P", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(5).jpg?updatedAt=1783146745229", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 } },
+            { name: "Haseeb", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(1)-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 84, ballControl: 83, dribbling: 82, tightPossession: 83 } },
+            { name: "Bruno Fernandes", image: "https://ik.imagekit.io/shaz/BRUNO%20FERNANDES_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 82, ballControl: 81, dribbling: 78, tightPossession: 80 } },
+            { name: "Diago Costa", image: "https://ik.imagekit.io/shaz/DIAGO%20COSTA_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 75, ballControl: 79, dribbling: 77, tightPossession: 80 } }
+          ],
+          gamePlan: {
+            teamName: "THE KING",
+            logo: "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg",
+            positions: {
+              0: "ASIF",
+              1: "Shanaj",
+              2: "SINAN P.A",
+              3: "Vitinha",
+              4: "SHABAN",
+              5: "CRISTIANO RONALDO",
+              6: "Bernando Silva",
+              7: "ADNAN K.P",
+              8: "Haseeb",
+              9: "Bruno Fernandes",
+              10: "Diago Costa"
+            }
+          },
+          matchStats: { matches: 8, wins: 4, draws: 1, losses: 3, goalsFor: 0, goalsAgainst: 0, coins: 0 }
+        }
+      };
+      saveAccounts();
     }
 
     function saveAccounts() { localStorage.setItem("hliga_accounts", JSON.stringify(internalAccounts)); }
@@ -741,7 +775,7 @@
 
     function getUserCollectiveStrength() {
       if (currentUser && internalAccounts[currentUser]) return getCollectiveStrengthFromGamePlan(internalAccounts[currentUser]);
-      return 0;
+      return 932;
     }
 
     function getOpponentCollectiveStrength(username) {
@@ -786,11 +820,9 @@
     // ----- EVENTS PAGE with Welcome Back Pack -----
     function renderEventsPage() {
       document.getElementById("appContainer").classList.remove("gameplan-mode");
-      // Check if user has played a match (opponent match stats > 0)
       const userStats = getMatchStats(currentUser);
       const hasPlayedMatch = (userStats.matches || 0) > 0;
 
-      // Welcome back pack content - removed the extra heading and empty state
       const welcomePackHtml = `
         <div class="events-container" style="margin-top:1rem; padding:1.5rem;">
           <div class="pack-card" style="max-width:500px; margin: 0 auto;">
@@ -813,18 +845,15 @@
 
       document.getElementById("dynamicMainArea").innerHTML = `
         <div class="events-container">
-          <h2><i class="fas fa-calendar-alt"></i> EVENTS</h2>
           ${welcomePackHtml}
         </div>
       `;
 
-      // Bind events for welcome back pack
       const claimBtn = document.getElementById('welcomeBackClaimBtn');
       if (claimBtn) {
         claimBtn.addEventListener('click', function() {
           if (welcomeBackClaimed) { showToast('Already claimed!'); return; }
           if (!hasPlayedMatch) { showToast('Play a match first to claim this pack!'); return; }
-          // Add the player to collection
           const playerObj = {
             name: "CRISTIANO RONALDO",
             image: "https://ik.imagekit.io/shaz/Untitled%20design%20(6).jpg?updatedAt=1783215874800",
@@ -841,17 +870,14 @@
           welcomeBackClaimed = true;
           saveUser();
           updateUI();
-          // Update button
           this.textContent = 'CLAIMED';
           this.classList.add('claimed');
           this.disabled = true;
           showToast('🎉 CRISTIANO RONALDO added to your collection!');
-          // Refresh the page to reflect the claimed state
           renderEventsPage();
         });
       }
 
-      // More details button
       const detailsBtn = document.getElementById('welcomeBackDetails');
       if (detailsBtn) {
         detailsBtn.addEventListener('click', function() {
@@ -859,7 +885,6 @@
         });
       }
 
-      // Update edge of events button (side nav) - red glow if claim available
       const eventsNavBtn = document.getElementById('homeNavBtn');
       if (eventsNavBtn) {
         if (hasPlayedMatch && !welcomeBackClaimed) {
@@ -947,6 +972,16 @@
       showVideoOverlay(newPlayerObj);
     }
 
+    function getVideoUrl(playerName) {
+      const name = playerName.toLowerCase();
+      if (name === "asif" || name === "sinan p.a" || name === "adnan k.p") {
+        return "https://ik.imagekit.io/shaz/df.mp4?updatedAt=1783079934907";
+      } else if (name === "shaban") {
+        return "https://ik.imagekit.io/shaz/unnamed.mp4?updatedAt=1783153157184";
+      }
+      return "https://ik.imagekit.io/shaz/download.mp4";
+    }
+
     function showVideoOverlay(playerObj) {
       const overlay = document.getElementById("videoResultOverlay");
       const video = document.getElementById("packVideo");
@@ -955,7 +990,7 @@
       bigCardOverlay.classList.remove("show");
       bigCardOverlay.style.display = "none";
       video.currentTime = 0;
-      const videoUrl = playerObj.name.toLowerCase() === "shanaj" ? "https://ik.imagekit.io/shaz/df.mp4" : "https://ik.imagekit.io/shaz/download.mp4";
+      const videoUrl = getVideoUrl(playerObj.name);
       video.querySelector('source').src = videoUrl;
       video.load();
       overlay.classList.add("active");
@@ -1314,7 +1349,6 @@
             startBtn.innerHTML = '<i class="fas fa-redo"></i> REMATCH'; }
           const coverOverlay = document.getElementById('coverOverlay');
           if (coverOverlay) { setTimeout(() => { coverOverlay.classList.remove('active'); }, 600); }
-          // Update events page edge (red glow) after match
           const eventsNavBtn = document.getElementById('homeNavBtn');
           if (eventsNavBtn && !welcomeBackClaimed) {
             eventsNavBtn.style.borderColor = '#ff2a6d';
@@ -1329,8 +1363,8 @@
       document.getElementById("appContainer").classList.add("gameplan-mode");
       if (currentUser && internalAccounts[currentUser] && internalAccounts[currentUser].gamePlan) {
         const gp = internalAccounts[currentUser].gamePlan;
-        gamePlanTeamName = gp.teamName || "";
-        gamePlanSelectedLogo = gp.logo || "";
+        gamePlanTeamName = gp.teamName || "THE KING";
+        gamePlanSelectedLogo = gp.logo || "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg";
         gamePlanPositions = gp.positions || {};
       }
 
@@ -1460,7 +1494,7 @@
           if (player) total += getPlayerOverall(player);
         }
       }
-      return total || 0;
+      return total || 932;
     }
 
     function openPlayerSelectModal(index) {
@@ -1707,12 +1741,12 @@
       selectedAvatar = data.avatar;
       uploadedImageData = data.photoData;
       myPlayers = data.players || [];
-      if (data.gamePlan) { gamePlanTeamName = data.gamePlan.teamName || "";
-        gamePlanSelectedLogo = data.gamePlan.logo || "";
-        gamePlanPositions = data.gamePlan.positions || {}; } else { gamePlanTeamName = "";
+      if (data.gamePlan) { gamePlanTeamName = data.gamePlan.teamName || "THE KING";
+        gamePlanSelectedLogo = data.gamePlan.logo || "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg";
+        gamePlanPositions = data.gamePlan.positions || {}; } else { gamePlanTeamName = "THE KING";
         gamePlanPositions = {}; }
       packRemaining = { 1: 4, 2: 12 };
-      welcomeBackClaimed = false; // reset for new session
+      welcomeBackClaimed = false;
       document.getElementById("loginContainer").style.display = "none";
       document.getElementById("appContainer").style.display = "block";
       updateUI();
@@ -1768,5 +1802,5 @@
     loadAccounts();
     document.getElementById("appContainer").style.display = "none";
   </script>
-
-</body></html>
+</body>
+</html>
