@@ -75,6 +75,7 @@
     .close-modal-btn { background:#ff2a6d; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; color:white; font-family:'Black Ops One','Inter',sans-serif; font-size:1.2rem; transition:0.2s; }
     .close-modal-btn:hover { transform:scale(1.1); }
     .players-grid-4 { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; padding:1.5rem; overflow-y:auto; justify-items:center; max-width:500px; margin:0 auto; }
+    .players-grid-8 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:1.5rem; overflow-y:auto; justify-items:center; }
     .players-grid-11 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:1.5rem; overflow-y:auto; justify-items:center; }
     .players-grid-11 .pack-player-card:last-child { grid-column:2/4; }
     .pack-player-card { background:#1a1c2e; border-radius:1rem; text-align:center; padding:0.8rem 0.6rem; border:1px solid #ff2a6d60; transition:0.2s; width:100%; max-width:160px; }
@@ -411,14 +412,23 @@
     <div id="photoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; z-index:2000;"></div>
 
     <!-- DRAFT PACK MODALS -->
+    <!-- Combined Legends of Brazil + Brazil Stars Pack (12 players) -->
     <div id="packPlayersModal1" class="pack-players-overlay">
       <div class="pack-players-modal">
-        <div class="modal-header"><h3><i class="fas fa-users"></i> LEGENDS OF BRAZIL - 4 Players</h3><button class="close-modal-btn" data-modal="1">✕</button></div>
-        <div class="players-grid-4">
+        <div class="modal-header"><h3><i class="fas fa-users"></i> BRAZIL ELITE - 12 Players</h3><button class="close-modal-btn" data-modal="1">✕</button></div>
+        <div class="players-grid-11" style="grid-template-columns:repeat(4,1fr);">
           <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/Untitled%20design%20(1)_AtW65VeNI.jpg?updatedAt=1783146745026"><p>ASIF</p></div>
           <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/Untitled%20design%20(3).jpg?updatedAt=1783146744450"><p>SINAN P.A</p></div>
           <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/Untitled%20design%20(5).jpg?updatedAt=1783146745229"><p>ADNAN K.P</p></div>
           <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623"><p>SHABAN</p></div>
+          <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/_ALISSON%20BECKER_card.png?updatedAt=1783233777643"><p>ALISSON BECKER</p></div>
+          <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/_MATHEUS%20CUNHA_card.png?updatedAt=1783224811100"><p>MATHEUS CUNHA</p></div>
+          <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/EDERSON_card.png?updatedAt=1783233777652"><p>EDERSON</p></div>
+          <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/MARQUINHOS_card.png?updatedAt=1783233777822"><p>MARQUINHOS</p></div>
+          <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/ALEX%20SANDRO_card%20(1).png?updatedAt=1783233933008"><p>ALEX SANDRO</p></div>
+          <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/ENDRICK_card.png?updatedAt=1783234195088"><p>ENDRICK</p></div>
+          <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/DANILO_card.png?updatedAt=1783234206055"><p>DANILO</p></div>
+          <div class="pack-player-card"><img src="https://ik.imagekit.io/shaz/IGOR%20THIAGO_card.png?updatedAt=1783234298001"><p>IGOR THIAGO</p></div>
         </div>
       </div>
     </div>
@@ -530,7 +540,15 @@
       "SINAN P.A": { attackingAwareness: 92, ballControl: 91, dribbling: 90, tightPossession: 89 },
       "ADNAN K.P": { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 },
       "SHABAN": { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 },
-      "CRISTIANO RONALDO": { attackingAwareness: 90, ballControl: 90, dribbling: 90, tightPossession: 90 }
+      "CRISTIANO RONALDO": { attackingAwareness: 90, ballControl: 90, dribbling: 90, tightPossession: 90 },
+      "ALISSON BECKER": { attackingAwareness: 84, ballControl: 84, dribbling: 84, tightPossession: 84 },
+      "MATHEUS CUNHA": { attackingAwareness: 83, ballControl: 83, dribbling: 83, tightPossession: 83 },
+      "EDERSON": { attackingAwareness: 81, ballControl: 81, dribbling: 81, tightPossession: 81 },
+      "MARQUINHOS": { attackingAwareness: 83, ballControl: 83, dribbling: 83, tightPossession: 83 },
+      "ALEX SANDRO": { attackingAwareness: 83, ballControl: 83, dribbling: 83, tightPossession: 83 },
+      "ENDRICK": { attackingAwareness: 83, ballControl: 83, dribbling: 83, tightPossession: 83 },
+      "DANILO": { attackingAwareness: 80, ballControl: 80, dribbling: 80, tightPossession: 80 },
+      "IGOR THIAGO": { attackingAwareness: 79, ballControl: 79, dribbling: 79, tightPossession: 79 }
     };
 
     const teamLogos = [
@@ -598,14 +616,30 @@
       "SINAN P.A": "https://ik.imagekit.io/shaz/Untitled%20design%20(3).jpg?updatedAt=1783146744450",
       "ADNAN K.P": "https://ik.imagekit.io/shaz/Untitled%20design%20(5).jpg?updatedAt=1783146745229",
       "SHABAN": "https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623",
-      "CRISTIANO RONALDO": "https://ik.imagekit.io/shaz/Untitled%20design%20(6).jpg?updatedAt=1783215874800"
+      "CRISTIANO RONALDO": "https://ik.imagekit.io/shaz/Untitled%20design%20(6).jpg?updatedAt=1783215874800",
+      "ALISSON BECKER": "https://ik.imagekit.io/shaz/_ALISSON%20BECKER_card.png?updatedAt=1783233777643",
+      "MATHEUS CUNHA": "https://ik.imagekit.io/shaz/_MATHEUS%20CUNHA_card.png?updatedAt=1783224811100",
+      "EDERSON": "https://ik.imagekit.io/shaz/EDERSON_card.png?updatedAt=1783233777652",
+      "MARQUINHOS": "https://ik.imagekit.io/shaz/MARQUINHOS_card.png?updatedAt=1783233777822",
+      "ALEX SANDRO": "https://ik.imagekit.io/shaz/ALEX%20SANDRO_card%20(1).png?updatedAt=1783233933008",
+      "ENDRICK": "https://ik.imagekit.io/shaz/ENDRICK_card.png?updatedAt=1783234195088",
+      "DANILO": "https://ik.imagekit.io/shaz/DANILO_card.png?updatedAt=1783234206055",
+      "IGOR THIAGO": "https://ik.imagekit.io/shaz/IGOR%20THIAGO_card.png?updatedAt=1783234298001"
     };
 
-    const legendsPlayers = [
+    const brazilElitePlayers = [
       { name: "ASIF", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(1)_AtW65VeNI.jpg?updatedAt=1783146745026" },
       { name: "SINAN P.A", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(3).jpg?updatedAt=1783146744450" },
       { name: "ADNAN K.P", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(5).jpg?updatedAt=1783146745229" },
-      { name: "SHABAN", image: "https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623" }
+      { name: "SHABAN", image: "https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623" },
+      { name: "ALISSON BECKER", image: "https://ik.imagekit.io/shaz/_ALISSON%20BECKER_card.png?updatedAt=1783233777643" },
+      { name: "MATHEUS CUNHA", image: "https://ik.imagekit.io/shaz/_MATHEUS%20CUNHA_card.png?updatedAt=1783224811100" },
+      { name: "EDERSON", image: "https://ik.imagekit.io/shaz/EDERSON_card.png?updatedAt=1783233777652" },
+      { name: "MARQUINHOS", image: "https://ik.imagekit.io/shaz/MARQUINHOS_card.png?updatedAt=1783233777822" },
+      { name: "ALEX SANDRO", image: "https://ik.imagekit.io/shaz/ALEX%20SANDRO_card%20(1).png?updatedAt=1783233933008" },
+      { name: "ENDRICK", image: "https://ik.imagekit.io/shaz/ENDRICK_card.png?updatedAt=1783234195088" },
+      { name: "DANILO", image: "https://ik.imagekit.io/shaz/DANILO_card.png?updatedAt=1783234206055" },
+      { name: "IGOR THIAGO", image: "https://ik.imagekit.io/shaz/IGOR%20THIAGO_card.png?updatedAt=1783234298001" }
     ];
 
     const allRoundersPlayers = [
@@ -634,7 +668,7 @@
     let internalAccounts = {};
     let currentUser = null, currentCoins = 999999, profileName = "THE OWNER", selectedAvatar = "user-circle", uploadedImageData = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEESGyaMU56sP46Vb1DWqQwq0jd5sZwYpMnudLJhD6XQ&s=10";
     let myPlayers = [];
-    let packRemaining = { 1: 4, 2: 12 };
+    let packRemaining = { 1: 12, 2: 12 };
     let currentDetailPlayer = null;
     let currentPlayerStats = { attackingAwareness: 42, ballControl: 44, dribbling: 46, tightPossession: 48 };
     let availablePoints = 0;
@@ -646,7 +680,7 @@
     let welcomeBackClaimed = false;
 
     function loadAccounts() {
-      // Only one account: admin
+      // Admin account + Portugal and Brazil team accounts
       internalAccounts = {
         "admin": {
           password: "admin",
@@ -685,6 +719,84 @@
             }
           },
           matchStats: { matches: 8, wins: 4, draws: 1, losses: 3, goalsFor: 0, goalsAgainst: 0, coins: 0 }
+        },
+        "portugal": {
+          password: "portugal",
+          coins: 500,
+          profileName: "Portugal FC",
+          avatar: "user-circle",
+          photoData: "https://upload.wikimedia.org/wikipedia/en/5/5c/Portuguese_Football_Federation.svg",
+          players: [
+            { name: "CRISTIANO RONALDO", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(6).jpg?updatedAt=1783215874800", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 90, ballControl: 90, dribbling: 90, tightPossession: 90 } },
+            { name: "Vitinha", image: "https://ik.imagekit.io/shaz/VITINHA_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 76, ballControl: 80, dribbling: 78, tightPossession: 79 } },
+            { name: "Joao Neves", image: "https://ik.imagekit.io/shaz/JOAO%20NEVES_card%20(1)-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 74, ballControl: 77, dribbling: 76, tightPossession: 77 } },
+            { name: "Shanaj", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(2)-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 94, ballControl: 93, dribbling: 92, tightPossession: 91 } },
+            { name: "Ruben Dias", image: "https://ik.imagekit.io/shaz/RUBEN%20DIAS_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 71, ballControl: 73, dribbling: 72, tightPossession: 76 } },
+            { name: "Bruno Fernandes", image: "https://ik.imagekit.io/shaz/BRUNO%20FERNANDES_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 82, ballControl: 81, dribbling: 78, tightPossession: 80 } },
+            { name: "Rafael Leao", image: "https://ik.imagekit.io/shaz/RAFEAL%20LEAO_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 76, ballControl: 74, dribbling: 73, tightPossession: 72 } },
+            { name: "Goncalo Inacio", image: "https://ik.imagekit.io/shaz/GON%C3%87ALO%20IN%C3%81CIO_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 79, ballControl: 82, dribbling: 80, tightPossession: 83 } },
+            { name: "Nuno Mendes", image: "https://ik.imagekit.io/shaz/NUNO%20MENDES%20_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 75, ballControl: 78, dribbling: 77, tightPossession: 79 } },
+            { name: "Diago Costa", image: "https://ik.imagekit.io/shaz/DIAGO%20COSTA_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 75, ballControl: 79, dribbling: 77, tightPossession: 80 } },
+            { name: "Haseeb", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(1)-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 84, ballControl: 83, dribbling: 82, tightPossession: 83 } },
+            { name: "Joao Cancelo", image: "https://ik.imagekit.io/shaz/JOAO%20CANCELO_card-Photoroom.png", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 76, ballControl: 78, dribbling: 77, tightPossession: 79 } }
+          ],
+          gamePlan: {
+            teamName: "Portugal FC",
+            logo: "https://upload.wikimedia.org/wikipedia/en/5/5c/Portuguese_Football_Federation.svg",
+            positions: {
+              0: "CRISTIANO RONALDO",
+              1: "Vitinha",
+              2: "Joao Neves",
+              3: "Shanaj",
+              4: "Ruben Dias",
+              5: "Bruno Fernandes",
+              6: "Rafael Leao",
+              7: "Goncalo Inacio",
+              8: "Nuno Mendes",
+              9: "Diago Costa",
+              10: "Joao Cancelo"
+            }
+          },
+          matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 }
+        },
+        "brazil": {
+          password: "brazil",
+          coins: 500,
+          profileName: "Brazil FC",
+          avatar: "user-circle",
+          photoData: "https://upload.wikimedia.org/wikipedia/en/0/05/Brazilian_Football_Confederation_logo.svg",
+          players: [
+            { name: "ASIF", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(1)_AtW65VeNI.jpg?updatedAt=1783146745026", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 94, ballControl: 93, dribbling: 92, tightPossession: 91 } },
+            { name: "SINAN P.A", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(3).jpg?updatedAt=1783146744450", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 92, ballControl: 91, dribbling: 90, tightPossession: 89 } },
+            { name: "ADNAN K.P", image: "https://ik.imagekit.io/shaz/Untitled%20design%20(5).jpg?updatedAt=1783146745229", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 } },
+            { name: "SHABAN", image: "https://ik.imagekit.io/shaz/89%20(1).jpg?updatedAt=1783146744623", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 90, ballControl: 89, dribbling: 88, tightPossession: 87 } },
+            { name: "ALISSON BECKER", image: "https://ik.imagekit.io/shaz/_ALISSON%20BECKER_card.png?updatedAt=1783233777643", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 84, ballControl: 84, dribbling: 84, tightPossession: 84 } },
+            { name: "MATHEUS CUNHA", image: "https://ik.imagekit.io/shaz/_MATHEUS%20CUNHA_card.png?updatedAt=1783224811100", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 83, ballControl: 83, dribbling: 83, tightPossession: 83 } },
+            { name: "EDERSON", image: "https://ik.imagekit.io/shaz/EDERSON_card.png?updatedAt=1783233777652", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 81, ballControl: 81, dribbling: 81, tightPossession: 81 } },
+            { name: "MARQUINHOS", image: "https://ik.imagekit.io/shaz/MARQUINHOS_card.png?updatedAt=1783233777822", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 83, ballControl: 83, dribbling: 83, tightPossession: 83 } },
+            { name: "ALEX SANDRO", image: "https://ik.imagekit.io/shaz/ALEX%20SANDRO_card%20(1).png?updatedAt=1783233933008", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 83, ballControl: 83, dribbling: 83, tightPossession: 83 } },
+            { name: "ENDRICK", image: "https://ik.imagekit.io/shaz/ENDRICK_card.png?updatedAt=1783234195088", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 83, ballControl: 83, dribbling: 83, tightPossession: 83 } },
+            { name: "DANILO", image: "https://ik.imagekit.io/shaz/DANILO_card.png?updatedAt=1783234206055", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 80, ballControl: 80, dribbling: 80, tightPossession: 80 } },
+            { name: "IGOR THIAGO", image: "https://ik.imagekit.io/shaz/IGOR%20THIAGO_card.png?updatedAt=1783234298001", level: 1, trainingUsed: { 50: 0, 100: 0, 150: 0 }, stats: { attackingAwareness: 79, ballControl: 79, dribbling: 79, tightPossession: 79 } }
+          ],
+          gamePlan: {
+            teamName: "Brazil FC",
+            logo: "https://upload.wikimedia.org/wikipedia/en/0/05/Brazilian_Football_Confederation_logo.svg",
+            positions: {
+              0: "ASIF",
+              1: "SINAN P.A",
+              2: "ADNAN K.P",
+              3: "SHABAN",
+              4: "ALISSON BECKER",
+              5: "MATHEUS CUNHA",
+              6: "EDERSON",
+              7: "MARQUINHOS",
+              8: "ALEX SANDRO",
+              9: "ENDRICK",
+              10: "DANILO"
+            }
+          },
+          matchStats: { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, coins: 0 }
         }
       };
       saveAccounts();
@@ -775,7 +887,6 @@
 
     function getUserCollectiveStrength() {
       if (currentUser && internalAccounts[currentUser]) {
-        // For admin, return fixed 932
         if (currentUser === "admin") return 932;
         return getCollectiveStrengthFromGamePlan(internalAccounts[currentUser]);
       }
@@ -911,7 +1022,7 @@
         <div class="draft-container">
           <div class="packs-grid">
             <div class="pack-card" id="pack1">
-              <div class="pack-header"><strong>LEGENDS OF BRAZIL</strong><button class="more-details-btn" data-pack="1">MORE DETAILS</button></div>
+              <div class="pack-header"><strong>BRAZIL ELITE</strong><button class="more-details-btn" data-pack="1">MORE DETAILS</button></div>
               <div class="pack-image-area"><img class="pack-full-image" src="https://ik.imagekit.io/shaz/Copy%20of%20All%20Rounders%20(2).jpg"><div class="pack-image-placeholder" style="display:none;"><i class="fas fa-image"></i><span>Pack Image</span></div></div>
               <div class="pack-stats"><div class="remaining-box">REMAINING: <span id="remainingCount1">${packRemaining[1]}</span></div><button class="spin-button" data-pack="1">SPIN x 100</button></div>
             </div>
@@ -955,7 +1066,11 @@
       if (currentCoins < 100) { showToast(`Need 100 coins! You have ${currentCoins}`); return; }
       currentCoins -= 100;
       packRemaining[packId]--;
-      const players = packId === 1 ? legendsPlayers : allRoundersPlayers;
+      
+      let players;
+      if (packId === 1) players = brazilElitePlayers;
+      else if (packId === 2) players = allRoundersPlayers;
+      
       let shuffled = [...players];
       for (let i = shuffled.length - 1; i > 0; i--) { let j = Math.floor(Math.random() * (i + 1)); [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; }
       const newPlayerObj = shuffled[0];
@@ -1081,6 +1196,11 @@
     // ----- MATCHES PAGE -----
     function renderMatchesPage() {
       document.getElementById("appContainer").classList.remove("gameplan-mode");
+      
+      // Check if user has collective strength > 0 to play matches
+      const userStrength = getUserCollectiveStrength();
+      const canPlayMatch = userStrength > 0;
+      
       const opponentKeys = Object.keys(internalAccounts).filter(key => key !== currentUser);
       matchesOpponentList = opponentKeys.map(key => {
         const data = internalAccounts[key];
@@ -1089,7 +1209,6 @@
       matchesOpponentList.sort((a, b) => b.strength - a.strength);
       if (!matchesCurrentOpponent && matchesOpponentList.length > 0) matchesCurrentOpponent = matchesOpponentList[0];
 
-      const userStrength = getUserCollectiveStrength();
       const userData = internalAccounts[currentUser];
       const userTeamName = userData?.gamePlan?.teamName || "My Team";
       const userLogo = userData?.gamePlan?.logo || "https://ui-avatars.com/api/?name=MY+TEAM&background=0d47a1&color=fff&size=80";
@@ -1119,7 +1238,9 @@
               <span class="vs-text">VS</span>
               <div class="your-team-badge"><img src="${userLogo}" alt="your team logo" id="myTeamLogoFixed"><span class="team-name">${userTeamName}</span></div>
             </div>
-            <button class="start-btn" id="startMatchBtn"><i class="fas fa-play"></i> START MATCH</button>
+            <button class="start-btn" id="startMatchBtn" ${!canPlayMatch ? 'disabled' : ''}>
+              <i class="fas fa-play"></i> ${canPlayMatch ? 'START MATCH' : 'NEED PLAYERS'}
+            </button>
           </div>
           <div class="matches-main-layout">
             <div class="matches-left-nav" id="accountList"><div class="nav-title"><i class="fas fa-users"></i> Opponents</div>${opponentsHtml}</div>
@@ -1174,7 +1295,12 @@
       });
 
       const startBtn = document.getElementById('startMatchBtn');
-      if (startBtn) startBtn.addEventListener('click', startMatch);
+      if (startBtn && canPlayMatch) startBtn.addEventListener('click', startMatch);
+      if (startBtn && !canPlayMatch) {
+        startBtn.addEventListener('click', function() {
+          showToast('⚠️ You need at least 1 player in your game plan to play! Spin packs and assign players.');
+        });
+      }
     }
 
     function showGamePlanDetail(opponent) {
@@ -1303,7 +1429,9 @@
       oppStats.goalsAgainst = (oppStats.goalsAgainst || 0) + myScore;
       let coinEarned = 0;
       if (myScore > oppScore) { oppStats.wins = (oppStats.wins || 0) + 1;
-        coinEarned = 50; } else if (myScore < oppScore) { oppStats.losses = (oppStats.losses || 0) + 1; } else { oppStats.draws = (oppStats.draws || 0) + 1; }
+        coinEarned = 50; } else if (myScore < oppScore) { oppStats.losses = (oppStats.losses || 0) + 1;
+        coinEarned = 0; } else { oppStats.draws = (oppStats.draws || 0) + 1;
+        coinEarned = 10; }
       oppStats.coins = (oppStats.coins || 0) + coinEarned;
       internalAccounts[opponent.id].matchStats = oppStats;
       saveAccounts();
@@ -1494,7 +1622,6 @@
     }
 
     function calculateCollectiveStrength() {
-      // For admin, return fixed 932
       if (currentUser === "admin") return 932;
       let total = 0;
       for (let i = 0; i < 11; i++) {
@@ -1567,9 +1694,10 @@
       else if (nameLower === "diago costa") nationality = "Brazil";
       else if (nameLower === "asif" || nameLower === "sinan p.a" || nameLower === "adnan k.p" || nameLower === "shaban") nationality = "Brazil";
       else if (nameLower === "goncalo inacio" || nameLower === "joao neves" || nameLower === "joao cancelo" || nameLower === "nuno mendes" || nameLower === "vitinha" || nameLower === "bernando silva" || nameLower === "bruno fernandes" || nameLower === "rafael leao" || nameLower === "ruben dias") nationality = "Portugal";
+      else if (nameLower === "alisson becker" || nameLower === "matheus cunha" || nameLower === "ederson" || nameLower === "marquinhos" || nameLower === "alex sandro" || nameLower === "endrick" || nameLower === "danilo" || nameLower === "igor thiago") nationality = "Brazil";
       document.getElementById("detailNationality").innerHTML = nationality;
       document.getElementById("detailFullTeam").innerHTML = nationality;
-      document.getElementById("detailHeightAge").innerHTML = `187 / 41`;
+      document.getElementById("detailHeightAge").innerHTML = `185 / 29`;
       document.getElementById("detailFoot").innerHTML = `Right Foot`;
       document.getElementById("detailLevel").innerHTML = `${player.level || 1} / 32`;
       document.getElementById("detailNextLevel").innerHTML = `204`;
@@ -1767,7 +1895,7 @@
         gamePlanSelectedLogo = data.gamePlan.logo || "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg";
         gamePlanPositions = data.gamePlan.positions || {}; } else { gamePlanTeamName = "THE KING";
         gamePlanPositions = {}; }
-      packRemaining = { 1: 4, 2: 12 };
+      packRemaining = { 1: 12, 2: 12 };
       welcomeBackClaimed = false;
       document.getElementById("loginContainer").style.display = "none";
       document.getElementById("appContainer").style.display = "block";
