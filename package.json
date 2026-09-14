@@ -1,0 +1,13 @@
+{
+  "name": "hiliga",
+  "version": "1.0.0",
+  "description": "HLIGA ULTIMATE - Draft game application",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "start": "python3 -m http.server 8080"
+  },
+  "keywords": ["hiliga", "draft", "game"],
+  "author": "",
+  "license": "ISC"
+}
